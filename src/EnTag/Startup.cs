@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using EnTag.Data;
 using EnTag.Models;
 using EnTag.Services;
+using EnTag.Infrastructure;
 
 namespace EnTag
 {
@@ -52,7 +53,9 @@ namespace EnTag
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
-            
+
+            services.AddScoped<TokenRepository>();
+            services.AddScoped<TokenService>();
 
             
                         // add security policies
