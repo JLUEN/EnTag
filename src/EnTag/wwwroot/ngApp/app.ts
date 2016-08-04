@@ -13,6 +13,7 @@ namespace EnTag {
                 controller: EnTag.Controllers.HomeController,
                 controllerAs: 'controller'
             })
+           
             .state('secret', {
                 url: '/secret',
                 templateUrl: '/ngApp/views/secret.html',
