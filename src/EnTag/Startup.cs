@@ -56,7 +56,7 @@ namespace EnTag
 
             services.AddScoped<TokenRepository>();
             services.AddScoped<TokenService>();
-
+            services.AddScoped<TwitterAuthService>();
             
                         // add security policies
                         services.AddAuthorization(options =>

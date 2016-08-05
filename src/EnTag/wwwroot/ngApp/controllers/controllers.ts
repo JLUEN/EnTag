@@ -5,13 +5,14 @@ namespace EnTag.Controllers {
 
         public tweets;
 
-        constructor($http: ng.IHttpService) {
+        constructor(private $http: ng.IHttpService) {
             $http.get('/api/test')
                 .then((response) => {
                     this.tweets = response.data;
                 });
         }
-        
+
+      
     }
 
     
