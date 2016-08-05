@@ -23,6 +23,7 @@ namespace EnTag.Data
             // Add your customizations after calling base.OnModelCreating(builder);
         }
 
-        DbSet<ExternalToken> ExternalTokens { get; set; }
+        public DbSet<ExternalToken> ExternalTokens { get; set; }
+        public DbSet<OurToken> OurTokens { get; set; }
     }
 }

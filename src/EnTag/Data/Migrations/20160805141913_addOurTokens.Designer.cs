@@ -8,9 +8,10 @@ using EnTag.Data;
 namespace EnTag.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160805141913_addOurTokens")]
+    partial class addOurTokens
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
@@ -81,22 +82,6 @@ namespace EnTag.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("ExternalTokens");
-                });
-
-            modelBuilder.Entity("EnTag.Models.OurToken", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Secret");
-
-                    b.Property<string>("Service");
-
-                    b.Property<string>("Token");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("OurTokens");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole", b =>
