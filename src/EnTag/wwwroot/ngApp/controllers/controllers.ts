@@ -31,13 +31,25 @@ namespace EnTag.Controllers {
     export class AboutController {
         public message = 'Hello from the about page!';
 
-        public theBestVideo = "wtfHs-LREj0"  //IFrame for video display
+        public theBestVideo = "wtfHs-LREj0"  //IFrame for video displaya
 
         constructor(private $http: ng.IHttpService) {  // video Id for a search 
             $http.get('https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&order=relevance&q=whiskeymyers&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4')
                 .then((response) => {
                     console.log(response.data);
                 });
+        }
+
+        subs() {  //hardcoded one cat id to get subs
+            this.$http.get('https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&order=relevance&q=bigclivedotcom&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4')
+                .then((response) => {
+                    console.log(response.data);
+                    this.$http.get('https://www.googleapis.com/youtube/v3/subscriptions?part=snippet&channelId=UCtM5z2gkrGRuWd0JQMx76qA&maxResults=10&order=relevance&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4')
+                        .then((response) => {
+                            console.log(response.data);
+                        });
+                });
+
         }
 
 
