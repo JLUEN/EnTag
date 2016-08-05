@@ -1,4 +1,6 @@
 ﻿using EnTag.Data;
+using EnTag.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +11,24 @@ namespace EnTag.Infrastructure
     public class TokenRepository
     {
         private ApplicationDbContext _db;
-        public TokenRepository(ApplicationDbContext db)
+        private UserRepository _uRepo;
+        public TokenRepository(ApplicationDbContext db, UserRepository ur)
         {
             _db = db;
+            _uRepo = ur;
+        }
+
+        public void AddItIn(string token, string secret, string service, string username)
+        {
+            var userTokens = new ExternalToken()
+            {
+                Token = token,
+                Secret = secret,
+                Service = service,
+                UserId = _uRepo.GetUserId(username)
+            };
+
+            _db.ExternalTokens.Add(userTokens);
         }
     }
 }

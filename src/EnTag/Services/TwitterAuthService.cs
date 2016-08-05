@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using EnTag.Infrastructure;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,11 @@ namespace EnTag.Services
     public class TwitterAuthService
     {
         private IHttpContextAccessor _context;
-        public TwitterAuthService(IHttpContextAccessor context)
+        private TokenRepository _tRepo;
+        public TwitterAuthService(IHttpContextAccessor context, TokenRepository tr)
         {
             _context = context;
+            _tRepo = tr;
         }
 
 
@@ -40,6 +43,11 @@ namespace EnTag.Services
 
             return userCreds;
 
+        }
+
+        public void AddItIn(string token, string secret, string service, string username)
+        {
+            _tRepo.AddItIn(token, secret, service, username);
         }
 
     }
