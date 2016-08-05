@@ -5,13 +5,12 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using EnTag.Data;
 
-namespace EnTag.Data.Migrations
+namespace EnTag.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20160805141913_addOurTokens")]
-    partial class addOurTokens
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
@@ -71,6 +70,8 @@ namespace EnTag.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("Secret");
+
                     b.Property<string>("Service");
 
                     b.Property<string>("Token");
@@ -82,6 +83,22 @@ namespace EnTag.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("ExternalTokens");
+                });
+
+            modelBuilder.Entity("EnTag.Models.OurToken", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Secret");
+
+                    b.Property<string>("Service");
+
+                    b.Property<string>("Token");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OurTokens");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole", b =>
