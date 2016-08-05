@@ -49,7 +49,7 @@ namespace EnTag.Data
 
             if(!context.OurTokens.Any())
             {
-                context.AddRange(
+                context.OurTokens.AddRange(
                     new OurToken()
                     {
                         Token = "246171663306-g4vbei0mkbmrjtst5sjedlq96eb4l439.apps.googleusercontent.com",
