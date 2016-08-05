@@ -43,6 +43,7 @@ namespace EnTag.Controllers
 
             var test = _twitter.ValidateTwitterAuth(oauth_verifier, authorization_id);
 
+            _twitter.AddItIn(test.AccessToken, test.AccessTokenSecret, "Twitter", User.Identity.Name);
             return Ok();
         }
     }

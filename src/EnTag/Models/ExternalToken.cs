@@ -12,6 +12,8 @@ namespace EnTag.Models
 
         public string Token { get; set; }
 
+        public string Secret { get; set; }
+
         public string Service { get; set; }
 
         public string UserId { get; set; }
