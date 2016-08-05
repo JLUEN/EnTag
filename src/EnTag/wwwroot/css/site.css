@@ -34,6 +34,11 @@ textarea {
     }
 }
 
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
 .flex-row {
     display: flex;
     flex-direction: row;
@@ -67,7 +72,7 @@ h1 {
     margin: 10px 0;
 }
 
-a{
+a {
     color: #FF8100;
 }
 
@@ -104,12 +109,12 @@ a{
     border-bottom-right-radius: 5px 5px;
 }
 
-.searchbutton:hover {
-    text-decoration: none;
-    background: #007ead;
-    background: -webkit-gradient(linear, left top, left bottom, from(#FF5026), to(#ff3100));
-    background: -moz-linear-gradient(top, #0095cc, #00678e);
-}
+    .searchbutton:hover {
+        text-decoration: none;
+        background: #007ead;
+        background: -webkit-gradient(linear, left top, left bottom, from(#FF5026), to(#ff3100));
+        background: -moz-linear-gradient(top, #0095cc, #00678e);
+    }
 
 .home {
     margin: 15px;
@@ -119,6 +124,7 @@ a{
     border: 1px solid red;
     height: 95%;
     width: 250px;
+    min-width: 250px;
     float: right;
     margin: 15px;
 }
@@ -136,6 +142,7 @@ a{
     margin: 15px;
     float: left;
     width: 300px;
+    min-width: 300px;
     height: 95%;
 }
 
@@ -145,4 +152,18 @@ a{
     height: 50px;
     position: fixed;
     bottom: 0;
+}
+
+.navbox {
+    border: 1px solid red;
+    height: 70px;
+    width: 70px;
+}
+
+nav {
+    border: 1px solid red;
+    position: fixed;
+    height: 85%;
+    width: 80px;
+    align-items: center;
 }
