@@ -31,7 +31,16 @@ namespace EnTag.Controllers {
     export class AboutController {
         public message = 'Hello from the about page!';
 
-        public theBestVideo = "wtfHs-LREj0"
+        public theBestVideo = "wtfHs-LREj0"  //IFrame for video display
+
+        constructor(private $http: ng.IHttpService) {  // video Id for a search 
+            $http.get('https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&order=relevance&q=whiskeymyers&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4')
+                .then((response) => {
+                    console.log(response.data);
+                });
+        }
+
+
     }
 
 }
