@@ -5,6 +5,7 @@
 /// <reference path="lib/angular-resource/angular-resource.js" />
 /// <reference path="lib/angular-touch/angular-touch.js" />
 /// <reference path="lib/angular-ui-router/release/angular-ui-router.js" />
+/// <reference path="lib/angular-youtube-mb/src/angular-youtube-embed.js" />
 /// <reference path="lib/bootstrap/dist/js/bootstrap.js" />
 /// <reference path="lib/jquery/dist/jquery.js" />
 /// <reference path="lib/jquery-validation/dist/jquery.validate.js" />
