@@ -47,6 +47,22 @@ namespace EnTag.Data
                 await userManager.CreateAsync(mike, "Secret123!");
             }
 
+            if(!context.OurTokens.Any())
+            {
+                context.AddRange(
+                    new OurToken()
+                    {
+                        Token = "246171663306-g4vbei0mkbmrjtst5sjedlq96eb4l439.apps.googleusercontent.com",
+                        Secret = "OrQGh0uwG-jTsumzSYlgjf5q",
+                        Service = "YouTube"
+                    },
+                    new OurToken()
+                    {
+                        Token = "pH8Qoql342mGPXHNY0Wnk3LZX",
+                        Secret = "kzIFhr3VaTW9yZJFh4WVvltFA45RXPjMD8IvxkcA2xvbwG5Lsk",
+                        Service = "Twitter"
+                    });
+            }
 
         }
 
