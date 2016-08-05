@@ -1,6 +1,7 @@
 body {
-    padding-top: 50px;
+    padding-top: 0;
     padding-bottom: 20px;
+    background-color: #202020;
 }
 
 /* Wrapping element */
@@ -31,4 +32,37 @@ textarea {
     .carousel-caption {
         z-index: 10 !important;
     }
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.f-jc-sb {
+    justify-content: space-between;
+}
+
+.f-jc-fe {
+    justify-content: flex-end;
+}
+
+.margintop {
+    margin-top: auto;
+}
+
+.title {
+    padding: 0 10px;
+}
+
+hr {
+    margin: 0;
+}
+
+.float-right {
+    float: right;
+}
+
+h1 {
+    margin: 10px 0;
 }
