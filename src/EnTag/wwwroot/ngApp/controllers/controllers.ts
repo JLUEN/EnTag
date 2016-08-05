@@ -31,7 +31,7 @@ namespace EnTag.Controllers {
     export class AboutController {
         public message = 'Hello from the about page!';
 
-        public theBestVideo = 'sMKoNBRZM1M';
+        public theBestVideo = '4aK1GK1KBGc';
     }
 
 }
