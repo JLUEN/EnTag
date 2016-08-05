@@ -2,6 +2,8 @@
   "userSecretsId": "aspnet-EnTag-a9f09ea0-5985-11e6-a0a1-5fa5744c0050",
 
   "dependencies": {
+    "Google.Apis.Auth.Mvc": "1.15.0",
+    "Google.Apis.YouTube.v3": "1.15.0.574",
     "Microsoft.AspNetCore.Authentication.Cookies": "1.0.0",
     "Microsoft.AspNetCore.Diagnostics": "1.0.0",
     "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "1.0.0",
