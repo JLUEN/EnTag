@@ -29,6 +29,7 @@ namespace EnTag.Infrastructure
             };
 
             _db.ExternalTokens.Add(userTokens);
+            _db.SaveChanges();
         }
     }
 }

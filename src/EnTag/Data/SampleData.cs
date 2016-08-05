@@ -62,6 +62,7 @@ namespace EnTag.Data
                         Secret = "kzIFhr3VaTW9yZJFh4WVvltFA45RXPjMD8IvxkcA2xvbwG5Lsk",
                         Service = "Twitter"
                     });
+                context.SaveChanges();
             }
 
         }
