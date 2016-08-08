@@ -33,3 +33,6 @@
 <div>
     <div ng-click="controller.ChangeVideo($index)" ng-repeat="vid in controller.searchVideo.items">{{vid.snippet.title}} <br /> <img src="{{vid.snippet.thumbnails.default.url}}" /></div>     <!--vid.id.videoId to access video id-->
 </div>
+<br />
+<button ng-click="controller.nextPage(controller.searchVideo.nextPageToken)">Next Page</button>
+<button ng-click="controller.previousPage(controller.searchVideo.prevPageToken)">Previous Page</button>
