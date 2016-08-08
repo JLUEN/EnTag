@@ -18,10 +18,12 @@ namespace EnTag.Services
     public class TokenService
     {
         private TokenRepository _tRepo;
+        private OurTokenService _otServ;
         private IHttpContextAccessor _context;
-        public TokenService(TokenRepository tr, IHttpContextAccessor context)
+        public TokenService(TokenRepository tr, OurTokenService ots, IHttpContextAccessor context)
         {
             _tRepo = tr;
+            _otServ = ots;
             _context = context;
         }
 
@@ -39,7 +41,8 @@ namespace EnTag.Services
         public IEnumerable<ITweet> GetHomeTest(string username)
         {
             var test = this.GetTwitterCreds(username);
-            Auth.SetUserCredentials("pH8Qoql342mGPXHNY0Wnk3LZX", "kzIFhr3VaTW9yZJFh4WVvltFA45RXPjMD8IvxkcA2xvbwG5Lsk", test.Token, test.Secret);
+            var test2 = _otServ.getYoutube();
+            Auth.SetUserCredentials(test2.Token, test2.Secret, test.Token, test.Secret);
            
             var tweets = Timeline.GetHomeTimeline();
 
