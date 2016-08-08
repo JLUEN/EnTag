@@ -52,8 +52,8 @@ namespace EnTag.Data
                 context.OurTokens.AddRange(
                     new OurToken()
                     {
-                        Token = "246171663306-g4vbei0mkbmrjtst5sjedlq96eb4l439.apps.googleusercontent.com",
-                        Secret = "OrQGh0uwG-jTsumzSYlgjf5q",
+                        Token = "AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4",
+                        Secret = "Public Key",
                         Service = "YouTube"
                     },
                     new OurToken()
