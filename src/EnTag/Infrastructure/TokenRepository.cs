@@ -35,6 +35,13 @@ namespace EnTag.Infrastructure
                 UserId = _uRepo.GetUserId(username)
             };
 
+            var check = (from t in _db.ExternalTokens
+                         where t.UserId == _uRepo.GetUserId(username)
+                         select t.UserId).FirstOrDefault();
+
+            if (userTokens.UserId == check)
+                return;
+
             _db.ExternalTokens.Add(userTokens);
             _db.SaveChanges();
         }
