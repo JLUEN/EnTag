@@ -70,12 +70,24 @@ namespace EnTag.Controllers {
         public searchVideo;
 
         subs() {  //hardcoded one cat id to get subs
-            this.$http.get('https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&order=relevance&q=bigclivedotcom&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4')
+            this.$http.get('https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&type=channel&order=relevance&q=ChefSteps&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4')  //q searches the name of the channel and gets channel id
                 .then((response) => {
                     console.log(response.data);
-                    this.$http.get('https://www.googleapis.com/youtube/v3/subscriptions?part=snippet&channelId=UCtM5z2gkrGRuWd0JQMx76qA&maxResults=10&order=relevance&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4')
+
+                    this.$http.get('https://www.googleapis.com/youtube/v3/subscriptions?part=snippet&channelId=UCxD2E-bVoUbaVFL0Q3PvJTg&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4') 
                         .then((response) => {
                             console.log(response.data);
+
+                            this.$http.get('https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=UCxD2E-bVoUbaVFL0Q3PvJTg&maxResults=10&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4')  //id is the channel id and gets upload key
+                                .then((response) => {
+                                    console.log(response.data);
+
+                                    this.$http.get('https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=10&playlistId=UUtM5z2gkrGRuWd0JQMx76qA&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4')  //playlist id gets upload key and gets playlist with video id
+                                        .then((response) => {
+                                            console.log(response.data);
+
+                                        });
+                                });
                         });
                 });
 
