@@ -12,6 +12,14 @@
 <br />
 <br />
 
+<form ng-submit="controller.Search(searchCriteria)">
+    <label>Search Video: <input type="text" ng-model="searchCriteria" /></label>
+    <input type="submit" value="Submit" />
+</form>
+
+
+<br /><br />
+
 
 <form ng-submit="controller.Post(tweet)">
     <label>Post Twitter: <input ng-model="tweet" type="text" /></label>
@@ -20,3 +28,8 @@
 
 
 
+<br /><br />
+
+<div>
+    <div ng-click="controller.ChangeVideo($index)" ng-repeat="vid in controller.searchVideo.items">{{vid.snippet.title}} <br /> <img src="{{vid.snippet.thumbnails.default.url}}" /></div>     <!--vid.id.videoId to access video id-->
+</div>

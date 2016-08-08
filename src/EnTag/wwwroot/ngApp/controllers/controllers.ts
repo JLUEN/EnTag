@@ -31,14 +31,22 @@ namespace EnTag.Controllers {
     export class AboutController {
         public message = 'Hello from the about page!';
 
-        public theBestVideo = "wtfHs-LREj0"  //IFrame for video displaya
+        public index;
 
         constructor(private $http: ng.IHttpService) {  // video Id for a search 
-            $http.get('https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&order=relevance&q=whiskeymyers&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4')
-                .then((response) => {
-                    console.log(response.data);
-                });
+
         }
+
+        ChangeVideo(index) {
+            this.index = index;
+        
+            this.theBestVideo=this.searchVideo.items[this.index].id.videoId;
+     
+        }
+
+        public theBestVideo = "vmjDK1z_FUE"  //IFrame for video display
+
+        public searchVideo;
 
         subs() {  //hardcoded one cat id to get subs
             this.$http.get('https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&order=relevance&q=bigclivedotcom&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4')
@@ -50,6 +58,14 @@ namespace EnTag.Controllers {
                         });
                 });
 
+        }
+
+        Search(searchCriteria) {
+            this.$http.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&order=relevance&q=${searchCriteria}&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)
+                .then((response) => {
+                    this.searchVideo = response.data;
+                    console.log(this.searchVideo);
+                });
         }
 
 
