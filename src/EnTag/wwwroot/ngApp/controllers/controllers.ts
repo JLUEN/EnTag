@@ -53,6 +53,14 @@ namespace EnTag.Controllers {
         }
 
 
+        Post(tweet) {
+
+            this.$http.post('/api/test', JSON.stringify(tweet))
+                .then((response) => {
+                    console.log("Success");
+                });
+        }
+
     }
 
 }

@@ -26,6 +26,14 @@ namespace EnTag.Controllers
             return _tokenService.GetHomeTest();
         }
 
+        [HttpPost]
+        public IActionResult PostTweetTest([FromBody]string myTweet) {
+
+            _tokenService.PostTweetTest(myTweet);
+
+            return Ok();
+        }
+
      
     }
 }

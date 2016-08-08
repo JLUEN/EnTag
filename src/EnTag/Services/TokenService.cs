@@ -32,6 +32,11 @@ namespace EnTag.Services
 
             return tweets;
         }
+
+        public void PostTweetTest(string myTweet) {
+
+            var firstTweet = Tweet.PublishTweet(myTweet);
+        }
         
 
 

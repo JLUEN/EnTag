@@ -9,5 +9,14 @@
 
 <button ng-click="controller.subs()">Subscriptions</button>
 
+<br />
+<br />
+
+
+<form ng-submit="controller.Post(tweet)">
+    <label>Post Twitter: <input ng-model="tweet" type="text" /></label>
+    <input type="submit" value="Submit Post"/>
+</form>
+
 
 
