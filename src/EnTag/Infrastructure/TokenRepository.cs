@@ -18,6 +18,13 @@ namespace EnTag.Infrastructure
             _uRepo = ur;
         }
 
+        public IQueryable<ExternalToken> GetCreds(string username)
+        {
+            return from t in _db.ExternalTokens
+                   where t.UserId == _uRepo.GetUserId(username)
+                   select t;
+        }
+
         public void AddItIn(string token, string secret, string service, string username)
         {
             var userTokens = new ExternalToken()
