@@ -33,6 +33,8 @@ namespace EnTag.Controllers {
 
         public index;
 
+        public searchCriteria;
+
         constructor(private $http: ng.IHttpService) {  // video Id for a search 
 
         }
@@ -42,6 +44,25 @@ namespace EnTag.Controllers {
         
             this.theBestVideo=this.searchVideo.items[this.index].id.videoId;
      
+        }
+
+        nextPage(nextPageToken) {
+            this.$http.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&pageToken=${nextPageToken}&order=relevance&q=${this.searchCriteria}&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)
+                .then((response) => {
+                    this.searchVideo = response.data;
+                    console.log(this.searchVideo);
+                });
+        }
+
+        previousPage(previousPageToken) {
+
+            if (previousPageToken != undefined || previousPageToken != null) {
+                this.$http.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&pageToken=${previousPageToken}&order=relevance&q=${this.searchCriteria}&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)
+                    .then((response) => {
+                        this.searchVideo = response.data;
+                        console.log(this.searchVideo);
+                    });
+            }
         }
 
         public theBestVideo = "vmjDK1z_FUE"  //IFrame for video display
@@ -61,6 +82,8 @@ namespace EnTag.Controllers {
         }
 
         Search(searchCriteria) {
+            this.searchCriteria = searchCriteria;
+
             this.$http.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&order=relevance&q=${searchCriteria}&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)
                 .then((response) => {
                     this.searchVideo = response.data;
