@@ -28,39 +28,49 @@
 
 
     <base href="/" />
+
     <link href="~/css/site.css" rel="stylesheet" />
-    <link href="~/lib/angular-material/angular-material.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 </head>
 <body ng-controller="AccountController as account">
-    <div>
-        <div class="flex-row f-jc-sb">
-            <h1 class="logo">EnTag</h1>
-            <div class="searchbar">
-                <input class="searchinput" placeholder="Search"/><button class="searchbutton">></button>
-            </div>
-            <div class="margintop">
-                <a href="/">Home</a>
-                <a href="/about">About</a>
-                / <a href="/secret">Secret</a> /
-                <div class="flex-row f-jc-fe">
-                    <div ng-show="account.isLoggedIn()">
-                        [{{account.getUserName()}}]
-                    </div>
-                    <a href="#" ng-click="account.logout()" ng-show="account.isLoggedIn()">Logout</a>
-                    <a href="/login" ng-show="!account.isLoggedIn()">Login</a>
+    <div class="header flex-row f-jc-sb">
+        <h1 class="logo">EnTag</h1>
+        <div class="searchbar">
+            <input class="searchinput" placeholder="Search" /><button class="searchbutton">></button>
+        </div>
+        <div class="margintop">
+            <div class="flex-row f-jc-fe">
+                <div ng-show="account.isLoggedIn()">
+                    [{{account.getUserName()}}]
                 </div>
+                <a href="#" ng-click="account.logout()" ng-show="account.isLoggedIn()">Logout</a>
+                <a href="/login" ng-show="!account.isLoggedIn()">Login</a>
+                <a ng-show="!account.isLoggedIn()">Register</a>
             </div>
         </div>
-        <hr />
-    <nav class="flex-col f-jc-sb">
-        <div class="navbox"></div>
-        <div class="navbox"></div>
-        <div class="navbox"></div>
-        <div class="navbox"></div>
-    </nav>
-
-        <ui-view></ui-view>
     </div>
-
+    <hr />
+    <nav class="flex-col f-jc-sb">
+        <div>
+            <div class="navbox twitter-icon">
+                <i class="fa fa-twitter fa-4x" aria-hidden="true"></i>
+            </div>
+            <div class="navbox twitch-icon">
+                <i class="fa fa-twitch fa-4x" aria-hidden="true"></i>
+            </div>
+            <div class="navbox youtube-icon fa-4x">
+                <i class="fa fa-youtube-square" aria-hidden="true"></i>
+            </div>
+            <div class="navbox spotify-icon">
+                <i class="fa fa-spotify fa-4x" aria-hidden="true"></i>
+            </div>
+        </div>
+        <div>
+            <div class="navbox settings-icon">
+                <i class="fa fa-cog fa-3x" aria-hidden="true"></i>
+            </div>
+        </div>
+    </nav>
+    <ui-view></ui-view>
 </body>
 </html>

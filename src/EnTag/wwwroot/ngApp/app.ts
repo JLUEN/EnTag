@@ -13,7 +13,7 @@ namespace EnTag {
                 controller: EnTag.Controllers.HomeController,
                 controllerAs: 'controller'
             })
-           
+
             .state('secret', {
                 url: '/secret',
                 templateUrl: '/ngApp/views/secret.html',
@@ -37,7 +37,7 @@ namespace EnTag {
                 templateUrl: '/ngApp/views/externalRegister.html',
                 controller: EnTag.Controllers.ExternalRegisterController,
                 controllerAs: 'controller'
-            }) 
+            })
             .state('about', {
                 url: '/about',
                 templateUrl: '/ngApp/views/about.html',
@@ -56,7 +56,7 @@ namespace EnTag {
         $locationProvider.html5Mode(true);
     });
 
-    
+
     angular.module('EnTag').factory('authInterceptor', (
         $q: ng.IQService,
         $window: ng.IWindowService,
@@ -81,6 +81,6 @@ namespace EnTag {
         $httpProvider.interceptors.push('authInterceptor');
     });
 
-    
+
 
 }
