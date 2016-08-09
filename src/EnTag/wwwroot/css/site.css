@@ -162,6 +162,18 @@ a {
     margin: 0;
 }
 
+body::-webkit-scrollbar {
+    width: 0.4em;
+}
+
+body::-webkit-scrollbar-track {
+    -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #FF8100;
+}
+
 /*
     Side NAV CSS
 */
@@ -272,3 +284,52 @@ nav {
     .cog-icon:hover {
         background-color: #FFFFFF;
     }
+
+
+/*
+    Twitter Feed
+*/
+
+#twitter {
+    padding: 5px;
+    overflow: auto;
+}
+
+    #twitter::-webkit-scrollbar {
+        width: 0.4em;
+    }
+
+    #twitter::-webkit-scrollbar-track {
+        -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+    }
+
+    #twitter::-webkit-scrollbar-thumb {
+        background-color: #FF8100;
+    }
+
+.tweet {
+    color: #e5e5e5;
+    background-color: #292929;
+    border-radius: 10px;
+    box-shadow: 0 10px 6px -6px #0F0F0F;
+}
+
+.tweetprofileimage{
+    border-radius: 5px;
+    margin: 5px;
+}
+
+.tweetname{
+    margin-top: auto;
+    font-weight: bold;
+}
+
+.tweettext{
+    margin: 5px;
+    padding-bottom: 10px;
+    font-size: small;
+}
+
+.twitterpopulate{
+    margin: 0;
+}
