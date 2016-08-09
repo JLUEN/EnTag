@@ -1,20 +1,4 @@
 namespace EnTag.Controllers {
-
-    export class HomeController {
-        public message = 'Hello from the home page!';
-
-        public tweets;
-
-        //constructor(private $http: ng.IHttpService) {
-        //    $http.get('/api/test')
-        //        .then((response) => {
-        //            this.tweets = response.data;
-        //        });
-        //}
-
-      
-    }
-
     
 
     export class SecretController {
@@ -34,6 +18,8 @@ namespace EnTag.Controllers {
         public index;
 
         public searchCriteria;
+
+        public subscriptionCriteria;
 
         constructor(private $http: ng.IHttpService) {  // video Id for a search 
 
@@ -65,18 +51,25 @@ namespace EnTag.Controllers {
             }
         }
 
+        
+
         public theBestVideo = "vmjDK1z_FUE"  //IFrame for video display
 
         public searchVideo;
 
-        subs() {  //hardcoded one cat id to get subs
-            this.$http.get('https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&type=channel&order=relevance&q=ChefSteps&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4')  //q searches the name of the channel and gets channel id
-                .then((response) => {
-                    console.log(response.data);
+        public searchSub = "ChefSteps";  //usually would be user username
 
-                    this.$http.get('https://www.googleapis.com/youtube/v3/subscriptions?part=snippet&channelId=UCxD2E-bVoUbaVFL0Q3PvJTg&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4') 
+        public channelId;
+
+        subs() {  //hardcoded one cat id to get subs
+            this.$http.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&type=channel&order=relevance&q=${this.searchSub}&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)  //q searches the name of the channel(ChefSteps hardcoded implement user's username) and gets channel id
+                .then((response) => {
+                    this.channelId = response.data;
+
+                    this.$http.get(`https://www.googleapis.com/youtube/v3/subscriptions?part=snippet&maxResults=50&channelId=UCxD2E-bVoUbaVFL0Q3PvJTg&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`) 
                         .then((response) => {
                             console.log(response.data);
+                            this.subscriptionCriteria = response.data;
 
                             this.$http.get('https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=UCxD2E-bVoUbaVFL0Q3PvJTg&maxResults=10&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4')  //id is the channel id and gets upload key
                                 .then((response) => {
