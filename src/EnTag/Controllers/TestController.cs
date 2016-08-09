@@ -23,17 +23,18 @@ namespace EnTag.Controllers
         [HttpGet]
         public IEnumerable<ITweet> GetHomeTest()
         {
-            return _tokenService.GetHomeTest( User.Identity.Name);
+            return _tokenService.GetHomeTest(User.Identity.Name);
         }
 
         [HttpPost]
-        public IActionResult PostTweetTest([FromBody]string myTweet) {
+        public IActionResult PostTweetTest([FromBody]string myTweet)
+        {
 
             _tokenService.PostTweetTest(myTweet);
 
             return Ok();
         }
 
-     
+
     }
 }
