@@ -32,12 +32,20 @@ namespace EnTag.Controllers {
      
         }
 
+        ChangeSubVid(index) {
+            this.index = index;
+
+            console.log(this.theBestVideo = this.playlist.items[this.index].snippet.resourceId.videoId);
+
+        }
+
         nextPage(nextPageToken) {
-            this.$http.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&pageToken=${nextPageToken}&order=relevance&q=${this.searchCriteria}&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)
-                .then((response) => {
-                    this.searchVideo = response.data;
-                    console.log(this.searchVideo);
-                });
+            if (nextPageToken != undefined || nextPageToken != null) {
+                this.$http.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&pageToken=${nextPageToken}&order=relevance&q=${this.searchCriteria}&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)
+                    .then((response) => {
+                        this.searchVideo = response.data;
+                    });
+            }
         }
 
         previousPage(previousPageToken) {
@@ -46,10 +54,67 @@ namespace EnTag.Controllers {
                 this.$http.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&pageToken=${previousPageToken}&order=relevance&q=${this.searchCriteria}&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)
                     .then((response) => {
                         this.searchVideo = response.data;
-                        console.log(this.searchVideo);
                     });
             }
         }
+
+        nextPageSub(nextPageToken) {
+            if (nextPageToken != undefined || nextPageToken != null) {
+                this.$http.get(`https://www.googleapis.com/youtube/v3/subscriptions?part=snippet&pageToken=${nextPageToken}&maxResults=50&channelId=${this.channelId.items[0].id.channelId}&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)
+                    .then((response) => {
+                        this.subscriptionCriteria = response.data;
+                    });
+            }
+        }
+
+        previousPageSub(previousPageToken) {
+            if (previousPageToken != undefined || previousPageToken != null) {
+                this.$http.get(`https://www.googleapis.com/youtube/v3/subscriptions?part=snippet&maxResults=50&pageToken=${previousPageToken}&channelId=${this.channelId.items[0].id.channelId}&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)
+                    .then((response) => {
+                        this.subscriptionCriteria = response.data;
+                    });
+            }
+        }
+
+        nextPageSubVid(nextPageToken) {
+            if (nextPageToken != undefined || nextPageToken != null) {
+                this.$http.get(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&pageToken=${nextPageToken}&maxResults=10&playlistId=${this.uploadKey.items[0].contentDetails.relatedPlaylists.uploads}&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)
+                    .then((response) => {
+                        this.playlist = response.data;
+                    });
+            }
+        }
+        previousPageSubVid(previousPageToken) {
+            if (previousPageToken != undefined || previousPageToken != null) {
+                this.$http.get(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&pageToken=${previousPageToken}&maxResults=10&playlistId=${this.uploadKey.items[0].contentDetails.relatedPlaylists.uploads}&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)
+                    .then((response) => {
+                        this.playlist = response.data;
+                    });
+            }
+        }
+
+
+
+
+        ChooseSubscription(index) {
+            this.index = index;
+
+            this.resourceId = this.subscriptionCriteria.items[index].snippet.resourceId.channelId;
+
+            this.$http.get(`https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=${this.resourceId}&maxResults=10&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)  //id is the channel id and gets upload key
+                .then((response) => {
+                    console.log(response.data);
+                    this.uploadKey = response.data;
+
+                    this.$http.get(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=10&playlistId=${this.uploadKey.items[0].contentDetails.relatedPlaylists.uploads}&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)  //playlist id gets upload key and gets playlist with video id
+                        .then((response) => {
+                            console.log(response.data);
+                            this.playlist = response.data;
+                        });
+                });
+
+        }
+
 
         
 
@@ -61,26 +126,23 @@ namespace EnTag.Controllers {
 
         public channelId;
 
+        public resourceId;
+
+        public uploadKey;
+
+        public playlist;
+
         subs() {  //hardcoded one cat id to get subs
             this.$http.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&type=channel&order=relevance&q=${this.searchSub}&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)  //q searches the name of the channel(ChefSteps hardcoded implement user's username) and gets channel id
                 .then((response) => {
                     this.channelId = response.data;
+                    console.log(this.channelId);
 
-                    this.$http.get(`https://www.googleapis.com/youtube/v3/subscriptions?part=snippet&maxResults=50&channelId=UCxD2E-bVoUbaVFL0Q3PvJTg&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`) 
+                    this.$http.get(`https://www.googleapis.com/youtube/v3/subscriptions?part=snippet&maxResults=50&channelId=${this.channelId.items[0].id.channelId}&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`) 
                         .then((response) => {
                             console.log(response.data);
                             this.subscriptionCriteria = response.data;
 
-                            this.$http.get('https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=UCxD2E-bVoUbaVFL0Q3PvJTg&maxResults=10&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4')  //id is the channel id and gets upload key
-                                .then((response) => {
-                                    console.log(response.data);
-
-                                    this.$http.get('https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=10&playlistId=UUtM5z2gkrGRuWd0JQMx76qA&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4')  //playlist id gets upload key and gets playlist with video id
-                                        .then((response) => {
-                                            console.log(response.data);
-
-                                        });
-                                });
                         });
                 });
 
