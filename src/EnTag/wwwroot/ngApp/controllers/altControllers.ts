@@ -26,6 +26,7 @@
 
         ChangeSubVid(index) {
             this.index = index;
+            this.theBestVideo = this.playlist.items[this.index].snippet.resourceId.videoId
         }
 
         nextPage(nextPageToken) {
