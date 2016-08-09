@@ -4,8 +4,47 @@
 
 
         <div id="youtube">
+            <form ng-submit="controller.Search(searchCriteria)">
+                <label>Search Video: <input type="text" ng-model="searchCriteria" /></label>
+                <input type="submit" value="Submit" />
+            </form>
 
+            <div id="youtubeplayer">
+                <youtube-video video-id="controller.theBestVideo"></youtube-video>
+            </div>
+
+            <div id="youtubeSearchResults">
+                <div>
+                    <div ng-click="controller.ChangeVideo($index)" ng-repeat="vid in controller.searchVideo.items">{{vid.snippet.title}} <br /> <img src="{{vid.snippet.thumbnails.default.url}}" /></div>     <!--vid.id.videoId to access video id-->
+                </div>
+                <br />
+                <button ng-click="controller.nextPage(controller.searchVideo.nextPageToken)">Next Page</button>
+                <button ng-click="controller.previousPage(controller.searchVideo.prevPageToken)">Previous Page</button>
+            </div>
         </div>
+
+        <div id="subscriptions">
+            <button ng-click="controller.subs()">Subscriptions</button>
+
+            <div id="subscriptionsList">
+                <div>
+                    <div ng-click="controller.ChooseSubscription($index)" ng-repeat="sub in controller.subscriptionCriteria.items">{{sub.snippet.title}} <br /> <img src="{{sub.snippet.thumbnails.default.url}}" /></div>
+                </div>
+                <button ng-click="controller.nextPageSub(controller.subscriptionCriteria.nextPageToken)">Next Page</button>
+                <button ng-click="controller.previousPageSub(controller.subscriptionCriteria.prevPageToken)">Previous Page</button>
+
+            </div>
+
+
+            <div id="subscriptionPlaylist">
+                <div>
+                    <div ng-click="controller.ChangeSubVid($index)" ng-repeat="play in controller.playlist.items"> {{play.snippet.title}} <br /> <img src="{{play.snippet.thumbnails.default.url}}" /> </div>
+                </div>
+                <button ng-click="controller.nextPageSubVid(controller.playlist.nextPageToken)">Next Page</button>
+                <button ng-click="controller.previousPageSubVid(controller.playlist.prevPageToken)">Previous Page</button>
+            </div>
+        </div>
+
 
         <div id="twitter">
             <form class="twitterpopulate" ng-submit="controller.getTweets()" ng-hide="!account.isLoggedIn()">
@@ -14,10 +53,17 @@
             <div class="tweet" ng-repeat="t in controller.tweets">
                 <div class="flex-row">
                     <img class="tweetprofileimage" ng-src="{{t.tweetDTO.user.profile_image_url}}" />
-                    <p class="tweetname">{{t.tweetDTO.user.name}}</p>
+                    <p class="tweetname">{{t.tweetDTO.user.name}}<br />{{t.tweetDTO.user.created_at| date}}</p>
                 </div>
                 <p class="tweettext">{{t.tweetDTO.text}}</p>
             </div>
+        </div>
+
+        <div id="twitterpost">
+            <form ng-submit="controller.Post(tweet)">
+                <label>Post Twitter: <input ng-model="tweet" type="text" /></label>
+                <input type="submit" value="Submit Post" />
+            </form>
         </div>
 
         <div id="spotify">
