@@ -41,7 +41,7 @@ namespace EnTag.Services
         public IEnumerable<ITweet> GetHomeTest(string username)
         {
             var test = this.GetTwitterCreds(username);
-            var test2 = _otServ.getYoutube();
+            var test2 = _otServ.getTwitter();
             Auth.SetUserCredentials(test2.Token, test2.Secret, test.Token, test.Secret);
            
             var tweets = Timeline.GetHomeTimeline();

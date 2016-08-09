@@ -8,7 +8,14 @@
         </div>
 
         <div id="twitter">
-
+            <form ng-submit="controller.getTweets()" ng-hide="!account.isLoggedIn()">
+                <input type="submit" value="Populate" />
+            </form>
+            <div class="tweet" ng-repeat="t in controller.tweets">
+                <img ng-src="{{t.tweetDTO.user.profile_image_url}}" /> {{t.tweetDTO.user.name}} 
+                <p>{{t.tweetDTO.text}}</p>
+                <br />
+            </div>
         </div>
 
         <div id="spotify">
