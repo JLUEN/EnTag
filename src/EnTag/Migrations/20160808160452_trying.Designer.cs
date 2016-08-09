@@ -8,8 +8,8 @@ using EnTag.Data;
 namespace EnTag.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20160805162657_token")]
-    partial class token
+    [Migration("20160808160452_trying")]
+    partial class trying
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

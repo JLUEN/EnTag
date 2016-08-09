@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace EnTag.Migrations
 {
-    public partial class token : Migration
+    public partial class trying : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

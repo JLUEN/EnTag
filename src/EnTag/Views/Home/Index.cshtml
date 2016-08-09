@@ -31,6 +31,12 @@
     <base href="/" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
     <link href="~/css/site.css" rel="stylesheet" />
+    <script type="text/javascript">
+        function OpenWindow() {
+            window.open("/oauth/twitter/", "_blank", "width=300, height=200, alwaysRaised=yes").close();
+            window.close();
+        }
+    </script>
 </head>
 <body ng-controller="AccountController as account">
     <div class="header flex-row f-jc-sb">
@@ -53,7 +59,7 @@
     <nav class="flex-col f-jc-sb">
         <div>
             <div class="navbox twitter-icon">
-                <i class="fa fa-twitter fa-4x" aria-hidden="true"></i>
+                <a onclick="OpenWindow();"><i class="fa fa-twitter fa-4x" aria-hidden="true"></i></a>
             </div>
             <div class="navbox twitch-icon">
                 <i class="fa fa-twitch fa-4x" aria-hidden="true"></i>

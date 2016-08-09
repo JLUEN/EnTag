@@ -21,10 +21,6 @@ namespace EnTag.Services
         }
 
 
-
-
-       
-
         // Step 1 : Redirect user to go on Twitter.com to authenticate
         public IAuthenticationContext TwitterAuth(string redirectUrl)
         {
