@@ -14,6 +14,8 @@
         public uploadKey;
         public playlist;
         public hidePlaylist = false;
+        public hideSubscriptions = false;
+        public hideVideo = false;
 
         constructor(private $http: ng.IHttpService) {
 
@@ -104,6 +106,9 @@
         }
 
         subs() {  //hardcoded one cat id to get subs
+
+            this.hideSubscriptions = true;
+
             this.$http.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&type=channel&order=relevance&q=${this.searchSub}&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)  //q searches the name of the channel(ChefSteps hardcoded implement user's username) and gets channel id
                 .then((response) => {
                     this.channelId = response.data;
@@ -116,6 +121,8 @@
         }
 
         Search(searchCriteria) {
+            this.hideVideo = true;
+
             this.searchCriteria = searchCriteria;
 
             this.$http.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&order=relevance&q=${searchCriteria}&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)
@@ -123,6 +130,8 @@
                     this.searchVideo = response.data;
                 });
         }
+
+       
 
         Post(tweet) {
             this.$http.post('/api/test', JSON.stringify(tweet))

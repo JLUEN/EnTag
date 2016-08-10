@@ -3,7 +3,6 @@
         <option selected disabled hidden style='display: none' value=''>Select</option>
         <option value="Aggregation">Aggregation</option>
         <option value="Video">Video</option>
-        <option value="Subscription">Subscription</option>
     </select>
 </div>
 
@@ -15,13 +14,10 @@
 <div class="searchbar" ng-show="search=='Video'">
     <form ng-submit="controller.Search(searchCriteria)">
         <input class="searchinput" placeholder="Video" type="text" ng-model="searchCriteria" />
-        <input class="searchbutton" type="submit" value="Submit" />
+        <input  class="searchbutton" type="submit" value="Submit" />
     </form>
 </div>
 
-<div class="subscriptionPopulate" ng-show="search=='Subscription'">
-    <button ng-click="controller.subs()">Subscriptions</button>
-</div>
 
 <div class="home">
 
@@ -37,9 +33,9 @@
             <div id="youtubeSearchResults">
                 <div id="twitter">
                     <div ng-click="controller.ChangeVideo($index)" ng-repeat="vid in controller.searchVideo.items">{{vid.snippet.title}} <br /> <img src="{{vid.snippet.thumbnails.default.url}}" /></div>     <!--vid.id.videoId to access video id-->
-                    <div ng-show="search=='Video'">
-                        <button ng-click="controller.nextPage(controller.searchVideo.nextPageToken)">Next Page</button>
+                    <div ng-show="controller.hideVideo">
                         <button ng-click="controller.previousPage(controller.searchVideo.prevPageToken)">Previous Page</button>
+                        <button ng-click="controller.nextPage(controller.searchVideo.nextPageToken)">Next Page</button>   
                     </div>
                 </div>
                 <br />
@@ -50,10 +46,11 @@
         
             <div id="subscriptionsList">
                 <div id="twitter">
+                    <button ng-click="controller.subs()">Subscriptions</button>
                     <div ng-click="controller.ChooseSubscription($index)" ng-repeat="sub in controller.subscriptionCriteria.items">{{sub.snippet.title}} <br /> <img src="{{sub.snippet.thumbnails.default.url}}" /></div>
-                    <div  ng-show="search=='Subscription'">
-                        <button ng-click="controller.nextPageSub(controller.subscriptionCriteria.nextPageToken)">Next Page</button>
+                    <div ng-show="controller.hideSubscriptions">
                         <button ng-click="controller.previousPageSub(controller.subscriptionCriteria.prevPageToken)">Previous Page</button>
+                        <button ng-click="controller.nextPageSub(controller.subscriptionCriteria.nextPageToken)">Next Page</button>
                     </div>
                 </div>
             </div>
@@ -63,8 +60,8 @@
                 <div id="twitter">
                     <div  ng-click="controller.ChangeSubVid($index)" ng-repeat="play in controller.playlist.items"> {{play.snippet.title}} <br /> <img src="{{play.snippet.thumbnails.default.url}}" /> </div>
                     <div ng-show="controller.hidePlaylist">
-                        <button ng-click="controller.nextPageSubVid(controller.playlist.nextPageToken)">Next Page</button>
                         <button ng-click="controller.previousPageSubVid(controller.playlist.prevPageToken)">Previous Page</button>
+                        <button ng-click="controller.nextPageSubVid(controller.playlist.nextPageToken)">Next Page</button>
                     </div>
                 </div>
             </div>
@@ -84,7 +81,7 @@
             </div>
         </div>
 
-        <div id="twitterpost">
+        <div id="twitterpost" ng-hide="!account.isLoggedIn()">
             <form ng-submit="controller.Post(tweet)">
                 <label>Post Twitter: <input ng-model="tweet" type="text" /></label>
                 <input type="submit" value="Submit Post" />
