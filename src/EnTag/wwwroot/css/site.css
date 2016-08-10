@@ -99,7 +99,10 @@ a {
 }
 
 .searchbar {
-    margin: 15px;
+    position:absolute;
+    top:0;
+    left:40%;
+    margin:15px;
     white-space: nowrap;
 }
 
@@ -333,3 +336,25 @@ nav {
 .twitterpopulate{
     margin: 0;
 }
+
+#twitterpost {
+position: absolute;
+right:0;
+bottom:0;
+}
+
+.searchChoices {
+position: absolute;
+top: 0;
+left:30%;
+margin: 15px;
+padding: 10px;
+}
+
+.subscriptionPopulate {
+position:absolute;
+top:0;
+left:40%;
+margin:15px;
+}
+
