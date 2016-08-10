@@ -1,4 +1,5 @@
 ﻿namespace EnTag.Controllers {
+
     export class HomeController {
         public message = 'Hello from the home page!';
 
@@ -17,9 +18,20 @@
         public hideSubscriptions = false;
         public hideVideo = false;
 
-        constructor(private $http: ng.IHttpService) {
+        constructor(private $http: ng.IHttpService, private $uibModal: angular.ui.bootstrap.IModalService) {
 
         }
+
+        public showModal() {
+            this.$uibModal.open({
+                templateUrl: '/ngApp/views/youtubeModal.html',
+                controller: 'YoutubeDialogController',
+                controllerAs: 'modal',
+
+                size: 'md'
+            });
+        }
+
 
     
 
@@ -147,4 +159,15 @@
         }
 
     }
+
+
+    class YoutubeDialogController {
+        public ok() {
+            this.$uibModalInstance.close();
+        }
+
+        constructor(private $uibModalInstance: angular.ui.bootstrap.IModalServiceInstance) { }
+    }
+    angular.module('EnTag').controller('YoutubeDialogController', YoutubeDialogController);
+
 }

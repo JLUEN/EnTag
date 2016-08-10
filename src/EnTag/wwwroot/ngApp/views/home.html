@@ -1,3 +1,9 @@
+<script>
+        function OpenWindow() {
+            window.open("/oauth/twitter/", "_blank", "width=300, height=200, alwaysRaised=yes");
+        }
+</script>
+
 <div class="searchChoices">
     <select ng-model="search">
         <option selected disabled hidden style='display: none' value=''>Select</option>
@@ -21,13 +27,14 @@
 <nav class="flex-col f-jc-sb">
     <div>
         <div class="navbox twitter-icon">
-            <a onclick="OpenWindow();"><i class="fa fa-twitter fa-4x" aria-hidden="true"></i></a>
+            <a onclick="OpenWindow()"><i class="fa fa-twitter fa-4x" aria-hidden="true"></i></a>
         </div>
         <div class="navbox twitch-icon">
             <i class="fa fa-twitch fa-4x" aria-hidden="true"></i>
         </div>
         <div class="navbox youtube-icon fa-4x">
-            <i class="fa fa-youtube-square" aria-hidden="true"></i>
+            <i ng-click="controller.showModal()" class="fa fa-youtube-square" aria-hidden="true"></i>
+            
         </div>
         <div class="navbox spotify-icon">
             <i class="fa fa-spotify fa-4x" aria-hidden="true"></i>
@@ -96,7 +103,7 @@
             <div class="tweet" ng-repeat="t in controller.tweets">
                 <div class="flex-row">
                     <img class="tweetprofileimage" ng-src="{{t.tweetDTO.user.profile_image_url}}" />
-                    <p class="tweetname">{{t.tweetDTO.user.name}}<br />{{t.tweetDTO.user.created_at| date}}</p>
+                    <p class="tweetname">{{t.tweetDTO.user.name}}<br />{{t.tweetDTO.created_at| date}}</p>
                 </div>
                 <p class="tweettext">{{t.tweetDTO.text}}</p>
             </div>
@@ -113,8 +120,4 @@
     </div>
     
 </div>
-<script type="text/javascript">
-        function OpenWindow() {
-            window.open("/oauth/twitter/", "_blank", "width=300, height=200, alwaysRaised=yes");
-        }
-</script>
+
