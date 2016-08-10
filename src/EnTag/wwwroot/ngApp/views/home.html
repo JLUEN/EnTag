@@ -18,8 +18,29 @@
     </form>
 </div>
 
-
+<nav class="flex-col f-jc-sb">
+    <div>
+        <div class="navbox twitter-icon">
+            <a onclick="OpenWindow();"><i class="fa fa-twitter fa-4x" aria-hidden="true"></i></a>
+        </div>
+        <div class="navbox twitch-icon">
+            <i class="fa fa-twitch fa-4x" aria-hidden="true"></i>
+        </div>
+        <div class="navbox youtube-icon fa-4x">
+            <i class="fa fa-youtube-square" aria-hidden="true"></i>
+        </div>
+        <div class="navbox spotify-icon">
+            <i class="fa fa-spotify fa-4x" aria-hidden="true"></i>
+        </div>
+    </div>
+    <div>
+        <div class="navbox cog-icon">
+            <i class="fa fa-cog fa-3x" aria-hidden="true"></i>
+        </div>
+    </div>
+</nav>
 <div class="home">
+    
 
     <div class="flex-row f-jc-sb">
 
@@ -90,4 +111,10 @@
 
        
     </div>
+    
 </div>
+<script type="text/javascript">
+        function OpenWindow() {
+            window.open("/oauth/twitter/", "_blank", "width=300, height=200, alwaysRaised=yes");
+        }
+</script>
