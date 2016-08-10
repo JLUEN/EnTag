@@ -35,37 +35,37 @@
             </div>
 
             <div id="youtubeSearchResults">
-                <div>
+                <div id="twitter">
                     <div ng-click="controller.ChangeVideo($index)" ng-repeat="vid in controller.searchVideo.items">{{vid.snippet.title}} <br /> <img src="{{vid.snippet.thumbnails.default.url}}" /></div>     <!--vid.id.videoId to access video id-->
+                    <div ng-show="search=='Video'">
+                        <button ng-click="controller.nextPage(controller.searchVideo.nextPageToken)">Next Page</button>
+                        <button ng-click="controller.previousPage(controller.searchVideo.prevPageToken)">Previous Page</button>
+                    </div>
                 </div>
                 <br />
-                <div ng-show="search=='Video'">
-                    <button ng-click="controller.nextPage(controller.searchVideo.nextPageToken)">Next Page</button>
-                    <button ng-click="controller.previousPage(controller.searchVideo.prevPageToken)">Previous Page</button>
-                </div>
             </div>
         </div>
 
         <div id="subscriptions">
         
             <div id="subscriptionsList">
-                <div>
+                <div id="twitter">
                     <div ng-click="controller.ChooseSubscription($index)" ng-repeat="sub in controller.subscriptionCriteria.items">{{sub.snippet.title}} <br /> <img src="{{sub.snippet.thumbnails.default.url}}" /></div>
-                </div>
-                <div ng-show="search=='Subscription'">
-                    <button ng-click="controller.nextPageSub(controller.subscriptionCriteria.nextPageToken)">Next Page</button>
-                    <button ng-click="controller.previousPageSub(controller.subscriptionCriteria.prevPageToken)">Previous Page</button>
+                    <div  ng-show="search=='Subscription'">
+                        <button ng-click="controller.nextPageSub(controller.subscriptionCriteria.nextPageToken)">Next Page</button>
+                        <button ng-click="controller.previousPageSub(controller.subscriptionCriteria.prevPageToken)">Previous Page</button>
+                    </div>
                 </div>
             </div>
 
 
-            <div id="subscriptionPlaylist">
-                <div>
-                    <div ng-click="controller.ChangeSubVid($index)" ng-repeat="play in controller.playlist.items"> {{play.snippet.title}} <br /> <img src="{{play.snippet.thumbnails.default.url}}" /> </div>
-                </div>
-                <div ng-show="search=='Subscription'">
-                    <button ng-click="controller.nextPageSubVid(controller.playlist.nextPageToken)">Next Page</button>
-                    <button ng-click="controller.previousPageSubVid(controller.playlist.prevPageToken)">Previous Page</button>
+            <div id="subscriptionPlaylist" ng-show="controller.hidePlaylist">
+                <div id="twitter">
+                    <div  ng-click="controller.ChangeSubVid($index)" ng-repeat="play in controller.playlist.items"> {{play.snippet.title}} <br /> <img src="{{play.snippet.thumbnails.default.url}}" /> </div>
+                    <div ng-show="controller.hidePlaylist">
+                        <button ng-click="controller.nextPageSubVid(controller.playlist.nextPageToken)">Next Page</button>
+                        <button ng-click="controller.previousPageSubVid(controller.playlist.prevPageToken)">Previous Page</button>
+                    </div>
                 </div>
             </div>
         </div>

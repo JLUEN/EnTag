@@ -13,11 +13,13 @@
         public resourceId;
         public uploadKey;
         public playlist;
+        public hidePlaylist = false;
 
         constructor(private $http: ng.IHttpService) {
 
         }
 
+    
 
         ChangeVideo(index) {
             this.index = index;
@@ -85,6 +87,8 @@
         ChooseSubscription(index) {
             this.index = index;
             this.resourceId = this.subscriptionCriteria.items[index].snippet.resourceId.channelId;
+
+            this.hidePlaylist = true;
 
             this.$http.get(`https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=${this.resourceId}&maxResults=10&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)  //id is the channel id and gets upload key
                 .then((response) => {
