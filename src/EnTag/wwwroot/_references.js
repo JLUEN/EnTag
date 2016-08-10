@@ -20,3 +20,4 @@
 /// <reference path="ngapp/controllers/controllers.js" />
 /// <reference path="ngapp/services/accountservice.js" />
 /// <reference path="ngapp/services/services.js" />
+/// <reference path="scripts/twitterwindow.js" />
