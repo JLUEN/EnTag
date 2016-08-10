@@ -1,4 +1,5 @@
 ﻿/// <autosync enabled="true" />
+/// <reference path="../scripts/twitterwindow.js" />
 /// <reference path="lib/angular/angular.js" />
 /// <reference path="lib/angular-animate/angular-animate.js" />
 /// <reference path="lib/angular-aria/angular-aria.js" />
