@@ -37,7 +37,6 @@
             test.result.then((username) => {
                 this.$http.post('/api/test/youtube/username', JSON.stringify(username))
                     .then((response) => {
-                        alert("Your account is not set to private settings. Please change this to public!");
                         this.$state.go('home');
                     });
             });
