@@ -45,5 +45,16 @@ namespace EnTag.Infrastructure
             _db.ExternalTokens.Add(userTokens);
             _db.SaveChanges();
         }
+
+        public string GetUserId(string userName) {
+            return (from u in _db.Users
+                    where u.UserName == userName
+                    select u).First().Id;
+        }
+
+        public void AddYoutubeUserName(ExternalToken user) {
+            _db.ExternalTokens.Add(user);
+            _db.SaveChanges();
+        }
     }
 }

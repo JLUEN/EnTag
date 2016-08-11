@@ -1,4 +1,5 @@
 ﻿using EnTag.Infrastructure;
+using EnTag.Models;
 using EnTag.Services.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -38,6 +39,20 @@ namespace EnTag.Services
                     }).FirstOrDefault();
         }
 
+
+        public TokenDTO GetYouTubeUsername(string username)
+        {
+            return (from t in _tRepo.GetCreds(username)
+                    where t.Service == "YouTube"
+                    select new TokenDTO()
+                    {
+                        Token = t.Token,
+                        Secret = "",
+                    }).FirstOrDefault();
+        }
+
+
+
         public IEnumerable<ITweet> GetHomeTest(string username)
         {
             var test = this.GetTwitterCreds(username);
@@ -53,7 +68,22 @@ namespace EnTag.Services
 
             var firstTweet = Tweet.PublishTweet(myTweet);
         }
-        
+
+        public void PostYoutubeUsername(string username,string ytUsername) {
+
+            ExternalToken dbToken = new ExternalToken()
+            {
+                Service = "YouTube",
+                Token = ytUsername,
+                Secret = "",
+                UserId = _tRepo.GetUserId(username)
+            };
+
+            _tRepo.AddYoutubeUserName(dbToken);
+
+        }
+
+
 
 
     }

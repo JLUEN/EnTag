@@ -9,7 +9,7 @@
         public subscriptionCriteria;
         public theBestVideo = "vmjDK1z_FUE"  //IFrame for video display
         public searchVideo;
-        public searchSub = "ChefSteps";  //usually would be user username
+        public searchSub  //usually would be user username
         public channelId;
         public resourceId;
         public uploadKey;
@@ -19,21 +19,31 @@
         public hideVideo = false;
 
         constructor(private $http: ng.IHttpService, private $uibModal: angular.ui.bootstrap.IModalService) {
-
+          
         }
 
-        public showModal() {
-            this.$uibModal.open({
+        public showModal(formData:string) {
+            var test = this.$uibModal.open({
                 templateUrl: '/ngApp/views/youtubeModal.html',
                 controller: 'YoutubeDialogController',
                 controllerAs: 'modal',
-
-                size: 'md'
+                size: 'sm',
+                resolve: {
+                    formData: () => formData
+                }
+               
             });
+
+            test.result.then((username) => {
+                this.$http.post('/api/test/youtube/username', JSON.stringify(username))
+                    .then((response) => {
+                    });
+            });
+          
         }
 
 
-    
+
 
         ChangeVideo(index) {
             this.index = index;
@@ -105,13 +115,13 @@
             this.hidePlaylist = true;
 
             this.$http.get(`https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=${this.resourceId}&maxResults=10&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)  //id is the channel id and gets upload key
-                .then((response) => {
+                 .then((response) => {
                     console.log(response.data);
                     this.uploadKey = response.data;
 
                     this.$http.get(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=10&playlistId=${this.uploadKey.items[0].contentDetails.relatedPlaylists.uploads}&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)  //playlist id gets upload key and gets playlist with video id
                         .then((response) => {
-                            console.log(response.data);
+                           console.log(response.data);
                             this.playlist = response.data;
                         });
                 });
@@ -121,14 +131,24 @@
 
             this.hideSubscriptions = true;
 
-            this.$http.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&type=channel&order=relevance&q=${this.searchSub}&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)  //q searches the name of the channel(ChefSteps hardcoded implement user's username) and gets channel id
+            this.$http.get('/api/test/youtube/username')
                 .then((response) => {
-                    this.channelId = response.data;
+                    this.searchSub = response.data;
+                    this.searchSub = this.searchSub.token;  
 
-                    this.$http.get(`https://www.googleapis.com/youtube/v3/subscriptions?part=snippet&maxResults=50&channelId=${this.channelId.items[0].id.channelId}&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)
-                        .then((response) => {
-                            this.subscriptionCriteria = response.data;
-                        });
+                    if (this.searchSub != null && this.searchSub != undefined) {
+
+                        this.$http.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&type=channel&order=relevance&q=${this.searchSub}&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)  //q searches the name of the channel(ChefSteps hardcoded implement user's username) and gets channel id
+                            .then((response) => {
+                                this.channelId = response.data;
+                                console.log(this.channelId.items[0].id.channelId);
+
+                                this.$http.get(`https://www.googleapis.com/youtube/v3/subscriptions?part=snippet&maxResults=50&channelId=${this.channelId.items[0].id.channelId}&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)
+                                    .then((response) => {
+                                        this.subscriptionCriteria = response.data;
+                                    });
+                            });
+                    }
                 });
         }
 
@@ -143,7 +163,7 @@
                 });
         }
 
-       
+
 
         Post(tweet) {
             this.$http.post('/api/test', JSON.stringify(tweet))
@@ -158,12 +178,16 @@
                 });
         }
 
+
     }
 
 
-    class YoutubeDialogController {
-        public ok() {
-            this.$uibModalInstance.close();
+    export class YoutubeDialogController {
+
+
+        SubmitUsername(username: string) {
+            this.$uibModalInstance.close(username);
+
         }
 
         constructor(private $uibModalInstance: angular.ui.bootstrap.IModalServiceInstance) { }
