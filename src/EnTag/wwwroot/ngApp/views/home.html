@@ -66,7 +66,7 @@
                 <div id="subscriptions">
                     <div id="subscriptionsList">
                         <div class="overflow scroll">
-                            <button ng-click="controller.subs()">Subscriptions</button>
+                            <button  ng-click="controller.subs()">Subscriptions</button>
                             <div ng-click="controller.ChooseSubscription($index)" ng-repeat="sub in controller.subscriptionCriteria.items">
                                 <div class="flex-row youtube-sublist">
                                     <img class="youtube-subimage"src="{{sub.snippet.thumbnails.default.url}}" />
