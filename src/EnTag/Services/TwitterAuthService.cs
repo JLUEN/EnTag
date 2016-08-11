@@ -1,4 +1,5 @@
-﻿using EnTag.Infrastructure;
+﻿
+using EnTag.Infrastructure;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;

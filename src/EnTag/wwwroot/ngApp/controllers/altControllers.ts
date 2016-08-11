@@ -37,7 +37,6 @@
             test.result.then((username) => {
                 this.$http.post('/api/test/youtube/username', JSON.stringify(username))
                     .then((response) => {
-                        alert("Your account is not set to private settings. Please change this to public!");
                         this.$state.go('home');
                     });
             });
@@ -143,15 +142,18 @@
                         this.$http.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&type=channel&order=relevance&q=${this.searchSub}&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)  //q searches the name of the channel(ChefSteps hardcoded implement user's username) and gets channel id
                             .then((response) => {
                                 this.channelId = response.data;
-                                
+                              
+             
 
                                 this.$http.get(`https://www.googleapis.com/youtube/v3/subscriptions?part=snippet&maxResults=50&channelId=${this.channelId.items[0].id.channelId}&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)
                                     .then((response) => {
                                         this.subscriptionCriteria = response.data;
+                                       
                                     })
                                     .catch((response) => {
                                         this.showModal("Testing");
                                     });
+
                             });
                     }
                 });
