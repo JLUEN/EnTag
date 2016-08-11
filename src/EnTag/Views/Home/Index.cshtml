@@ -32,25 +32,26 @@
     <base href="/" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
     <link href="~/css/site.css" rel="stylesheet" />
-    
+
 </head>
 <body ng-controller="AccountController as account">
-    <div class="header flex-row f-jc-sb">
-        <h1 class="logo">EnTag</h1>
-
-        <div class="margintop">
-            <div class="flex-row f-jc-fe">
-                <div ng-show="account.isLoggedIn()">
-                    [{{account.getUserName()}}]
+    <div class="container">
+        <div class="flex-row f-jc-sb">
+            <h1 class="logo">EnTag</h1>
+            <div class="margintop">
+                <div class="flex-row f-jc-fe">
+                    <div class="username" ng-show="account.isLoggedIn()">
+                        [{{account.getUserName()}}]
+                    </div>
+                    <a href="#" ng-click="account.logout()" ng-show="account.isLoggedIn()">Logout</a>
+                    <a href="/login" ng-show="!account.isLoggedIn()">Login</a>
+                    <a ng-show="!account.isLoggedIn()">Register</a>
                 </div>
-                <a href="#" ng-click="account.logout()" ng-show="account.isLoggedIn()">Logout</a>
-                <a href="/login" ng-show="!account.isLoggedIn()">Login</a>
-                <a ng-show="!account.isLoggedIn()">Register</a>
             </div>
         </div>
     </div>
     <hr />
-    
+
     <ui-view></ui-view>
 </body>
 </html>

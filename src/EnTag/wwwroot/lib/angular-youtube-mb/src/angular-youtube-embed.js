@@ -141,8 +141,8 @@ angular.module('youtube-embed', [])
             element[0].id = playerId;
 
             // Attach to element
-            scope.playerHeight = scope.playerHeight || 390;
-            scope.playerWidth = scope.playerWidth || 640;
+            scope.playerHeight = scope.playerHeight || 390*1;
+            scope.playerWidth = scope.playerWidth || 640*1;
             scope.playerVars = scope.playerVars || {};
 
             // YT calls callbacks outside of digest cycle
