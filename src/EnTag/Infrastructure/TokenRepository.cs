@@ -53,8 +53,22 @@ namespace EnTag.Infrastructure
         }
 
         public void AddYoutubeUserName(ExternalToken user) {
-            _db.ExternalTokens.Add(user);
-            _db.SaveChanges();
+            
+            var check = (from t in _db.ExternalTokens
+                         where t.UserId == user.UserId
+                         where t.Service == "YouTube"
+                         select t).FirstOrDefault();
+
+            if (check == null)
+            {
+                _db.ExternalTokens.Add(user);
+                _db.SaveChanges();
+            }
+            else {
+                _db.ExternalTokens.Remove(check);
+                _db.ExternalTokens.Add(user);
+                _db.SaveChanges();
+            }
         }
     }
 }

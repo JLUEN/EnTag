@@ -122,7 +122,7 @@ namespace EnTag.Controllers {
 
         public searchVideo;
 
-        public searchSub = "ChefSteps";  //usually would be user username
+        public searchSub = "mellow";  //usually would be user username
 
         public channelId;
 
