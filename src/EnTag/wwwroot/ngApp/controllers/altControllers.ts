@@ -180,7 +180,12 @@
             this.$http.get('/api/test')
                 .then((response) => {
                     this.tweets = response.data;
-                });
+
+                    if (this.tweets[0] == undefined) {
+                        alert("Please log in to Twitter first!");
+                    }
+                })
+               
         }
 
 
