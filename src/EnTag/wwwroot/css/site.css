@@ -85,6 +85,12 @@ hr {
     background-color: #FF8100;
 }
 
+.buttonstyle {
+    border-radius: 15px;
+    text-align: center;
+    width: 80px;
+}
+
 h1 {
     margin: 10px 0;
 }
@@ -181,28 +187,48 @@ a {
 #videofeed {
     border: 1px solid red;
     margin: 15px;
+    padding: 5px;
+    width: 650px;
+    height: 400px;
+}
+
+#videosearch {
+    border: 1px solid red;
+    margin: 15px 0 15px 0;
+    padding: 5px;
+    height: 70%;
+    min-height: 600px;
+    width: 250px;
 }
 
 #twitter {
     border: 1px solid red;
-    height: 75%;
-    min-height: 700px;
+    height: 600px;
     width: 280px;
-    min-width: 280px;
     float: right;
-    margin: 15px 15px 15px 0;
+    margin: 15px 15px 5px 0;
     position: relative;
     padding: 5px;
 }
 
-#twitch {
+#twitchchatfeed {
+    border: 1px solid red;
+    position: relative;
+}
+
+#twitchchatbox {
+    border: 1px solid red;
+    width: 650px;
+    height: 300px;
+    margin: 0 15px;
+    padding: 5px;
 }
 
 #youtube {
     border: 1px solid red;
-    margin: 5px;
-    min-width: 400px;
-    width: 400px;
+    margin: 15px 5px;
+    min-width: 350px;
+    width: 350px;
     height: 70%;
     min-height: 600px;
     position: relative;
@@ -378,11 +404,9 @@ nav {
 
 .twitterpost {
     border: 1px solid red;
-    position: absolute;
+    position: relative;
     padding: 5px;
-    bottom: 15px;
-    right: 15px;
-    height: 120px;
+    height: 110px;
     width: 280px;
 }
 
@@ -410,11 +434,11 @@ nav {
     border-radius: 10px;
 }
 
-.youtube-sublist:hover{
-    background-color: #FF8100;
-    color: #000000;
-    cursor: pointer;
-}
+    .youtube-sublist:hover {
+        background-color: #FF8100;
+        color: #000000;
+        cursor: pointer;
+    }
 
 .youtube-subimage {
     height: auto;
@@ -430,4 +454,12 @@ nav {
     color: #000000;
     margin: auto;
     justify-content: center;
+}
+
+.videofeed{
+
+}
+
+.videotext{
+
 }
