@@ -57,6 +57,7 @@ namespace EnTag
             services.AddScoped<TokenRepository>();
             services.AddScoped<TokenService>();
             services.AddScoped<TwitterAuthService>();
+            services.AddScoped<SpotifyAuthService>();
             services.AddScoped<UserRepository>();
             services.AddScoped<OurTokenRepository>();
             services.AddScoped<OurTokenService>();

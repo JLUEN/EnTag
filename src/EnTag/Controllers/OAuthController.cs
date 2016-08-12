@@ -18,10 +18,11 @@ namespace EnTag.Controllers
     public class OAuthController : Controller
     {
         private TwitterAuthService _twitter;
-
-        public OAuthController(TwitterAuthService t)
+        private SpotifyAuthService _spotify;
+        public OAuthController(TwitterAuthService t,SpotifyAuthService s)
         {
             _twitter = t;
+            _spotify = s;
         }
 
         private IAuthenticationContext _authContext;
@@ -46,5 +47,9 @@ namespace EnTag.Controllers
             _twitter.AddItIn(test.AccessToken, test.AccessTokenSecret, "Twitter", User.Identity.Name);
             return Ok();
         }
+
+
+       
+
     }
 }
