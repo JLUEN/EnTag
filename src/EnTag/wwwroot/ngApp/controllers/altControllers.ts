@@ -14,7 +14,6 @@
         public resourceId;
         public uploadKey;
         public playlist;
-
         public hidePlaylist = false;
         public hideSubscriptions = false;
         public hideVideo = false;
@@ -168,6 +167,12 @@
             this.$http.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&order=relevance&q=${searchCriteria}&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)
                 .then((response) => {
                     this.searchVideo = response.data;
+     
+                    for (let i in this.searchVideo.items) {
+                        if (this.searchVideo.items[i].id.kind !="youtube#video") {
+                            this.searchVideo.items.splice(i,1);
+                        }
+                    }
                 });
         }
 
