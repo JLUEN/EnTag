@@ -189,7 +189,9 @@ a {
     margin: 15px;
     padding: 5px;
     width: 650px;
+    min-width: 650px;
     height: 400px;
+    min-height: 400px;
 }
 
 #videosearch {
@@ -198,12 +200,14 @@ a {
     padding: 5px;
     height: 70%;
     min-height: 600px;
-    width: 250px;
+    width: 340px;
+    min-width: 300px;
 }
 
 #twitter {
     border: 1px solid red;
-    height: 600px;
+    height: 70%;
+    min-height: 600px;
     width: 280px;
     float: right;
     margin: 15px 15px 5px 0;
@@ -218,17 +222,18 @@ a {
 
 #twitchchatbox {
     border: 1px solid red;
-    width: 650px;
-    height: 300px;
+    min-width: 650px;
+    min-height: 300px;
+    height: auto;
     margin: 0 15px;
     padding: 5px;
 }
 
-#youtube {
+#youtubeSubList {
     border: 1px solid red;
     margin: 15px 5px;
-    min-width: 350px;
-    width: 350px;
+    min-width: 200px;
+    width: 200px;
     height: 70%;
     min-height: 600px;
     position: relative;
@@ -432,6 +437,7 @@ nav {
     margin: 3px;
     background-color: #C0C0C0;
     border-radius: 10px;
+    width: 180px;
 }
 
     .youtube-sublist:hover {
@@ -456,10 +462,28 @@ nav {
     justify-content: center;
 }
 
-.videofeed{
+/*
+    Video Search Box
+*/
 
+.videoimg {
+    margin: 3px;
 }
 
-.videotext{
+.videolist {
+    color: #FF8100;
+    align-content: center;
+    align-items: center;
+}
 
+.selectvideo:hover {
+    color: #337ab7;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.videofeed {
+}
+
+.videotext {
 }

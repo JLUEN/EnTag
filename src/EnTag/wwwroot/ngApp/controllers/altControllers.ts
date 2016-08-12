@@ -14,6 +14,7 @@
         public resourceId;
         public uploadKey;
         public playlist;
+
         public hidePlaylist = false;
         public hideSubscriptions = false;
         public hideVideo = false;
