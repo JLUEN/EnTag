@@ -1,19 +1,26 @@
-<div id="searcharea">
-    <div class="searchChoices">
-        <select ng-model="search">
-            <option selected disabled hidden style='display: none' value=''>Select</option>
-            <option value="Aggregation">Aggregation</option>
-            <option value="Video">Video</option>
-        </select>
-    </div>
+<div id="searcharea" class="container flex-row f-jc-c">
 
-    <div class="searchbar" ng-show="search=='Aggregation'">
-        <input class="searchinput" placeholder="Search" /><button class="searchbutton">></button>
+    <div class="searchbar flex-row" ng-show="search=='Aggregation'">
+        <input class="searchinput" placeholder="Search" />
+        <div class="searchChoices">
+            <select class="searchdropdown" ng-init="search='Aggregation'" ng-model="search">
+                <option value="Aggregation">Everything</option>
+                <option value="Video">Video</option>
+            </select>
+        </div>
+        <button class="searchbutton">></button>
     </div>
 
     <div class="searchbar" ng-show="search=='Video'">
-        <form ng-submit="controller.Search(searchCriteria)">
-            <input class="searchinput" placeholder="Video" type="text" ng-model="searchCriteria" /><button class="searchbutton" type="submit">></button>
+        <form class="flex-row" ng-submit="controller.Search(searchCriteria)">
+            <input class="searchinput" placeholder="Video" type="text" ng-model="searchCriteria" />
+            <div class="searchChoices">
+                <select class="searchdropdown" ng-model="search">
+                    <option value="Aggregation">Everything</option>
+                    <option value="Video">Video</option>
+                </select>
+            </div>
+            <button class="searchbutton" type="submit">></button>
         </form>
     </div>
 </div>

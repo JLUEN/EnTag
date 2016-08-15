@@ -129,7 +129,6 @@ a {
 .searchinput {
     margin: 0;
     padding: 5px 15px;
-    width: 400px;
     font-family: Arial, Arial, Helvetica, sans-serif;
     font-size: 14px;
     border: 1px solid #1A1A1A;
@@ -139,19 +138,19 @@ a {
 }
 
 .searchbar {
-    position: absolute;
-    top: 0;
-    left: 40%;
-    margin: 15px;
+    margin: 13px;
     white-space: nowrap;
 }
 
 .searchChoices {
-    position: absolute;
-    top: 0;
-    left: 30%;
-    margin: 15px;
-    padding: 10px;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #1A1A1A;
+    border-right: 0px;
+}
+
+.searchdropdown {
+    height: 32px;
 }
 
 .searchbutton {
@@ -180,18 +179,23 @@ a {
 
 .home {
     margin: 0px 0px 0px 80px;
+    position: relative;
+    top: -60px;
 }
 
 /* Body Content */
+
+#searcharea {
+    position: relative;
+    top: -60px;
+}
 
 #videofeed {
     border: 1px solid red;
     margin: 15px;
     padding: 5px;
-    width: 650px;
-    min-width: 650px;
-    height: 400px;
-    min-height: 400px;
+    width: 100%;
+    min-width: 100%;
 }
 
 #videosearch {
