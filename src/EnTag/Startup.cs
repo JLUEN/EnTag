@@ -61,6 +61,7 @@ namespace EnTag
             services.AddScoped<UserRepository>();
             services.AddScoped<OurTokenRepository>();
             services.AddScoped<OurTokenService>();
+            services.AddScoped<TwitchAuthService>();
             
                         // add security policies
                         services.AddAuthorization(options =>

@@ -196,6 +196,12 @@
                
         }
 
+        public boom() {
+            this.$http.get("/api/oauth/twitch").then((response) => {
+                console.log(response.data);
+            });
+        }
+
 
     }
 

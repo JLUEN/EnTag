@@ -9,6 +9,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Tweetinvi;
 using Tweetinvi.Models;
+using System.Text;
+using System.Net;
+using System.IO;
+using Newtonsoft.Json.Linq;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -19,10 +23,12 @@ namespace EnTag.Controllers
     {
         private TwitterAuthService _twitter;
         private SpotifyAuthService _spotify;
-        public OAuthController(TwitterAuthService t,SpotifyAuthService s)
+        private TwitchAuthService _twitch;
+        public OAuthController(TwitterAuthService t,SpotifyAuthService s, TwitchAuthService tw)
         {
             _twitter = t;
             _spotify = s;
+            _twitch = tw;
         }
 
         private IAuthenticationContext _authContext;
@@ -48,8 +54,25 @@ namespace EnTag.Controllers
             return Ok();
         }
 
+        [HttpGet("twitch")]
+        public ActionResult Twitch()
+        {
+            var redirectUrl = "http://" + Request.Host.Value + "/oauth/twitch/auth";
+            var id = "s3n11pgqzcy09gqlz7gdgjloc3vzfav";
+            var scopes = "user_read%20user_subscriptions";
+            var loginUrl = "https://api.twitch.tv/kraken/oauth2/authorize?response_type=code&client_id=" + id + "&redirect_uri=" + redirectUrl + "&scope=" + scopes;
 
-       
+            return Redirect(loginUrl);
+        }
+
+        [HttpGet("twitch/auth", Name = "TwitchAuth")]
+        public ActionResult TwitchAuth([FromQuery]string code)
+        {
+            var qatch = _twitch.AuthTwitch(code, "http://" + Request.Host.Value + "/oauth/twitch/auth");
+            dynamic test = JObject.Parse(qatch);
+            _twitch.AddItIn((string)test.access_token, "", "Twitch", User.Identity.Name);
+            return Ok();
+        }
 
     }
 }

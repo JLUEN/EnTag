@@ -36,6 +36,7 @@ namespace EnTag.Infrastructure
             };
 
             var check = (from t in _db.ExternalTokens
+                         where t.Service == service
                          where t.UserId == _uRepo.GetUserId(username)
                          select t.UserId).FirstOrDefault();
 
