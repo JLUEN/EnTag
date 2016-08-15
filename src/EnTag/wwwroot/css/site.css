@@ -1,8 +1,8 @@
 body {
-    padding-top: 0;
+    margin: 0;
+    padding: 0;
     background-color: #202020;
-    min-width: 1366px;
-    min-height: 768px;
+    border: 1px solid pink;
 }
 
 /* Wrapping element */
@@ -178,9 +178,13 @@ a {
     }
 
 .home {
-    margin: 0px 0px 0px 80px;
     position: relative;
     top: -60px;
+    min-height: 700px;
+    min-width: 1366px;
+    max-width: 1920px;
+    max-height: 1080px;
+    padding: 0;
 }
 
 /* Body Content */
@@ -191,11 +195,11 @@ a {
 }
 
 #videofeed {
-    border: 1px solid red;
+    border: 1px solid orange;
     margin: 15px;
     padding: 5px;
-    width: 100%;
-    min-width: 100%;
+    width: 96.5%;
+    min-width: 96.5%;
 }
 
 #videosearch {
@@ -211,21 +215,30 @@ a {
 #twitter {
     border: 1px solid red;
     height: 70%;
-    min-height: 600px;
-    width: 280px;
+    max-height: 600px;
+    width: 250px;
+    min-width: 250px;
     float: right;
     margin: 15px 15px 5px 0;
     position: relative;
     padding: 5px;
 }
 
-#twitchchatfeed {
+.twitterpost {
     border: 1px solid red;
+    position: relative;
+    padding: 5px;
+    height: 150px;
+    width: 250px;
+}
+
+#twitchchatfeed {
+    border: 1px solid green;
     position: relative;
 }
 
 #twitchchatbox {
-    border: 1px solid red;
+    border: 1px solid yellow;
     min-width: 650px;
     min-height: 300px;
     height: auto;
@@ -409,14 +422,6 @@ nav {
 .twitterpopulate {
     border: 1px solid red;
     margin: 5px 0 5px 0;
-}
-
-.twitterpost {
-    border: 1px solid red;
-    position: relative;
-    padding: 5px;
-    height: 110px;
-    width: 280px;
 }
 
 .subscriptionPopulate {

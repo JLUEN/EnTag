@@ -25,7 +25,7 @@
     </div>
 </div>
 
-<nav class="flex-col f-jc-sb">
+<!--<nav class="flex-col f-jc-sb">
     <div>
         <div class="navbox twitter-icon">
             <a onclick="OpenWindow()"><i class="fa fa-twitter fa-4x" aria-hidden="true"></i></a>
@@ -46,24 +46,35 @@
             <i class="fa fa-cog fa-3x" aria-hidden="true"></i>
         </div>
     </div>
-</nav>
-<div class="home">
+</nav>-->
 
-
-    <div class="flex-row f-jc-sb" style="border:1px solid blue">
+<div class="home" style="border: 1px solid blue">
+    <div class="flex-row f-jc-sb">
 
         <div class="flex-col">
 
-            <div id="videofeed">
+            <!--<div id="videofeed">
                 <div id="youtubeplayer">
                     <youtube-video video-id="controller.theBestVideo"></youtube-video>
                 </div>
-            </div>
+            </div>-->
 
-            <div id="twitchchatfeed">
+            <div id="videofeed">
                 <div class="flex-col">
-                    <div id="twitchchatbox">
-                    </div>
+                    <iframe src="http://player.twitch.tv/?channel=allshamnowow"
+                            height="390"
+                            width="640"
+                            frameborder="0"
+                            scrolling="no"
+                            allowfullscreen="true">
+                    </iframe>
+                    <iframe frameborder="0"
+                            scrolling="no"
+                            id="chat_embed"
+                            src="http://www.twitch.tv/allshamnowow/chat"
+                            height="400"
+                            width="640">s
+                    </iframe>
                 </div>
             </div>
 
