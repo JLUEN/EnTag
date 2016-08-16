@@ -1,6 +1,6 @@
 namespace EnTag {
 
-    angular.module('EnTag', ['ui.router', 'ngResource', 'ui.bootstrap', 'youtube-embed']).config((
+    angular.module('EnTag', ['ui.router', 'ngResource', 'ui.bootstrap', 'youtube-embed', 'ngMaterial', 'ngMessages']).config((
         $stateProvider: ng.ui.IStateProvider,
         $urlRouterProvider: ng.ui.IUrlRouterProvider,
         $locationProvider: ng.ILocationProvider
@@ -80,7 +80,5 @@ namespace EnTag {
     angular.module('EnTag').config(function ($httpProvider) {
         $httpProvider.interceptors.push('authInterceptor');
     });
-
-
 
 }
