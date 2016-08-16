@@ -1,10 +1,98 @@
 namespace EnTag {
 
     angular.module('EnTag', ['ui.router', 'ngResource', 'ui.bootstrap', 'youtube-embed', 'ngMaterial', 'ngMessages']).config((
+        $mdThemingProvider,
         $stateProvider: ng.ui.IStateProvider,
         $urlRouterProvider: ng.ui.IUrlRouterProvider,
         $locationProvider: ng.ILocationProvider
     ) => {
+
+        var customPrimary = {
+            '50': '#ffebd6',
+            '100': '#ffdebd',
+            '200': '#ffd2a3',
+            '300': '#ffc58a',
+            '400': '#ffb970',
+            '500': '#ffac57',
+            '600': '#ff9f3d',
+            '700': '#ff9324',
+            '800': '#ff860a',
+            '900': '#f07900',
+            'A100': '#fff8f0',
+            'A200': '#ffffff',
+            'A400': '#ffffff',
+            'A700': '#d66d00'
+        };
+        $mdThemingProvider
+            .definePalette('customPrimary',
+            customPrimary);
+
+        var customAccent = {
+            '50': '#11282f',
+            '100': '#183842',
+            '200': '#1f4854',
+            '300': '#265867',
+            '400': '#2c687a',
+            '500': '#33788c',
+            '600': '#4198b2',
+            '700': '#4ea5be',
+            '800': '#60aec5',
+            '900': '#73b8cc',
+            'A100': '#4198b2',
+            'A200': '#3a889f',
+            'A400': '#33788c',
+            'A700': '#86c1d3'
+        };
+        $mdThemingProvider
+            .definePalette('customAccent',
+            customAccent);
+
+        var customWarn = {
+            '50': '#ffded6',
+            '100': '#ffcabd',
+            '200': '#ffb5a3',
+            '300': '#ffa08a',
+            '400': '#ff8c70',
+            '500': '#ff7757',
+            '600': '#ff623d',
+            '700': '#ff4e24',
+            '800': '#ff390a',
+            '900': '#f02e00',
+            'A100': '#fff3f0',
+            'A200': '#ffffff',
+            'A400': '#ffffff',
+            'A700': '#d62900'
+        };
+        $mdThemingProvider
+            .definePalette('customWarn',
+            customWarn);
+
+        var customBackground = {
+            '50': '#606060',
+            '100': '#535353',
+            '200': '#464646',
+            '300': '#393939',
+            '400': '#2d2d2d',
+            '500': '#202020',
+            '600': '#131313',
+            '700': '#060606',
+            '800': '#000000',
+            '900': '#000000',
+            'A100': '#6c6c6c',
+            'A200': '#797979',
+            'A400': '#868686',
+            'A700': '#000000'
+        };
+        $mdThemingProvider
+            .definePalette('customBackground',
+            customBackground);
+
+        $mdThemingProvider.theme('default')
+            .primaryPalette('customPrimary', {'default': '800'})
+            .accentPalette('customAccent', {'default': 'A200'})
+            .warnPalette('customWarn', {'default': '800'})
+            .backgroundPalette('customBackground', {'default':'500'});
+
         // Define routes
         $stateProvider
             .state('home', {
