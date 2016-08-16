@@ -61,29 +61,55 @@
 
             <div id="videofeed">
                 <div class="flex-col">
-                    <iframe src="http://player.twitch.tv/?channel=allshamnowow"
+                    <iframe src="http://player.twitch.tv/?channel=timthetatman"
                             height="390"
                             width="640"
                             frameborder="0"
                             scrolling="no"
-                            allowfullscreen="true">
-                    </iframe>
+                            allowfullscreen="true"></iframe>
                     <iframe frameborder="0"
                             scrolling="no"
                             id="chat_embed"
-                            src="http://www.twitch.tv/allshamnowow/chat"
-                            height="400"
-                            width="640">s
+                            src="http://www.twitch.tv/timthetatman/chat"
+                            height="330"
+                            width="640">
+                        s
                     </iframe>
                 </div>
             </div>
-
         </div>
 
-        <div id="videosearch" class="overflow scroll">
+        <div ng-cloak id="videosearch">
+            <md-content>
+                <md-tabs md-dynamic-height md-border-bottom>
+                    <md-tab label="one">
+                        <md-content class="md-padding">
+                            <h1 class="md-display-2">Tab One</h1>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi.</p>
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="two">
+                        <md-content class="md-padding">
+                            <h1 class="md-display-2">Tab Two</h1>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor, orci enim rutrum enim, vel tempor sapien arcu a tellus. Vivamus convallis sodales ante varius gravida. Curabitur a purus vel augue ultrices ultricies id a nisl. Nullam malesuada consequat diam, a facilisis tortor volutpat et. Sed urna dolor, aliquet vitae posuere vulputate, euismod ac lorem. Sed felis risus, pulvinar at interdum quis, vehicula sed odio. Phasellus in enim venenatis, iaculis tortor eu, bibendum ante. Donec ac tellus dictum neque volutpat blandit. Praesent efficitur faucibus risus, ac auctor purus porttitor vitae. Phasellus ornare dui nec orci posuere, nec luctus mauris semper.</p>
+                            <p>Morbi viverra, ante vel aliquet tincidunt, leo dolor pharetra quam, at semper massa orci nec magna. Donec posuere nec sapien sed laoreet. Etiam cursus nunc in condimentum facilisis. Etiam in tempor tortor. Vivamus faucibus egestas enim, at convallis diam pulvinar vel. Cras ac orci eget nisi maximus cursus. Nunc urna libero, viverra sit amet nisl at, hendrerit tempor turpis. Maecenas facilisis convallis mi vel tempor. Nullam vitae nunc leo. Cras sed nisl consectetur, rhoncus sapien sit amet, tempus sapien.</p>
+                            <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="three">
+                        <md-content class="md-padding">
+                            <h1 class="md-display-2">Tab Three</h1>
+                            <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
+                        </md-content>
+                    </md-tab>
+                </md-tabs>
+            </md-content>
+        </div>
+
+        <!--<div id="videosearch" class="overflow scroll">
             <div class="flex-col">
                 <div ng-show="controller.hideVideo">
-                    <div class="flex-row videolist" ng-repeat="vid in controller.searchVideo.items"><img class="videoimg selectvideo" ng-click="controller.ChangeVideo($index)" src="{{vid.snippet.thumbnails.default.url}}" /><div class="selectvideo" ng-click="controller.ChangeVideo($index)">{{vid.snippet.title}}</div></div>     <!--vid.id.videoId to access video id-->
+                    <div class="flex-row videolist" ng-repeat="vid in controller.searchVideo.items"><img class="videoimg selectvideo" ng-click="controller.ChangeVideo($index)" src="{{vid.snippet.thumbnails.default.url}}" /><div class="selectvideo" ng-click="controller.ChangeVideo($index)">{{vid.snippet.title}}</div></div>
                     <div class="flex-row f-jc-sb">
                         <button class="buttonstyle" ng-click="controller.previousPage(controller.searchVideo.prevPageToken)">Previous</button>
                         <button class="buttonstyle" ng-click="controller.nextPage(controller.searchVideo.nextPageToken)">Next</button>
@@ -95,12 +121,9 @@
                         <button class="buttonstyle" ng-click="controller.previousPageSubVid(controller.playlist.prevPageToken)">Previous</button>
                         <button class="buttonstyle" ng-click="controller.nextPageSubVid(controller.playlist.nextPageToken)">Next</button>
                     </div>
-
                 </div>
             </div>
-            <br />
         </div>
-
 
         <div id="youtubeSubList" class="overflow scroll">
             <div id="youtubeSearchResults">
@@ -119,7 +142,7 @@
                     <button class="buttonstyle" ng-click="controller.nextPageSub(controller.subscriptionCriteria.nextPageToken)">Next</button>
                 </div>
             </div>
-        </div>
+        </div>-->
 
         <div class="flex-col">
             <div id="twitter" class="flex-col">

@@ -196,20 +196,20 @@ a {
 
 #videofeed {
     border: 1px solid orange;
-    margin: 15px;
+    margin: 0 15px;
     padding: 5px;
     width: 96.5%;
     min-width: 96.5%;
 }
 
 #videosearch {
-    border: 1px solid red;
+    border: 1px solid yellow;
     margin: 15px 0 15px 0;
     padding: 5px;
     height: 70%;
     min-height: 600px;
-    width: 340px;
-    min-width: 300px;
+    width: 620px;
+    min-width: 620px;
 }
 
 #twitter {
@@ -228,6 +228,7 @@ a {
     border: 1px solid red;
     position: relative;
     padding: 5px;
+    margin: 0;
     height: 150px;
     width: 250px;
 }
@@ -491,8 +492,12 @@ nav {
     cursor: pointer;
 }
 
-.videofeed {
-}
-
-.videotext {
-}
+.tabsdemoDynamicHeight md-content {
+  background-color: transparent !important; }
+  .tabsdemoDynamicHeight md-content md-tabs {
+    background: #f6f6f6;
+    border: 1px solid #e1e1e1; }
+    .tabsdemoDynamicHeight md-content md-tabs md-tabs-wrapper {
+      background: white; }
+  .tabsdemoDynamicHeight md-content h1:first-child {
+    margin-top: 0; }
