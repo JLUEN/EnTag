@@ -1,7 +1,6 @@
-<h1>Register</h1>
 
 <fieldset>
-    <legend>Register with a Social Provider</legend>
+
     <ul>
         <li ng-repeat="externalLogin in account.externalLogins">
             <a target="_self" href="{{externalLogin.url}}">{{externalLogin.name}}</a>
@@ -11,14 +10,14 @@
 </fieldset>
 
 <fieldset>
-    <legend>Local Registration</legend>
+
     <ul>
         <li ng-repeat="message in controller.validationMessages">
             {{message}}
         </li>
     </ul>
 
-    <form ng-submit="controller.register()">
+    <!--<form ng-submit="controller.register()">
         <div>
             <label>Email:</label>
             <input ng-model="controller.registerUser.email" />
@@ -32,6 +31,26 @@
             <input ng-model="controller.registerUser.confirmPassword" />
         </div>
         <input type="submit" value="Register" />
-    </form>
+    </form>-->
+    <!--Original Form data-->
+
+    <div class="container center">
+        <h2>Register Form</h2>
+        <form role="form" ng-submit="controller.register()">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input ng-model="controller.registerUser.email" type="email" class="form-control" id="email" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input ng-model="controller.registerUser.password" type="password" class="form-control" id="pwd" placeholder="Enter password">
+            </div>
+            <div class="form-group">
+                <label for="pwd">Confirm Password:</label>
+                <input ng-model="controller.registerUser.confirmPassword" type="password" class="form-control" id="pwd" placeholder="Enter password">
+            </div>
+            <button type="submit" class="btn btn-default">Register</button>
+        </form>
+    </div>
 
 </fieldset>

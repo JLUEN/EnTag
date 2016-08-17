@@ -7,6 +7,7 @@ using Tweetinvi.Models;
 using Tweetinvi;
 using EnTag.Services;
 using EnTag.Services.Models;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -22,6 +23,7 @@ namespace EnTag.Controllers
 
         // GET: api/values
         [HttpGet]
+        [Authorize]
         public IEnumerable<ITweet> GetHomeTest()
         {
             return _tokenService.GetHomeTest(User.Identity.Name);
@@ -36,6 +38,7 @@ namespace EnTag.Controllers
 
 
         [HttpPost]
+        [Authorize]
         public IActionResult PostTweetTest([FromBody]string myTweet)
         {
 
@@ -45,6 +48,7 @@ namespace EnTag.Controllers
         }
 
         [HttpPost("youtube/username")]
+        [Authorize]
         public IActionResult PostYoutubeUsername([FromBody] string username) {
 
             _tokenService.PostYoutubeUsername(User.Identity.Name, username);

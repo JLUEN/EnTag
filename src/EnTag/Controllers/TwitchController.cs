@@ -7,6 +7,7 @@ using System.Text;
 using System.Net;
 using System.IO;
 using Newtonsoft.Json.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -17,6 +18,7 @@ namespace EnTag.Controllers
     {
         //GET /api/twitch/follows/username
         [HttpGet("follows/{username}")]
+        [Authorize]
         public string GetFollows(string username)
         {
             //ASCIIEncoding encoding = new ASCIIEncoding();
@@ -35,6 +37,7 @@ namespace EnTag.Controllers
         }
 
         [HttpGet("follows/live")]
+        [Authorize]
         public string GetLive()
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(new Uri("https://api.twitch.tv/kraken/streams/followed?stream_type=live"));
@@ -49,6 +52,7 @@ namespace EnTag.Controllers
         }
 
         [HttpGet("username")]
+        [Authorize]
         public string GetName()
         {
             var id = "96riuizggy28rf8zurnaxrwv6ai6cf";

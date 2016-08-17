@@ -13,6 +13,7 @@ using System.Text;
 using System.Net;
 using System.IO;
 using Newtonsoft.Json.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -34,6 +35,7 @@ namespace EnTag.Controllers
         private IAuthenticationContext _authContext;
 
         [HttpGet("twitter")]
+        [Authorize]
         public ActionResult Twitter()
         {
             var redirectUrl = "http://" + Request.Host.Value + "/oauth/twitter/auth";
@@ -44,6 +46,7 @@ namespace EnTag.Controllers
         }
 
         [HttpGet("twitter/auth", Name = "TwitterAuth")]
+        [Authorize]
         public ActionResult TwitterAuth([FromQuery]string oauth_verifier,[FromQuery] string oauth_token,[FromQuery] string authorization_id)
         {
             
@@ -55,6 +58,7 @@ namespace EnTag.Controllers
         }
 
         [HttpGet("twitch")]
+        [Authorize]
         public ActionResult Twitch()
         {
             var redirectUrl = "http://" + Request.Host.Value + "/oauth/twitch/auth";
@@ -66,6 +70,7 @@ namespace EnTag.Controllers
         }
 
         [HttpGet("twitch/auth", Name = "TwitchAuth")]
+        [Authorize]
         public ActionResult TwitchAuth([FromQuery]string code)
         {
             var qatch = _twitch.AuthTwitch(code, "http://" + Request.Host.Value + "/oauth/twitch/auth");
@@ -76,6 +81,7 @@ namespace EnTag.Controllers
 
 
         [HttpGet("spotify")]
+        [Authorize]
         public ActionResult Spotify()
         {
             var redirectUrl = "http://" + Request.Host.Value + "/oauth/spotify/auth";
@@ -86,6 +92,7 @@ namespace EnTag.Controllers
         }
 
         [HttpGet("spotify/auth", Name = "SpotifyAuth")]
+        [Authorize]
         public ActionResult SpotifyAuth([FromQuery]string code)
         {
             var qatch = _spotify.AuthSpotify(code, "http://" + Request.Host.Value + "/oauth/spotify/auth");

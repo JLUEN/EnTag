@@ -7,9 +7,9 @@
         public index;
         public searchCriteria;
         public subscriptionCriteria;
-        public theBestVideo = "vmjDK1z_FUE"  //IFrame for video display
+        public theBestVideo //IFrame for video display
         public searchVideo;
-        public searchSub  //usually would be user username
+        public searchSub;  //usually would be user username
         public channelId;
         public resourceId;
         public uploadKey;
@@ -17,8 +17,9 @@
         public hidePlaylist = false;
         public hideSubscriptions = false;
         public hideVideo = false;
+        public tweetsInterval;
 
-        constructor(private $state, private $http: ng.IHttpService, private $uibModal: angular.ui.bootstrap.IModalService, private twitchService: EnTag.Services.twitchService) {
+        constructor(private $state, private $http: ng.IHttpService, private $uibModal: angular.ui.bootstrap.IModalService,private twitchService: EnTag.Services.twitchService) {
           
         }
 
@@ -42,9 +43,6 @@
             });
           
         }
-
-
-
 
         ChangeVideo(index) {
             this.index = index;
@@ -100,6 +98,7 @@
                     });
             }
         }
+
         previousPageSubVid(previousPageToken) {
             if (previousPageToken != undefined || previousPageToken != null) {
                 this.$http.get(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&pageToken=${previousPageToken}&maxResults=10&playlistId=${this.uploadKey.items[0].contentDetails.relatedPlaylists.uploads}&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)
@@ -176,8 +175,6 @@
                 });
         }
 
-
-
         Post(tweet) {
             this.$http.post('/api/test', JSON.stringify(tweet))
                 .then((response) => {
@@ -185,15 +182,16 @@
         }
 
         public getTweets() {
+            this.populate();
+            this.tweetsInterval = setInterval(() => { this.populate() },30000); 
+        }
+
+        public populate() {
+            console.log("populatin");
             this.$http.get('/api/test')
                 .then((response) => {
                     this.tweets = response.data;
-
-                    if (this.tweets[0] == undefined) {
-                        alert("Please log in to Twitter first!");
-                    }
                 })
-               
         }
 
         public boom() {
@@ -201,8 +199,6 @@
                 console.log(response.data);
             });
         }
-
-
     }
 
 
