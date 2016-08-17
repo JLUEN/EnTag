@@ -18,7 +18,7 @@
         public hideSubscriptions = false;
         public hideVideo = false;
 
-        constructor(private $state, private $http: ng.IHttpService, private $uibModal: angular.ui.bootstrap.IModalService) {
+        constructor(private $state, private $http: ng.IHttpService, private $uibModal: angular.ui.bootstrap.IModalService, private twitchService: EnTag.Services.twitchService) {
           
         }
 
