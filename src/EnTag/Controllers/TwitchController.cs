@@ -34,6 +34,20 @@ namespace EnTag.Controllers
             return result;
         }
 
+        [HttpGet("follows/live")]
+        public string GetLive()
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(new Uri("https://api.twitch.tv/kraken/streams/followed?stream_type=live"));
+            request.Method = "GET";
+            request.Headers.Add("Authorization", "OAuth 96riuizggy28rf8zurnaxrwv6ai6cf");
+
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            StreamReader stremRead = new StreamReader(response.GetResponseStream());
+            string result = stremRead.ReadToEnd();
+
+            return result;
+        }
+
         [HttpGet("username")]
         public string GetName()
         {

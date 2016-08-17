@@ -28,5 +28,11 @@
                 });
             });
         }
+
+        public getLive() {
+            this.$http.get('/api/twitch/follows/live').then((response) => {
+                return response.data;
+            });
+        }
     }
 }
