@@ -22,3 +22,4 @@
 /// <reference path="ngapp/services/services.js" />
 /// <reference path="ngapp/services/twitchservice.js" />
 /// <reference path="scripts/twitchWindow.js" />
+/// <reference path="scripts/twitterWindow.js" />

@@ -35,4 +35,5 @@
             });
         }
     }
+    angular.module('EnTag').service('twitchService', twitchService);
 }
