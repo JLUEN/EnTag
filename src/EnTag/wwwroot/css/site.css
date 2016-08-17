@@ -203,31 +203,32 @@ a {
 
 #videofeed {
     border: 1px solid orange;
-    margin: 0 15px;
+    margin: 0 5px 0 10px;
     padding: 5px;
-    width: 96.5%;
-    min-width: 96.5%;
 }
 
 #management {
     background-color: #202020;
     border: 1px solid yellow;
-    margin: 15px 0 15px 0;
+    margin: 10px;
     padding: 5px;
     height: 70%;
-    min-height: 600px;
-    width: 620px;
-    min-width: 620px;
+    min-height: 400px;
+    max-height: 600px;
+    width: 60%;
+    min-width: 600px;
+    max-width: 1140px;
 }
 
 #twitter {
     border: 1px solid red;
     height: 70%;
     max-height: 600px;
-    width: 250px;
+    width: 20%;
     min-width: 250px;
+    max-width: 300px;
     float: right;
-    margin: 15px 15px 5px 0;
+    margin: 10px 15px 5px 10px;
     position: relative;
     padding: 5px;
 }
@@ -236,9 +237,11 @@ a {
     border: 1px solid red;
     position: relative;
     padding: 5px;
-    margin: 0;
+    margin: 0 15px 10px 10px;
     height: 150px;
-    width: 250px;
+    width: 20%;
+    min-width: 250px;
+    max-width: 300px;
 }
 
 #twitchchatfeed {
@@ -258,16 +261,19 @@ a {
 #youtubeSubList {
     border: 1px solid red;
     margin: 0 5px;
-    width: 200px;
+    min-width: 200px;
+    max-width: 200px;
     height: 530px;
     position: relative;
 }
 
-#youtubelist{
+#youtubelist {
     border: 1px solid red;
     margin: 0 5px;
     height: 530px;
-    width: 400px;
+    width: 70%;
+    min-width: 300px;
+    max-width: 1000px;
 }
 
 #spotify {
@@ -509,9 +515,11 @@ nav {
     Management tabs
 */
 
-#videosearch{
+#videosearch {
+    border: 1px solid red;
     margin: 5px 0 0 0;
-    height: 490px;
+    height: 80%;
+    max-height: 800px;
 }
 
 .md-padding {
@@ -520,7 +528,7 @@ nav {
 
 md-tab-item {
     background-color: #393939;
-    box-shadow: inset 1px 0 0 0 rgba(0,0,0,0.25); 
+    box-shadow: inset 1px 0 0 0 rgba(0,0,0,0.25);
 }
 
 md-tabs-canvas {
