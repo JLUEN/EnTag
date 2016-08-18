@@ -60,8 +60,9 @@
 
                             <div id="searcharea" class="flex-row f-jc-c">
 
-                                <div class="searchbar flex-row" ng-show="search=='Aggregation'">
-                                    <input class="searchinput" placeholder="Search" />
+                                <div class="searchbar" ng-show="search=='Aggregation'">
+                                    <form class="flex-row" ng-submit="controller.Search(agSearch); controller.tSearch(agSearch)">
+                                    <input class="searchinput" placeholder="Search" type="text" ng-modal="agSearch" />
                                     <div class="searchChoices">
                                         <select class="searchdropdown" ng-init="search='Aggregation'" ng-model="search">
                                             <option value="Aggregation">Everything</option>
@@ -69,6 +70,7 @@
                                         </select>
                                     </div>
                                     <button class="searchbutton">></button>
+                                    </form>
                                 </div>
 
                                 <div class="searchbar" ng-show="search=='Video'">

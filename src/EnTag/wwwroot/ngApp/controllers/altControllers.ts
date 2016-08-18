@@ -21,6 +21,7 @@
         public tweetsInterval;
         public twitchInterval;
         public liveFollows;
+        public searchStreams;
 
         constructor(private $state, private $http: ng.IHttpService, private $uibModal: angular.ui.bootstrap.IModalService, private twitchService: EnTag.Services.TwitchServices) {
         }
@@ -36,6 +37,12 @@
                     this.liveFollows = results;
                     console.log(this.liveFollows);
                 });
+        }
+
+        public tSearch(agSearch) {
+            this.twitchService.search(agSearch).then((results) => {
+                this.searchStreams = results;
+            });
         }
 
         public showModal(formData: string) {
