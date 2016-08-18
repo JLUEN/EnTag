@@ -39,6 +39,7 @@ namespace EnTag.Controllers {
         public youtubeShow = false;
         public twitchShow = false;
         public populateHide = true;
+        public populateHideSubs = true;
 
         constructor(private $state, private $http: ng.IHttpService, private $uibModal: angular.ui.bootstrap.IModalService, private twitchService: EnTag.Services.TwitchServices) {
         }
@@ -184,6 +185,8 @@ namespace EnTag.Controllers {
         subs() {  //hardcoded one cat id to get subs
 
             this.hideSubscriptions = true;
+
+            this.populateHideSubs = false;
 
             this.$http.get('/api/test/youtube/username')
                 .then((response) => {

@@ -117,16 +117,18 @@
                                             <md-content layout-margin="">
                                                 <div class="overflow scroll">
                                                     <div id="youtubeSearchResults">
-                                                        <button ng-hide="!account.isLoggedIn()" ng-click="controller.subs()">Subscriptions</button>
-                                                        <div ng-click="controller.ChooseSubscription($index)" ng-repeat="sub in controller.subscriptionCriteria.items">
-                                                            <div class="flex-row youtube-sublist">
-                                                                <img class="youtube-subimage" src="{{sub.snippet.thumbnails.default.url}}" />
-                                                                <br />
-                                                                <div class="youtube-subtitle">
-                                                                    {{sub.snippet.title}}
+                                                        <button ng-hide="!account.isLoggedIn()"ng-show="controller.populateHideSubs" ng-click="controller.subs()">Subscriptions</button>
+                                                       
+                                                            <div ng-click="controller.ChooseSubscription($index); toggleLeft()" ng-repeat="sub in controller.subscriptionCriteria.items">
+                                                                <div class="flex-row youtube-sublist">
+                                                                    <img class="youtube-subimage" src="{{sub.snippet.thumbnails.default.url}}" />
+                                                                    <br />
+                                                                    <div class="youtube-subtitle">
+                                                                        {{sub.snippet.title}}
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                      
                                                         <div class="f-jc-sb" ng-show="controller.hideSubscriptions">
                                                             <button class="buttonstyle" ng-click="controller.previousPageSub(controller.subscriptionCriteria.prevPageToken)">Previous</button>
                                                             <button class="buttonstyle" ng-click="controller.nextPageSub(controller.subscriptionCriteria.nextPageToken)">Next</button>
@@ -143,7 +145,6 @@
                                         <md-content flex="" layout-padding="">
 
                                             <div layout="column" layout-align="top center">
-                                                <button ng-hide="!account.isLoggedIn()" ng-click="controller.subs()">Subscriptions</button>
 
                                                 <div>
                                                     <md-button ng-click="toggleLeft(); controller.ChooseSubscription($index)" class="md-raised">
@@ -161,7 +162,6 @@
 
                                 <div id="youtubeSubList" class="overflow scroll">
                                     <div id="youtubeSearchResults">
-                                        <button ng-hide="!account.isLoggedIn()" ng-click="controller.subs()">Subscriptions</button>
                                         <div ng-click="controller.ChooseSubscription($index)" ng-repeat="sub in controller.subscriptionCriteria.items">
                                             <div class="flex-row youtube-sublist">
                                                 <img class="youtube-subimage" src="{{sub.snippet.thumbnails.default.url}}" />
