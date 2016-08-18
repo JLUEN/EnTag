@@ -169,4 +169,14 @@ namespace EnTag {
         $httpProvider.interceptors.push('authInterceptor');
     });
 
+    //angular.module('EnTag').config(function ($sceDelegateProvider) {
+    //    $sceDelegateProvider.resourceUrlWhitelist([
+    //        'self',
+    //        '*:/embed.spotify.com/**'
+    //    ]);
+    //});
+
+    angular.module('EnTag').config(function ($sceDelegateProvider) {
+        $sceDelegateProvider.resourceUrlWhitelist(['**']);
+    });
 }

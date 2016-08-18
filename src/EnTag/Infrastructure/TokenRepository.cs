@@ -47,14 +47,16 @@ namespace EnTag.Infrastructure
             _db.SaveChanges();
         }
 
-        public string GetUserId(string userName) {
+        public string GetUserId(string userName)
+        {
             return (from u in _db.Users
                     where u.UserName == userName
                     select u).First().Id;
         }
 
-        public void AddYoutubeUserName(ExternalToken user) {
-            
+        public void AddYoutubeUserName(ExternalToken user)
+        {
+
             var check = (from t in _db.ExternalTokens
                          where t.UserId == user.UserId
                          where t.Service == "YouTube"
@@ -65,11 +67,49 @@ namespace EnTag.Infrastructure
                 _db.ExternalTokens.Add(user);
                 _db.SaveChanges();
             }
-            else {
+            else
+            {
                 _db.ExternalTokens.Remove(check);
                 _db.ExternalTokens.Add(user);
                 _db.SaveChanges();
             }
+        }
+
+
+        public string GetSpotifyToken(string username)
+        {
+
+            var user = GetUserId(username);
+
+            var token = (from t in _db.ExternalTokens
+                         where t.UserId == user
+                         where t.Service == "Spotify"
+                         select t).First().Token;
+
+            return token;
+        }
+
+
+        public void AddSpotifyUserName(ExternalToken user)
+        {
+
+            var check = (from t in _db.ExternalTokens
+                         where t.UserId == user.UserId
+                         where t.Service == "Spotify"
+                         select t).FirstOrDefault();
+
+            if (check == null)
+            {
+                _db.ExternalTokens.Add(user);
+                _db.SaveChanges();
+            }
+            else
+            {
+                _db.ExternalTokens.Remove(check);
+                _db.ExternalTokens.Add(user);
+                _db.SaveChanges();
+            }
+
         }
     }
 }

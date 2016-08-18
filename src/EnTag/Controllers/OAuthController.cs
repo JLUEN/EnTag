@@ -89,7 +89,7 @@ namespace EnTag.Controllers
             var redirectUrl = "http://" + Request.Host.Value + "/oauth/spotify/auth";
             var id = "f9777aac06be407cb2a7c45e20e8c5a0";
             var scopes = "user-read-private%20user-library-read%20playlist-read-collaborative";
-            var loginUrl = "https://accounts.spotify.com/authorize/?client_id="+id+"&response_type=code&redirect_uri="+redirectUrl+"&scope="+scopes+"&state=34fFs29kd09";
+            var loginUrl = "https://accounts.spotify.com/authorize/?client_id=" + id + "&response_type=code&redirect_uri=" + redirectUrl + "&scope=" + scopes + "&state=34fFs29kd09";
             return Redirect(loginUrl);
         }
 
@@ -99,10 +99,9 @@ namespace EnTag.Controllers
         {
             var qatch = _spotify.AuthSpotify(code, "http://" + Request.Host.Value + "/oauth/spotify/auth");
             dynamic test = JObject.Parse(qatch);
-            _spotify.AddItIn((string)test.access_token, "", "Spotify", User.Identity.Name);
+            _spotify.PostSpotifyUsername(User.Identity.Name, (string)test.access_token);
             return Ok();
         }
-
 
     }
 }

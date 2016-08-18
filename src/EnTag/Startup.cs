@@ -63,9 +63,10 @@ namespace EnTag
             services.AddScoped<OurTokenService>();
             services.AddScoped<TwitchAuthService>();
             services.AddScoped<TwitchService>();
-            
-                        // add security policies
-                        services.AddAuthorization(options =>
+            services.AddScoped<SpotifyPlaylistService>();
+
+            // add security policies
+            services.AddAuthorization(options =>
                         {
                             options.AddPolicy("AdminOnly", policy => policy.RequireClaim("IsAdmin"));
                         });

@@ -17,8 +17,10 @@ namespace EnTag.Controllers
     public class TestController : Controller
     {
         private TokenService _tokenService;
-        public TestController(TokenService ts) {
+        private SpotifyPlaylistService _spotifyPlaylist;
+        public TestController(TokenService ts,SpotifyPlaylistService sps) {
             _tokenService = ts;
+            _spotifyPlaylist = sps;
         }
 
         // GET: api/values
@@ -54,6 +56,15 @@ namespace EnTag.Controllers
             _tokenService.PostYoutubeUsername(User.Identity.Name, username);
 
             return Ok();
+        }
+
+        [HttpGet("spotify/playlist")]
+        public dynamic GetSpotifyPlaylist()
+        {
+
+            var result = _spotifyPlaylist.GetPlaylist(User.Identity.Name);
+
+            return result;
         }
 
 

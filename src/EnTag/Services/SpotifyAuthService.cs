@@ -1,4 +1,5 @@
 ﻿using EnTag.Infrastructure;
+using EnTag.Models;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -54,6 +55,20 @@ namespace EnTag.Services
             _tRepo.AddItIn(token, secret, service, username);
         }
 
+        public void PostSpotifyUsername(string username, string token)
+        {
+
+            ExternalToken dbToken = new ExternalToken()
+            {
+                Service = "Spotify",
+                Token = token,
+                Secret = "",
+                UserId = _tRepo.GetUserId(username)
+            };
+
+            _tRepo.AddSpotifyUserName(dbToken);
+
+        }
 
 
     }
