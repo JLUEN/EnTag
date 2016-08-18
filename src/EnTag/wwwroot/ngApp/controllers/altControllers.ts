@@ -18,12 +18,18 @@
         public hideSubscriptions = false;
         public hideVideo = false;
         public tweetsInterval;
+        public twitchInterval;
         public liveFollows;
 
         constructor(private $state, private $http: ng.IHttpService, private $uibModal: angular.ui.bootstrap.IModalService, private twitchService: EnTag.Services.TwitchServices) {
         }
 
         public getLive() {
+            this.Live();
+            this.twitchInterval = setInterval(() => { this.Live() }, 100000);
+        }
+
+        public Live() {
             this.twitchService.getLive()
                 .then((results) => {
                     this.liveFollows = results;
