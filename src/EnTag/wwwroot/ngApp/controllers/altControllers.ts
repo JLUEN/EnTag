@@ -4,6 +4,7 @@
         public message = 'Hello from the home page!';
 
         public tweets;
+        public tweet;
         public index;
         public searchCriteria;
         public subscriptionCriteria;
@@ -192,6 +193,7 @@
         Post(tweet) {
             this.$http.post('/api/test', JSON.stringify(tweet))
                 .then((response) => {
+                    this.tweet = null;
                 });
         }
 

@@ -224,8 +224,8 @@
             </div>
 
             <div class="twitterpost flex-col" ng-hide="!account.isLoggedIn()">
-                <form ng-submit="controller.Post(tweet)">
-                    <label>Post Twitter: <input ng-model="tweet" type="text" /></label>
+                <form ng-submit="controller.Post(controller.tweet)">
+                    <label>Post Twitter: <input  ng-model="controller.tweet" type="text" /></label>
                     <input class="buttonstyle" type="submit" value="Post" />
                 </form>
             </div>
