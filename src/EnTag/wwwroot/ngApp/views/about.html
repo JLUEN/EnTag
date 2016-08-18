@@ -220,7 +220,7 @@
         <div class="flex-col">
             <div id="twitter" class="flex-col">
                 <form ng-submit="controller.getTweets()" ng-hide="!account.isLoggedIn()">
-                    <input class="buttonstyle" type="submit" value="Populate" />
+                    <input class="buttonstyle" type="submit" ng-show="controller.populateHide" value="Populate" />
                 </form>
                 <div class="twitterpopulate overflow scroll">
                     <div class="tweet" ng-repeat="t in controller.tweets">

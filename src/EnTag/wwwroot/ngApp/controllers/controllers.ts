@@ -38,6 +38,7 @@ namespace EnTag.Controllers {
         public customChat = `http://www.twitch.tv/${this.channelName}/chat`;
         public youtubeShow = false;
         public twitchShow = false;
+        public populateHide = true;
 
         constructor(private $state, private $http: ng.IHttpService, private $uibModal: angular.ui.bootstrap.IModalService, private twitchService: EnTag.Services.TwitchServices) {
         }
@@ -236,6 +237,7 @@ namespace EnTag.Controllers {
         }
 
         public getTweets() {
+            this.populateHide = false;
             this.populate();
             this.tweetsInterval = setInterval(() => { this.populate() }, 30000);
         }
