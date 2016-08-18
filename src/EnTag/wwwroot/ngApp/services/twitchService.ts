@@ -35,6 +35,12 @@
                 return response.data;
             });
         }
+
+        public search(search: string) {
+            return this.$http.get('https://api/twitch.tv/kraken/search/streams?q=' + search).then((response) => {
+                return response.data;
+            });
+        }
     }
     angular.module('EnTag').service('twitchService', TwitchServices);
 }
