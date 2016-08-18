@@ -40,6 +40,7 @@ namespace EnTag.Controllers {
         public twitchShow = false;
         public populateHide = true;
         public populateHideSubs = true;
+        public hideStream=false;
 
         constructor(private $state, private $http: ng.IHttpService, private $uibModal: angular.ui.bootstrap.IModalService, private twitchService: EnTag.Services.TwitchServices) {
         }
@@ -68,10 +69,13 @@ namespace EnTag.Controllers {
             
         }
 
-        public tSearch(agSearch) {
-            this.twitchService.search(agSearch).then((results) => {
-                this.searchStreams = results;
-            });
+        public ChangeSteamSearch(index, name) {
+            this.youtubeShow = false;
+            this.twitchShow = true;
+            this.index = index;
+            this.channelName = name.streams[index].channel.name;
+            this.customTwitch = `http://player.twitch.tv/?channel=${this.channelName}`;
+            this.customChat = `http://www.twitch.tv/${this.channelName}/chat`;
         }
 
         public showModal(formData: string) {
@@ -231,6 +235,15 @@ namespace EnTag.Controllers {
                     }
                 });
         }
+
+        public tSearch(agSearch) {
+            this.hideStream = true;
+            this.twitchService.search(agSearch).then((results) => {
+                this.searchStreams = results;
+                console.log(this.searchStreams);
+            });
+        }
+
 
         Post(tweet) {
             this.$http.post('/api/test', JSON.stringify(tweet))

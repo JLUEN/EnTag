@@ -60,20 +60,36 @@
                                         <div class="searchChoices">
                                             <select class="searchdropdown" ng-init="search='Aggregation'" ng-model="search">
                                                 <option value="Aggregation">Everything</option>
-                                                <option value="Video">Video</option>
+                                                <option value="Youtube">Youtube</option>
+                                                <option value="Twitch">Twitch</option>
                                             </select>
                                         </div>
                                         <button class="searchbutton">></button>
                                     </form>
                                 </div>
 
-                                <div class="searchbar" ng-show="search=='Video'">
+                                <div class="searchbar" ng-show="search=='Youtube'">
                                     <form class="flex-row" ng-submit="controller.Search(searchCriteria)">
                                         <input class="searchinput" placeholder="Search" type="text" ng-model="searchCriteria" />
                                         <div class="searchChoices">
                                             <select class="searchdropdown" ng-model="search">
                                                 <option value="Aggregation">Everything</option>
-                                                <option value="Video">Video</option>
+                                                <option value="Youtube">Youtube</option>
+                                                <option value="Twitch">Twitch</option>
+                                            </select>
+                                        </div>
+                                        <button class="searchbutton" type="submit">></button>
+                                    </form>
+                                </div>
+
+                                <div class="searchbar" ng-show="search=='Twitch'">                                         <!--08/18/2016 twitch drop down for search -->
+                                    <form class="flex-row" ng-submit="controller.tSearch(searchTwitch)">
+                                       <input class="searchinput" placeholder="Search" type="text" ng-model="searchTwitch" />
+                                        <div class="searchChoices">
+                                            <select class="searchdropdown" ng-model="search">
+                                                <option value="Aggregation">Everything</option>
+                                                <option value="Youtube">Youtube</option>
+                                                <option value="Twitch">Twitch</option>
                                             </select>
                                         </div>
                                         <button class="searchbutton" type="submit">></button>
@@ -85,6 +101,20 @@
                                 <div class="flex-col">
                                     <div ng-show="controller.hideVideo">
                                         <div class="flex-row videolist" ng-repeat="vid in controller.searchVideo.items"><img class="videoimg selectvideo" ng-click="controller.ChangeVideo($index)" src="{{vid.snippet.thumbnails.default.url}}" /><div class="selectvideo" ng-click="controller.ChangeVideo($index)">{{vid.snippet.title}}</div></div>
+                                        <div class="flex-row f-jc-sb">
+                                            <button class="buttonstyle" ng-click="controller.previousPage(controller.searchVideo.prevPageToken)">Previous</button>
+                                            <button class="buttonstyle" ng-click="controller.nextPage(controller.searchVideo.nextPageToken)">Next</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div id="videosearch" class="overflow scroll">    <!--08/18/2016 twitch videos for search -->
+                                <div class="flex-col">
+                                    <div ng-show="controller.hideStream">
+                                        <div class="flex-row videolist" ng-repeat="vid in controller.searchStreams.streams"><img class="videoimg selectvideo" ng-click="controller.ChangeSteamSearch($index,controller.searchStreams)" src="{{vid.preview.medium}}" /> <div class="videoimg selectvideo" ng-click="controller.ChangeSteamSearch($index,controller.searchStreams)"> {{vid.channel.status}} <br /><br />  {{vid.channel.name}}</div></div>
                                         <div class="flex-row f-jc-sb">
                                             <button class="buttonstyle" ng-click="controller.previousPage(controller.searchVideo.prevPageToken)">Previous</button>
                                             <button class="buttonstyle" ng-click="controller.nextPage(controller.searchVideo.nextPageToken)">Next</button>

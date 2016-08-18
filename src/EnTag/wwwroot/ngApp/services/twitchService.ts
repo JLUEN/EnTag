@@ -37,7 +37,7 @@
         }
 
         public search(search: string) {
-            return this.$http.get('https://api/twitch.tv/kraken/search/streams?q=' + search).then((response) => {
+            return this.$http.get('https://api.twitch.tv/kraken/search/streams?q=' + search).then((response) => {
                 return response.data;
             });
         }
