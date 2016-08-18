@@ -1,5 +1,5 @@
 ﻿namespace EnTag.Services {
-    export class twitchService {
+    export class TwitchServices {
         constructor(private $http: ng.IHttpService) {
 
         }
@@ -30,10 +30,11 @@
         }
 
         public getLive() {
-            this.$http.get('/api/twitch/follows/live').then((response) => {
+            return this.$http.get('/api/twitch/follows/live').then((response) => {
+                console.log(response.data);
                 return response.data;
             });
         }
     }
-    angular.module('EnTag').service('twitchService', twitchService);
+    angular.module('EnTag').service('twitchService', TwitchServices);
 }

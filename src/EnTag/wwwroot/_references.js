@@ -6,7 +6,6 @@
 /// <reference path="lib/angular-material/angular-material.js" />
 /// <reference path="lib/angular-messages/angular-messages.js" />
 /// <reference path="lib/angular-resource/angular-resource.js" />
-/// <reference path="lib/angular-spotify/dist/angular-spotify.min.js" />
 /// <reference path="lib/angular-touch/angular-touch.js" />
 /// <reference path="lib/angular-ui-router/release/angular-ui-router.js" />
 /// <reference path="lib/angular-youtube-api-factory/dist/angular-youtube-api-factory.min.js" />

@@ -88,10 +88,10 @@ namespace EnTag {
             customBackground);
 
         $mdThemingProvider.theme('default')
-            .primaryPalette('customPrimary', {'default': '800'})
-            .accentPalette('customAccent', {'default': 'A200'})
-            .warnPalette('customWarn', {'default': '800'})
-            .backgroundPalette('customBackground', {'default':'500'});
+            .primaryPalette('customPrimary', { 'default': '800' })
+            .accentPalette('customAccent', { 'default': 'A200' })
+            .warnPalette('customWarn', { 'default': '800' })
+            .backgroundPalette('customBackground', { 'default': '500' });
 
         // Define routes
         $stateProvider
@@ -142,7 +142,18 @@ namespace EnTag {
 
         // Enable HTML5 navigation
         $locationProvider.html5Mode(true);
-    });
+    })
+
+        .controller('AppCtrl', function ($scope, $timeout, $mdSidenav) {
+            $scope.toggleLeft = buildToggler('left');
+            $scope.toggleRight = buildToggler('right');
+
+            function buildToggler(componentId) {
+                return function () {
+                    $mdSidenav(componentId).toggle();
+                }
+            }
+        });
 
 
     angular.module('EnTag').factory('authInterceptor', (

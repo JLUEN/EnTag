@@ -20,15 +20,18 @@
         public tweetsInterval;
         public liveFollows;
 
-        constructor(private $state, private $http: ng.IHttpService, private $uibModal: angular.ui.bootstrap.IModalService,private twitchService: EnTag.Services.twitchService) {
-          
+        constructor(private $state, private $http: ng.IHttpService, private $uibModal: angular.ui.bootstrap.IModalService, private twitchService: EnTag.Services.TwitchServices) {
         }
 
         public getLive() {
-            this.liveFollows = this.twitchService.getLive();
+            this.twitchService.getLive()
+                .then((results) => {
+                    this.liveFollows = results;
+                    console.log(this.liveFollows);
+                });
         }
 
-        public showModal(formData:string) {
+        public showModal(formData: string) {
             var test = this.$uibModal.open({
                 templateUrl: '/ngApp/views/youtubeModal.html',
                 controller: 'YoutubeDialogController',
@@ -37,7 +40,7 @@
                 resolve: {
                     formData: () => formData
                 }
-               
+
             });
 
             test.result.then((username) => {
@@ -46,7 +49,7 @@
                         this.$state.go('home');
                     });
             });
-          
+
         }
 
         ChangeVideo(index) {
@@ -120,13 +123,13 @@
             this.hidePlaylist = true;
 
             this.$http.get(`https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=${this.resourceId}&maxResults=10&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)  //id is the channel id and gets upload key
-                 .then((response) => {
+                .then((response) => {
                     console.log(response.data);
                     this.uploadKey = response.data;
 
                     this.$http.get(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=10&playlistId=${this.uploadKey.items[0].contentDetails.relatedPlaylists.uploads}&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)  //playlist id gets upload key and gets playlist with video id
                         .then((response) => {
-                           console.log(response.data);
+                            console.log(response.data);
                             this.playlist = response.data;
                         });
                 });
@@ -139,20 +142,20 @@
             this.$http.get('/api/test/youtube/username')
                 .then((response) => {
                     this.searchSub = response.data;
-                    this.searchSub = this.searchSub.token;  
+                    this.searchSub = this.searchSub.token;
 
                     if (this.searchSub != null && this.searchSub != undefined) {
 
                         this.$http.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&type=channel&order=relevance&q=${this.searchSub}&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)  //q searches the name of the channel(ChefSteps hardcoded implement user's username) and gets channel id
                             .then((response) => {
                                 this.channelId = response.data;
-                              
-             
+
+
 
                                 this.$http.get(`https://www.googleapis.com/youtube/v3/subscriptions?part=snippet&maxResults=50&channelId=${this.channelId.items[0].id.channelId}&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)
                                     .then((response) => {
                                         this.subscriptionCriteria = response.data;
-                                       
+
                                     })
                                     .catch((response) => {
                                         this.showModal("Testing");
@@ -171,10 +174,10 @@
             this.$http.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&order=relevance&q=${searchCriteria}&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)
                 .then((response) => {
                     this.searchVideo = response.data;
-     
+
                     for (let i in this.searchVideo.items) {
-                        if (this.searchVideo.items[i].id.kind !="youtube#video") {
-                            this.searchVideo.items.splice(i,1);
+                        if (this.searchVideo.items[i].id.kind != "youtube#video") {
+                            this.searchVideo.items.splice(i, 1);
                         }
                     }
                 });
@@ -188,7 +191,7 @@
 
         public getTweets() {
             this.populate();
-            this.tweetsInterval = setInterval(() => { this.populate() },30000); 
+            this.tweetsInterval = setInterval(() => { this.populate() }, 30000);
         }
 
         public populate() {

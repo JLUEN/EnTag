@@ -205,6 +205,8 @@ a {
     border: 1px solid orange;
     margin: 0 5px 0 10px;
     padding: 5px;
+    width: 655px;
+    height: 400px;
 }
 
 #management {
@@ -454,6 +456,10 @@ nav {
 /*
     YouTube Feed
 */
+
+.sidenavdemoCustomSidenav{
+    height: 500px;
+}
 
 .youtubeplayer {
     border: 1px solid blue;
