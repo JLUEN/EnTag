@@ -58,6 +58,8 @@
                     <md-tab label="Search">
                         <md-content class="md-padding">
 
+                            <!--Search-->
+
                             <div id="searcharea" class="flex-row f-jc-c">
 
                                 <div class="searchbar" ng-show="search=='Aggregation'">
@@ -102,6 +104,9 @@
 
                         </md-content>
                     </md-tab>
+
+                    <!--YouTube-->
+
                     <md-tab label="YouTube">
                         <md-content class="md-padding">
 
@@ -194,6 +199,9 @@
                             </div>
                         </md-content>
                     </md-tab>
+
+                    <!--Twitch-->
+
                     <md-tab label="Twitch">
                         <md-content class="md-padding">
                             <button ng-click="controller.getLive()">Get Twitch</button>
@@ -202,6 +210,14 @@
                                 <img ng-src="{{v.preview.large}}" />
                                 
                             </div>
+
+                        </md-content>
+                    </md-tab>
+
+                    <!--Spotify-->
+
+                    <md-tab label="Spotify">
+                        <md-content class="md-padding">
 
                         </md-content>
                     </md-tab>
