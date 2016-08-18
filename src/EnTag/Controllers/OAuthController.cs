@@ -25,11 +25,13 @@ namespace EnTag.Controllers
         private TwitterAuthService _twitter;
         private SpotifyAuthService _spotify;
         private TwitchAuthService _twitch;
-        public OAuthController(TwitterAuthService t,SpotifyAuthService s, TwitchAuthService tw)
+        private OurTokenService _otServ;
+        public OAuthController(TwitterAuthService t,SpotifyAuthService s, TwitchAuthService tw, OurTokenService ots)
         {
             _twitter = t;
             _spotify = s;
             _twitch = tw;
+            _otServ = ots;
         }
 
         private IAuthenticationContext _authContext;
@@ -62,9 +64,9 @@ namespace EnTag.Controllers
         public ActionResult Twitch()
         {
             var redirectUrl = "http://" + Request.Host.Value + "/oauth/twitch/auth";
-            var id = "s3n11pgqzcy09gqlz7gdgjloc3vzfav";
+            var id = _otServ.getTwitch(); //s3n11pgqzcy09gqlz7gdgjloc3vzfav
             var scopes = "user_read%20user_subscriptions";
-            var loginUrl = "https://api.twitch.tv/kraken/oauth2/authorize?response_type=code&client_id=" + id + "&redirect_uri=" + redirectUrl + "&scope=" + scopes;
+            var loginUrl = "https://api.twitch.tv/kraken/oauth2/authorize?response_type=code&client_id=" + id.Token + "&redirect_uri=" + redirectUrl + "&scope=" + scopes;
 
             return Redirect(loginUrl);
         }

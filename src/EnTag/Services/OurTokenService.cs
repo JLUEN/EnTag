@@ -26,5 +26,11 @@ namespace EnTag.Services
             return (from t in _otRepo.getYoutube()
                     select t).FirstOrDefault();
         }
+
+        public OurToken getTwitch()
+        {
+            return (from t in _otRepo.getTwitch()
+                    select t).FirstOrDefault();
+        }
     }
 }

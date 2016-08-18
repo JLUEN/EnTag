@@ -18,9 +18,14 @@
         public hideSubscriptions = false;
         public hideVideo = false;
         public tweetsInterval;
+        public liveFollows;
 
         constructor(private $state, private $http: ng.IHttpService, private $uibModal: angular.ui.bootstrap.IModalService,private twitchService: EnTag.Services.twitchService) {
           
+        }
+
+        public getLive() {
+            this.liveFollows = this.twitchService.getLive();
         }
 
         public showModal(formData:string) {

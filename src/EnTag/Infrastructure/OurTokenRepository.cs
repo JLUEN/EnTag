@@ -28,5 +28,12 @@ namespace EnTag.Infrastructure
                    where t.Service == "YouTube"
                    select t;
         }
+
+        public IQueryable<OurToken> getTwitch()
+        {
+            return from t in _db.OurTokens
+                   where t.Service == "Twitch"
+                   select t;
+        }
     }
 }
