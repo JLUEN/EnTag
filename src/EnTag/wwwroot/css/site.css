@@ -76,13 +76,27 @@ form {
     margin: 0;
 }
 
+.panel {
+    background-color: #202020;
+    box-shadow: 0 10px 44px 0 #000000;
+}
+
+.center{
+    margin: 0;
+    border: 0;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /* 
     html structure
 */
 
 html {
     background-image: url("http://www.designbolts.com/wp-content/uploads/2012/11/Free-Stressed-linen-patterns.jpg");
-    height: 100%
+    height: 100%;
 }
 
 body {
@@ -127,11 +141,10 @@ body {
 
 #management {
     background-color: #202020;
-    border: 1px solid yellow;
     display: table;
     margin: 10px;
     padding: 5px;
-    height: 90%;
+    height: 756px;
     width: 500px;
 }
 
@@ -151,8 +164,11 @@ body {
 }
 
 #twitter {
-    border: 1px solid red;
-    height: 70%;
+    width: 0;
+}
+
+#twitterfeed {
+    height: 600px;
     max-height: 600px;
     width: 20%;
     min-width: 250px;
@@ -164,7 +180,6 @@ body {
 }
 
 .twitterpost {
-    border: 1px solid red;
     position: relative;
     padding: 5px;
     margin: 0 15px 10px 10px;
@@ -189,7 +204,6 @@ body {
 }
 
 #youtubeSubList {
-    border: 1px solid red;
     margin: 0 5px;
     min-width: 200px;
     max-width: 200px;
@@ -198,8 +212,7 @@ body {
 }
 
 #youtubelist {
-    border: 1px solid red;
-    padding: 40px 5px 0 5px;
+    margin: 40px 5px 0 5px;
     height: auto;
     width: auto;
     min-width: 300px;
@@ -431,7 +444,6 @@ nav {
 }
 
 .twitterpopulate {
-    border: 1px solid red;
     margin: 5px 0 5px 0;
 }
 
@@ -446,10 +458,6 @@ nav {
     YouTube Feed
 */
 
-.sidenavdemoCustomSidenav {
-    height: 500px;
-}
-
 .youtubeplayer {
     border: 1px solid blue;
     padding: 5px;
@@ -461,7 +469,7 @@ nav {
     margin: 3px;
     background-color: #C0C0C0;
     border-radius: 10px;
-    width: 180px;
+    width: auto;
 }
 
     .youtube-sublist:hover {
@@ -498,6 +506,7 @@ nav {
     margin: 0;
     padding: 0;
     width: auto;
+    height: 700px;
 }
 
 /*
@@ -511,7 +520,7 @@ nav {
 .videolist {
     color: #FF8100;
     word-wrap: break-word;
-    width: 300px;
+    width: 450px;
 }
 
 .selectvideo:hover {
@@ -525,7 +534,6 @@ nav {
 */
 
 #videosearch {
-    border: 1px solid red;
     margin: 5px 0 5px 0;
     padding: 5px;
     height: auto;
