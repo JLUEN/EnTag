@@ -56,7 +56,7 @@
 
                                 <div class="searchbar" ng-show="search=='Aggregation'">
                                     <form class="flex-row" ng-submit="controller.SearchAll(agSearch)">
-                                        <input class="searchinput" placeholder="Search" type="text" ng-modal="agSearch" />
+                                        <input class="searchinput" placeholder="Search" type="text" ng-model="agSearch" />
                                         <div class="searchChoices">
                                             <select class="searchdropdown" ng-init="search='Aggregation'" ng-model="search">
                                                 <option value="Aggregation">Everything</option>
@@ -100,10 +100,10 @@
                             <div id="videosearch" class="overflow scroll">
                                 <div class="flex-col">
                                     <div ng-show="controller.hideVideo">
-                                        <div class="flex-row videolist" ng-repeat="vid in controller.searchVideo.items"><img class="videoimg selectvideo" ng-click="controller.ChangeVideo($index)" src="{{vid.snippet.thumbnails.default.url}}" /><div class="selectvideo" ng-click="controller.ChangeVideo($index)">{{vid.snippet.title}}</div></div>
+                                        <div class="flex-row videolist" ng-hide="search=='Aggregation'" ng-repeat="vid in controller.searchVideo.items"><img class="videoimg selectvideo" ng-click="controller.ChangeVideo($index)" src="{{vid.snippet.thumbnails.default.url}}" /><div class="selectvideo" ng-click="controller.ChangeVideo($index)">{{vid.snippet.title}}</div></div>
                                         <div class="flex-row f-jc-sb">
-                                            <button class="buttonstyle" ng-click="controller.previousPage(controller.searchVideo.prevPageToken)">Previous</button>
-                                            <button class="buttonstyle" ng-click="controller.nextPage(controller.searchVideo.nextPageToken)">Next</button>
+                                            <button class="buttonstyle"  ng-hide="search=='Aggregation'" ng-click="controller.previousPage(controller.searchVideo.prevPageToken)">Previous</button>
+                                            <button class="buttonstyle"  ng-hide="search=='Aggregation'" ng-click="controller.nextPage(controller.searchVideo.nextPageToken)">Next</button>
                                         </div>
                                     </div>
 
@@ -114,10 +114,25 @@
                             <div id="videosearch" class="overflow scroll">    <!--08/18/2016 twitch videos for search -->
                                 <div class="flex-col">
                                     <div ng-show="controller.hideStream">
-                                        <div class="flex-row videolist" ng-repeat="vid in controller.searchStreams.streams"><img class="videoimg selectvideo" ng-click="controller.ChangeSteamSearch($index,controller.searchStreams)" src="{{vid.preview.medium}}" /> <div class="videoimg selectvideo" ng-click="controller.ChangeSteamSearch($index,controller.searchStreams)"> {{vid.channel.status}} <br /><br />  {{vid.channel.name}}</div></div>
+                                        <div class="flex-row videolist" ng-hide="search=='Aggregation'" ng-repeat="vid in controller.searchStreams.streams"><img class="videoimg selectvideo" ng-click="controller.ChangeSteamSearch($index,controller.searchStreams)" src="{{vid.preview.medium}}" /> <div class="videoimg selectvideo" ng-click="controller.ChangeSteamSearch($index,controller.searchStreams)"> {{vid.channel.status}} <br /><br />  {{vid.channel.name}}</div></div>
                                         <div class="flex-row f-jc-sb">
-                                            <button class="buttonstyle" ng-click="controller.previousPageTwitch(controller.searchStreams)">Previous</button>
-                                            <button class="buttonstyle" ng-click="controller.nextPageTwitch(controller.searchStreams)">Next</button>
+                                            <button class="buttonstyle" ng-hide="search=='Aggregation'" ng-click="controller.previousPageTwitch(controller.searchStreams)">Previous</button>
+                                            <button class="buttonstyle" ng-hide="search=='Aggregation'" ng-click="controller.nextPageTwitch(controller.searchStreams)">Next</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div id="videosearch" class="overflow scroll">
+                                <!--08/18/2016 twitch videos for search -->
+                                <div class="flex-col">
+                                    <div ng-show="controller.hideStream">
+                                        <div class="flex-row videolist" ng-show="search=='Aggregation'" ng-repeat="vid in controller.searchStreams.streams"><img class="videoimg selectvideo" ng-click="controller.ChangeSteamSearch($index,controller.searchStreams)" src="{{vid.preview.medium}}" /> <div class="videoimg selectvideo" ng-click="controller.ChangeSteamSearch($index,controller.searchStreams)"> {{vid.channel.status}} <br /><br />  {{vid.channel.name}}</div></div>
+                                        <div class="flex-row videolist" ng-show="search=='Aggregation'" ng-repeat="vid in controller.searchVideo.items"><img class="videoimg selectvideo" ng-click="controller.ChangeVideo($index)" src="{{vid.snippet.thumbnails.default.url}}" /><div class="selectvideo" ng-click="controller.ChangeVideo($index)">{{vid.snippet.title}}</div></div>
+                                        <div class="flex-row f-jc-sb">
+                                            <button class="buttonstyle" ng-show="search=='Aggregation'" ng-click="controller.previousPageTwitch(controller.searchStreams);controller.previousPage(controller.searchVideo.prevPageToken)">Previous</button>
+                                            <button class="buttonstyle" ng-show="search=='Aggregation'" ng-click="controller.nextPageTwitch(controller.searchStreams);controller.nextPage(controller.searchVideo.nextPageToken)">Next</button>
                                         </div>
                                     </div>
 

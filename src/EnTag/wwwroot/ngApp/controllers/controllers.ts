@@ -168,27 +168,21 @@ namespace EnTag.Controllers {
         }
 
         nextPageTwitch(searchStreams) {
-            console.log(searchStreams);
             searchStreams = searchStreams._links.next;
-            console.log(searchStreams);
             if (searchStreams != undefined || searchStreams != null) {
                 this.$http.get(`${searchStreams}`)
                     .then((response) => {
                         this.searchStreams = response.data;
-                        console.log(this.searchStreams);
                     });
             }
         }
 
         previousPageTwitch(searchStreams) {
-            console.log(searchStreams);
             searchStreams = searchStreams._links.prev;
-            console.log(searchStreams);
             if (searchStreams != undefined || searchStreams != null) {
                 this.$http.get(`${searchStreams}`)
                     .then((response) => {
                         this.searchStreams = response.data;
-                        console.log(this.searchStreams);
                     });
             }
         }
@@ -201,12 +195,10 @@ namespace EnTag.Controllers {
 
             this.$http.get(`https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=${this.resourceId}&maxResults=10&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)  //id is the channel id and gets upload key
                 .then((response) => {
-                    console.log(response.data);
                     this.uploadKey = response.data;
 
                     this.$http.get(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=10&playlistId=${this.uploadKey.items[0].contentDetails.relatedPlaylists.uploads}&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)  //playlist id gets upload key and gets playlist with video id
                         .then((response) => {
-                            console.log(response.data);
                             this.playlist = response.data;
                         });
                 });
@@ -253,7 +245,7 @@ namespace EnTag.Controllers {
             this.$http.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&order=relevance&q=${searchCriteria}&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)
                 .then((response) => {
                     this.searchVideo = response.data;
-
+                    console.log(this.searchVideo);
                     for (let i in this.searchVideo.items) {
                         if (this.searchVideo.items[i].id.kind != "youtube#video") {
                             this.searchVideo.items.splice(i, 1);
@@ -272,6 +264,7 @@ namespace EnTag.Controllers {
         }
 
         public SearchAll(agSearch) {
+            console.log(agSearch);
             this.Search(agSearch, true);
             this.tSearch(agSearch,true);
         }
