@@ -167,6 +167,32 @@ namespace EnTag.Controllers {
             }
         }
 
+        nextPageTwitch(searchStreams) {
+            console.log(searchStreams);
+            searchStreams = searchStreams._links.next;
+            console.log(searchStreams);
+            if (searchStreams != undefined || searchStreams != null) {
+                this.$http.get(`${searchStreams}`)
+                    .then((response) => {
+                        this.searchStreams = response.data;
+                        console.log(this.searchStreams);
+                    });
+            }
+        }
+
+        previousPageTwitch(searchStreams) {
+            console.log(searchStreams);
+            searchStreams = searchStreams._links.prev;
+            console.log(searchStreams);
+            if (searchStreams != undefined || searchStreams != null) {
+                this.$http.get(`${searchStreams}`)
+                    .then((response) => {
+                        this.searchStreams = response.data;
+                        console.log(this.searchStreams);
+                    });
+            }
+        }
+
         ChooseSubscription(index) {
             this.index = index;
             this.resourceId = this.subscriptionCriteria.items[index].snippet.resourceId.channelId;
@@ -219,9 +245,9 @@ namespace EnTag.Controllers {
                 });
         }
 
-        Search(searchCriteria) {
+        Search(searchCriteria,hidestream=false) {
             this.hideVideo = true;
-
+            this.hideStream = hidestream;
             this.searchCriteria = searchCriteria;
 
             this.$http.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&order=relevance&q=${searchCriteria}&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)
@@ -236,12 +262,18 @@ namespace EnTag.Controllers {
                 });
         }
 
-        public tSearch(agSearch) {
+        public tSearch(agSearch,hidestream=false) {
             this.hideStream = true;
+            this.hideVideo = hidestream;
             this.twitchService.search(agSearch).then((results) => {
                 this.searchStreams = results;
                 console.log(this.searchStreams);
             });
+        }
+
+        public SearchAll(agSearch) {
+            this.Search(agSearch, true);
+            this.tSearch(agSearch,true);
         }
 
 

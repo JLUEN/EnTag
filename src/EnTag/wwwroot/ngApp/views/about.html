@@ -55,7 +55,7 @@
                             <div id="searcharea" class="flex-row f-jc-c">
 
                                 <div class="searchbar" ng-show="search=='Aggregation'">
-                                    <form class="flex-row" ng-submit="controller.Search(agSearch); controller.tSearch(agSearch)">
+                                    <form class="flex-row" ng-submit="controller.SearchAll(agSearch)">
                                         <input class="searchinput" placeholder="Search" type="text" ng-modal="agSearch" />
                                         <div class="searchChoices">
                                             <select class="searchdropdown" ng-init="search='Aggregation'" ng-model="search">
@@ -116,8 +116,8 @@
                                     <div ng-show="controller.hideStream">
                                         <div class="flex-row videolist" ng-repeat="vid in controller.searchStreams.streams"><img class="videoimg selectvideo" ng-click="controller.ChangeSteamSearch($index,controller.searchStreams)" src="{{vid.preview.medium}}" /> <div class="videoimg selectvideo" ng-click="controller.ChangeSteamSearch($index,controller.searchStreams)"> {{vid.channel.status}} <br /><br />  {{vid.channel.name}}</div></div>
                                         <div class="flex-row f-jc-sb">
-                                            <button class="buttonstyle" ng-click="controller.previousPage(controller.searchVideo.prevPageToken)">Previous</button>
-                                            <button class="buttonstyle" ng-click="controller.nextPage(controller.searchVideo.nextPageToken)">Next</button>
+                                            <button class="buttonstyle" ng-click="controller.previousPageTwitch(controller.searchStreams)">Previous</button>
+                                            <button class="buttonstyle" ng-click="controller.nextPageTwitch(controller.searchStreams)">Next</button>
                                         </div>
                                     </div>
 
