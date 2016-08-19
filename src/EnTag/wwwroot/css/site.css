@@ -1,4 +1,9 @@
 /*
+    Imports
+*/
+@import 'https://fonts.googleapis.com/css?family=Ubuntu';
+
+/*
     Styling
 */
 
@@ -86,6 +91,7 @@ body {
     background-image: url("http://www.designbolts.com/wp-content/uploads/2012/11/Free-Stressed-linen-patterns.jpg");
     height: 100%;
     width: 100%;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 .home {
