@@ -4,6 +4,7 @@
         public message = 'Hello from the home page!';
 
         public tweets;
+        public tweet;
         public index;
         public searchCriteria;
         public subscriptionCriteria;
@@ -18,17 +19,55 @@
         public hideSubscriptions = false;
         public hideVideo = false;
         public tweetsInterval;
+        public twitchInterval;
         public liveFollows;
+        public searchStreams;
+        public channelName = "allshamnowow";
+        public customTwitch = `http://player.twitch.tv/?channel=${this.channelName}`;
+        public customChat = `http://www.twitch.tv/${this.channelName}/chat`;
+        public youtubeShow = false;
+        public twitchShow = false;
+        public populateHide = true;
+        public populateHideSubs = true;
+        public hideStream = false;
+        public list;
+        public musicURI = "spotify:user:erebore:playlist:788MOXyTfcUb1tdw4oC7KJ";
+        public customSRC = `https://embed.spotify.com/?uri=${this.musicURI}&view=coverart`;
 
         constructor(private $state, private $http: ng.IHttpService, private $uibModal: angular.ui.bootstrap.IModalService, private twitchService: EnTag.Services.TwitchServices) {
         }
 
         public getLive() {
+            this.Live();
+            this.twitchInterval = setInterval(() => { this.Live() }, 100000);
+        }
+
+        public Live() {
             this.twitchService.getLive()
                 .then((results) => {
                     this.liveFollows = results;
+                    this.liveFollows = this.liveFollows.streams;
                     console.log(this.liveFollows);
                 });
+        }
+
+        public ChangeStream(index) {
+            this.youtubeShow = false;
+            this.twitchShow = true;
+            this.index = index;
+            this.channelName = this.liveFollows[this.index].channel.name;
+            this.customTwitch = `http://player.twitch.tv/?channel=${this.channelName}`;
+            this.customChat = `http://www.twitch.tv/${this.channelName}/chat`;
+
+        }
+
+        public ChangeSteamSearch(index, name) {
+            this.youtubeShow = false;
+            this.twitchShow = true;
+            this.index = index;
+            this.channelName = name.streams[index].channel.name;
+            this.customTwitch = `http://player.twitch.tv/?channel=${this.channelName}`;
+            this.customChat = `http://www.twitch.tv/${this.channelName}/chat`;
         }
 
         public showModal(formData: string) {
@@ -53,11 +92,15 @@
         }
 
         ChangeVideo(index) {
+            this.youtubeShow = true;
+            this.twitchShow = false;
             this.index = index;
             this.theBestVideo = this.searchVideo.items[this.index].id.videoId;
         }
 
         ChangeSubVid(index) {
+            this.youtubeShow = true;
+            this.twitchShow = false;
             this.index = index;
             this.theBestVideo = this.playlist.items[this.index].snippet.resourceId.videoId
         }
@@ -116,6 +159,32 @@
             }
         }
 
+        nextPageTwitch(searchStreams) {
+            console.log(searchStreams);
+            searchStreams = searchStreams._links.next;
+            console.log(searchStreams);
+            if (searchStreams != undefined || searchStreams != null) {
+                this.$http.get(`${searchStreams}`)
+                    .then((response) => {
+                        this.searchStreams = response.data;
+                        console.log(this.searchStreams);
+                    });
+            }
+        }
+
+        previousPageTwitch(searchStreams) {
+            console.log(searchStreams);
+            searchStreams = searchStreams._links.prev;
+            console.log(searchStreams);
+            if (searchStreams != undefined || searchStreams != null) {
+                this.$http.get(`${searchStreams}`)
+                    .then((response) => {
+                        this.searchStreams = response.data;
+                        console.log(this.searchStreams);
+                    });
+            }
+        }
+
         ChooseSubscription(index) {
             this.index = index;
             this.resourceId = this.subscriptionCriteria.items[index].snippet.resourceId.channelId;
@@ -138,6 +207,8 @@
         subs() {  //hardcoded one cat id to get subs
 
             this.hideSubscriptions = true;
+
+            this.populateHideSubs = false;
 
             this.$http.get('/api/test/youtube/username')
                 .then((response) => {
@@ -166,9 +237,9 @@
                 });
         }
 
-        Search(searchCriteria) {
+        Search(searchCriteria, hidestream = false) {
             this.hideVideo = true;
-
+            this.hideStream = hidestream;
             this.searchCriteria = searchCriteria;
 
             this.$http.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&order=relevance&q=${searchCriteria}&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)
@@ -183,15 +254,32 @@
                 });
         }
 
+        public tSearch(agSearch, hidestream = false) {
+            this.hideStream = true;
+            this.hideVideo = hidestream;
+            this.twitchService.search(agSearch).then((results) => {
+                this.searchStreams = results;
+                console.log(this.searchStreams);
+            });
+        }
+
+        public SearchAll(agSearch) {
+            this.Search(agSearch, true);
+            this.tSearch(agSearch, true);
+        }
+
+
         Post(tweet) {
             this.$http.post('/api/test', JSON.stringify(tweet))
                 .then((response) => {
+                    this.tweet = null;
                 });
         }
 
         public getTweets() {
+            this.populateHide = false;
             this.populate();
-            this.tweetsInterval = setInterval(() => { this.populate() }, 30000);
+            this.tweetsInterval = setInterval(() => { this.populate() }, 120000);
         }
 
         public populate() {
@@ -207,19 +295,25 @@
                 console.log(response.data);
             });
         }
-    }
 
-
-    export class YoutubeDialogController {
-
-
-        SubmitUsername(username: string) {
-            this.$uibModalInstance.close(username);
-
+        public populateSpotify() {
+            this.$http.get("/api/test/spotify/playlist")
+                .then((spotify) => {
+                    this.list = spotify.data;
+                    this.list = this.list.playlists.items;
+                    console.log(this.list);
+                });
         }
 
-        constructor(private $uibModalInstance: angular.ui.bootstrap.IModalServiceInstance) { }
+        musicChoice(index) {
+            this.index = index;
+            console.log(this.index);
+            this.musicURI = this.list[this.index].uri;
+            this.customSRC = `https://embed.spotify.com/?uri=${this.musicURI}&view=coverart`;
+            console.log(this.musicURI);
+            console.log(this.customSRC);
+        }
+
     }
-    angular.module('EnTag').controller('YoutubeDialogController', YoutubeDialogController);
 
 }
