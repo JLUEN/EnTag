@@ -21,8 +21,8 @@
     </div>
 </nav>-->
 
-<div class="home" style="border: 1px solid blue">
-    <div class="flex-row f-jc-sb">
+<div class="container home">
+    <div class="flex-row">
 
         <div class="flex-col">
 
@@ -64,14 +64,14 @@
 
                                 <div class="searchbar" ng-show="search=='Aggregation'">
                                     <form class="flex-row" ng-submit="controller.Search(agSearch); controller.tSearch(agSearch)">
-                                    <input class="searchinput" placeholder="Search" type="text" ng-modal="agSearch" />
-                                    <div class="searchChoices">
-                                        <select class="searchdropdown" ng-init="search='Aggregation'" ng-model="search">
-                                            <option value="Aggregation">Everything</option>
-                                            <option value="Video">Video</option>
-                                        </select>
-                                    </div>
-                                    <button class="searchbutton">></button>
+                                        <input class="searchinput" placeholder="Search" type="text" ng-modal="agSearch" />
+                                        <div class="searchChoices">
+                                            <select class="searchdropdown" ng-init="search='Aggregation'" ng-model="search">
+                                                <option value="Aggregation">Everything</option>
+                                                <option value="Video">Video</option>
+                                            </select>
+                                        </div>
+                                        <button class="searchbutton">></button>
                                     </form>
                                 </div>
 
@@ -108,95 +108,73 @@
                     <!--YouTube-->
 
                     <md-tab label="YouTube">
-                        <md-content class="md-padding">
+                        <md-content class="youTubeMdContent">
 
-                            <div class="flex-row">
+                           
 
-                                <div ng-controller="AppCtrl" layout="column" ng-cloak="" class="sidenavdemoCustomSidenav" ng-app="EnTag">
+                                <div ng-controller="AppCtrl" ng-cloak="" class="sidenavdemoCustomSidenav" ng-app="EnTag">
 
-                                    <section layout="row" flex="">
+                                    
 
-                                        <md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop="" md-whiteframe="4">
+                                        <md-sidenav class="md-sidenav-left overflow scroll" md-component-id="left" md-disable-backdrop="" md-whiteframe="4">
 
                                             <md-toolbar class="md-theme-indigo">
                                                 <h5 class="md-toolbar-tools">Subscriptions</h5>
                                             </md-toolbar>
 
                                             <md-content layout-margin="">
-                                                <div class="overflow scroll">
-                                                    <div id="youtubeSearchResults">
-                                                        <button ng-hide="!account.isLoggedIn()" ng-click="controller.subs()">Subscriptions</button>
-                                                        <div ng-click="controller.ChooseSubscription($index)" ng-repeat="sub in controller.subscriptionCriteria.items">
-                                                            <div class="flex-row youtube-sublist">
-                                                                <img class="youtube-subimage" src="{{sub.snippet.thumbnails.default.url}}" />
-                                                                <br />
-                                                                <div class="youtube-subtitle">
-                                                                    {{sub.snippet.title}}
-                                                                </div>
+
+                                                <div id="youtubeSearchResults">
+                                                    <button ng-hide="!account.isLoggedIn()" ng-click="controller.subs()">Subscriptions</button>
+                                                    <div ng-click="controller.ChooseSubscription($index)" ng-repeat="sub in controller.subscriptionCriteria.items">
+                                                        <div class="flex-row youtube-sublist">
+                                                            <img class="youtube-subimage" src="{{sub.snippet.thumbnails.default.url}}" />
+                                                            <br />
+                                                            <div class="youtube-subtitle">
+                                                                {{sub.snippet.title}}
                                                             </div>
                                                         </div>
-                                                        <div class="f-jc-sb" ng-show="controller.hideSubscriptions">
-                                                            <button class="buttonstyle" ng-click="controller.previousPageSub(controller.subscriptionCriteria.prevPageToken)">Previous</button>
-                                                            <button class="buttonstyle" ng-click="controller.nextPageSub(controller.subscriptionCriteria.nextPageToken)">Next</button>
-                                                        </div>
+                                                    </div>
+                                                    <div class="f-jc-sb" ng-show="controller.hideSubscriptions">
+                                                        <button class="buttonstyle" ng-click="controller.previousPageSub(controller.subscriptionCriteria.prevPageToken)">Previous</button>
+                                                        <button class="buttonstyle" ng-click="controller.nextPageSub(controller.subscriptionCriteria.nextPageToken)">Next</button>
                                                     </div>
                                                 </div>
+
                                                 <md-button ng-click="toggleLeft()" class="md-accent">
-                                                    Close this Sidenav
+                                                    Close Subscription List
                                                 </md-button>
                                             </md-content>
 
                                         </md-sidenav>
 
-                                        <md-content flex="" layout-padding="">
+                                        <md-content class="youtubeMdContent">
 
-                                            <div layout="column" layout-align="top center">
-                                                <button ng-hide="!account.isLoggedIn()" ng-click="controller.subs()">Subscriptions</button>
-
-                                                <div>
-                                                    <md-button ng-click="toggleLeft(); controller.ChooseSubscription($index)" class="md-raised">
-                                                        Subscription List
-                                                    </md-button>
+                                            <div class="youtubeSubButton">
+                                                <md-button ng-click="toggleLeft(); controller.ChooseSubscription($index)" class="md-raised youtubeSubButton">
+                                                    Subscription List
+                                                </md-button>
+                                            </div>
+                                            <div id="youtubelist" class="overflow scroll">
+                                                <div class="videoSearchDisplay" id="subscriptionPlaylist" ng-show="controller.hidePlaylist">
+                                                    <div class="flex-row videolist" ng-repeat="play in controller.playlist.items"><img class="videoimg selectvideo" ng-click="controller.ChangeSubVid($index)" src="{{play.snippet.thumbnails.default.url}}" /><div class="selectevideo" ng-click="controller.ChangeSubVid($index)">{{play.snippet.title}}</div></div>
+                                                    <div class="flex-row f-jc-sb" ng-show="controller.hidePlaylist">
+                                                        <button class="buttonstyle" ng-click="controller.previousPageSubVid(controller.playlist.prevPageToken)">Previous</button>
+                                                        <button class="buttonstyle" ng-click="controller.nextPageSubVid(controller.playlist.nextPageToken)">Next</button>
+                                                    </div>
                                                 </div>
-
                                             </div>
 
                                         </md-content>
 
-                                    </section>
+                                    
 
                                 </div>
 
-                                <div id="youtubeSubList" class="overflow scroll">
-                                    <div id="youtubeSearchResults">
-                                        <button ng-hide="!account.isLoggedIn()" ng-click="controller.subs()">Subscriptions</button>
-                                        <div ng-click="controller.ChooseSubscription($index)" ng-repeat="sub in controller.subscriptionCriteria.items">
-                                            <div class="flex-row youtube-sublist">
-                                                <img class="youtube-subimage" src="{{sub.snippet.thumbnails.default.url}}" />
-                                                <br />
-                                                <div class="youtube-subtitle">
-                                                    {{sub.snippet.title}}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="f-jc-sb" ng-show="controller.hideSubscriptions">
-                                            <button class="buttonstyle" ng-click="controller.previousPageSub(controller.subscriptionCriteria.prevPageToken)">Previous</button>
-                                            <button class="buttonstyle" ng-click="controller.nextPageSub(controller.subscriptionCriteria.nextPageToken)">Next</button>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <div id="youtubelist" class="overflow scroll">
-                                    <div class="videoSearchDisplay" id="subscriptionPlaylist" ng-show="controller.hidePlaylist">
-                                        <div class="flex-row videolist" ng-repeat="play in controller.playlist.items"><img class="videoimg selectvideo" ng-click="controller.ChangeSubVid($index)" src="{{play.snippet.thumbnails.default.url}}" /><div class="selectevideo" ng-click="controller.ChangeSubVid($index)">{{play.snippet.title}}</div></div>
-                                        <div class="flex-row f-jc-sb" ng-show="controller.hidePlaylist">
-                                            <button class="buttonstyle" ng-click="controller.previousPageSubVid(controller.playlist.prevPageToken)">Previous</button>
-                                            <button class="buttonstyle" ng-click="controller.nextPageSubVid(controller.playlist.nextPageToken)">Next</button>
-                                        </div>
-                                    </div>
-                                </div>
 
-                            </div>
+
+                           
                         </md-content>
                     </md-tab>
 
@@ -204,11 +182,26 @@
 
                     <md-tab label="Twitch">
                         <md-content class="md-padding">
+
                             <button ng-click="controller.getLive()">Get Twitch</button>
-                            
-                            <div ng-repeat="v in controller.liveFollows.streams">
-                                <img ng-src="{{v.preview.large}}" />
-                                
+                            <div id="twitchstreamfeed" class="overflow scroll">
+
+                                <div ng-repeat="v in controller.liveFollows.streams">
+                                    <div class="flex-row">
+                                        <div class="flex-col">
+                                            <img class="twitchPreviewImg" ng-src="{{v.preview.medium}}" />
+                                        </div>
+                                        <div class="flex-col videolist">
+                                            <div class="flex-row">
+                                                <h3>{{v.channel.display_name}}</h3>
+                                            </div>
+                                            <div class="flex-row selectvideo">
+                                                {{v.channel.status}}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
 
                         </md-content>
@@ -243,7 +236,7 @@
 
             <div class="twitterpost flex-col" ng-hide="!account.isLoggedIn()">
                 <form ng-submit="controller.Post(controller.tweet)">
-                    <label>Post Twitter: <input  ng-model="controller.tweet" type="text" /></label>
+                    <label>Post Twitter: <input ng-model="controller.tweet" type="text" /></label>
                     <input class="buttonstyle" type="submit" value="Post" />
                 </form>
             </div>

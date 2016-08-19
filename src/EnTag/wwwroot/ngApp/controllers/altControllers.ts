@@ -4,7 +4,6 @@
         public message = 'Hello from the home page!';
 
         public tweets;
-        public tweet;
         public index;
         public searchCriteria;
         public subscriptionCriteria;
@@ -19,30 +18,17 @@
         public hideSubscriptions = false;
         public hideVideo = false;
         public tweetsInterval;
-        public twitchInterval;
         public liveFollows;
-        public searchStreams;
 
         constructor(private $state, private $http: ng.IHttpService, private $uibModal: angular.ui.bootstrap.IModalService, private twitchService: EnTag.Services.TwitchServices) {
         }
 
         public getLive() {
-            this.Live();
-            this.twitchInterval = setInterval(() => { this.Live() }, 100000);
-        }
-
-        public Live() {
             this.twitchService.getLive()
                 .then((results) => {
                     this.liveFollows = results;
                     console.log(this.liveFollows);
                 });
-        }
-
-        public tSearch(agSearch) {
-            this.twitchService.search(agSearch).then((results) => {
-                this.searchStreams = results;
-            });
         }
 
         public showModal(formData: string) {
@@ -200,7 +186,6 @@
         Post(tweet) {
             this.$http.post('/api/test', JSON.stringify(tweet))
                 .then((response) => {
-                    this.tweet = null;
                 });
         }
 
