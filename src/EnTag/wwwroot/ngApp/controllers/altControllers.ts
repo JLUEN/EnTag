@@ -34,7 +34,40 @@
         public musicURI = "spotify:user:erebore:playlist:788MOXyTfcUb1tdw4oC7KJ";
         public customSRC = `https://embed.spotify.com/?uri=${this.musicURI}&view=coverart`;
 
-        constructor(private $state, private $http: ng.IHttpService, private $uibModal: angular.ui.bootstrap.IModalService, private twitchService: EnTag.Services.TwitchServices) {
+        constructor(private $state, private $http: ng.IHttpService, private $uibModal: angular.ui.bootstrap.IModalService, private twitchService: EnTag.Services.TwitchServices, private accountService: EnTag.Services.AccountService) {
+            this.checkcheck().then((response) => {
+                if (response == true) {
+                    this.check("twitch").then((response) => {
+                        if (response == true)
+                            this.getLive();
+                    });
+
+                    this.check("youtube").then((response) => {
+                        if (response == true)
+                            this.subs();
+                    });
+
+                    this.check("twitter").then((response) => {
+                        if (response == true)
+                            this.getTweets();
+                    });
+                }
+            });
+        }
+
+        public checkcheck() {
+            return this.$http.get(`/api/check/`).then((response) => {
+                return response.data;
+            });
+        }
+
+        public check(service:string) {
+            //if (!this.accountService.isLoggedIn())
+            //    return false;
+
+            return this.$http.get(`/api/check/${service}`).then((response) => {
+                return response.data;
+            });
         }
 
         public getLive() {

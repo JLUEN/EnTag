@@ -18,6 +18,12 @@ namespace EnTag.Controllers
             _cServ = cs;
         }
 
+        [HttpGet]
+        public bool checkUser()
+        {
+            return User.Identity.IsAuthenticated;
+        }
+
         [HttpGet("twitter")]
         public bool CheckTwitter()
         {
@@ -37,7 +43,7 @@ namespace EnTag.Controllers
         [HttpGet("twitch")]
         public bool CheckTwitch()
         {
-            var check = _cServ.CheckCred(User.Identity.Name, "Twitch");
+            bool check = _cServ.CheckCred(User.Identity.Name, "Twitch");
 
             return check;
         }

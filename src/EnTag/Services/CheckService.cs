@@ -18,7 +18,7 @@ namespace EnTag.Services
         {
             var toCheck = (from t in _tRepo.GetCreds(username)
                            where t.Service == service
-                           select t).FirstOrDefault();
+                           select t.Token).FirstOrDefault();
             if(toCheck != null)
             {
                 return true;
