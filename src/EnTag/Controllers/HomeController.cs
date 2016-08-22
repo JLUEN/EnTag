@@ -9,8 +9,10 @@ using Tweetinvi;
 
 namespace EnTag.Controllers
 {
+   //ss [RequireHttps]
     public class HomeController : Controller
     {
+        
         public IActionResult Index()
         {
             return View();

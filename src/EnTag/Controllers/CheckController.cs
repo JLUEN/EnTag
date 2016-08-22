@@ -47,5 +47,14 @@ namespace EnTag.Controllers
 
             return check;
         }
+
+        [HttpGet("spotify")]
+        public bool CheckSpotify()
+        {
+            var check = _cServ.CheckCred(User.Identity.Name, "Spotify");
+
+            return check;
+        }
+
     }
 }

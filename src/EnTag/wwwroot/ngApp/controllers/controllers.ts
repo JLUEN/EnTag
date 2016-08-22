@@ -34,15 +34,73 @@ namespace EnTag.Controllers {
         public liveFollows;
         public searchStreams;
         public channelName = "allshamnowow";
-        public customTwitch = `http://player.twitch.tv/?channel=${this.channelName}`; 
+        public customTwitch = `http://player.twitch.tv/?channel=${this.channelName}`;
         public customChat = `http://www.twitch.tv/${this.channelName}/chat`;
         public youtubeShow = false;
         public twitchShow = false;
         public populateHide = true;
         public populateHideSubs = true;
-        public hideStream=false;
+        public hideStream = false;
+        public list;
+        public musicURI = "spotify:user:erebore:playlist:788MOXyTfcUb1tdw4oC7KJ";
+        public customSRC = `https://embed.spotify.com/?uri=${this.musicURI}&view=coverart`;
+        public twitchIcon;
+        public youtubeIcon;
+        public twitterIcon;
+        public spotifyIcon;
 
-        constructor(private $state, private $http: ng.IHttpService, private $uibModal: angular.ui.bootstrap.IModalService, private twitchService: EnTag.Services.TwitchServices) {
+        constructor(private $window: ng.IWindowService,private $state, private $http: ng.IHttpService, private $uibModal: angular.ui.bootstrap.IModalService, private twitchService: EnTag.Services.TwitchServices, private accountService: EnTag.Services.AccountService) {
+            this.checkcheck().then((response) => {
+                if (response == true) {
+                    this.check("twitch").then((response) => {
+                        this.twitchIcon = response;
+                        if (response == true)
+                            this.getLive();
+                    });
+
+                    this.check("youtube").then((response) => {
+                        this.youtubeIcon = response;
+                        if (response == true)
+                            this.subs();
+                    });
+
+                    this.check("spotify").then((response) => {
+                        this.spotifyIcon = response;
+                        if (response == true)
+                            this.populateSpotify();
+                    });
+
+                    this.check("twitter").then((response) => {
+                        this.twitterIcon = response;
+                        if (response == true)
+                            this.getTweets();
+                    });
+                }
+            });
+        }
+
+        public reload() {
+            setTimeout(() => { this.myReload() }, 5000);
+           
+        }
+
+        public myReload() {
+            this.$state.reload();
+        }
+
+        public checkcheck() {
+            return this.$http.get(`/api/check/`).then((response) => {
+                return response.data;
+            });
+        }
+
+        public check(service: string) {
+            //if (!this.accountService.isLoggedIn())
+            //    return false;
+
+            return this.$http.get(`/api/check/${service}`).then((response) => {
+                return response.data;
+            });
         }
 
         public getLive() {
@@ -64,9 +122,9 @@ namespace EnTag.Controllers {
             this.twitchShow = true;
             this.index = index;
             this.channelName = this.liveFollows[this.index].channel.name;
-            this.customTwitch = `http://player.twitch.tv/?channel=${this.channelName}`; 
+            this.customTwitch = `http://player.twitch.tv/?channel=${this.channelName}`;
             this.customChat = `http://www.twitch.tv/${this.channelName}/chat`;
-            
+
         }
 
         public ChangeSteamSearch(index, name) {
@@ -168,21 +226,27 @@ namespace EnTag.Controllers {
         }
 
         nextPageTwitch(searchStreams) {
+            console.log(searchStreams);
             searchStreams = searchStreams._links.next;
+            console.log(searchStreams);
             if (searchStreams != undefined || searchStreams != null) {
                 this.$http.get(`${searchStreams}`)
                     .then((response) => {
                         this.searchStreams = response.data;
+                        console.log(this.searchStreams);
                     });
             }
         }
 
         previousPageTwitch(searchStreams) {
+            console.log(searchStreams);
             searchStreams = searchStreams._links.prev;
+            console.log(searchStreams);
             if (searchStreams != undefined || searchStreams != null) {
                 this.$http.get(`${searchStreams}`)
                     .then((response) => {
                         this.searchStreams = response.data;
+                        console.log(this.searchStreams);
                     });
             }
         }
@@ -195,10 +259,12 @@ namespace EnTag.Controllers {
 
             this.$http.get(`https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=${this.resourceId}&maxResults=10&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)  //id is the channel id and gets upload key
                 .then((response) => {
+                    console.log(response.data);
                     this.uploadKey = response.data;
 
                     this.$http.get(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=10&playlistId=${this.uploadKey.items[0].contentDetails.relatedPlaylists.uploads}&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)  //playlist id gets upload key and gets playlist with video id
                         .then((response) => {
+                            console.log(response.data);
                             this.playlist = response.data;
                         });
                 });
@@ -237,7 +303,7 @@ namespace EnTag.Controllers {
                 });
         }
 
-        Search(searchCriteria,hidestream=false) {
+        Search(searchCriteria, hidestream = false) {
             this.hideVideo = true;
             this.hideStream = hidestream;
             this.searchCriteria = searchCriteria;
@@ -245,7 +311,7 @@ namespace EnTag.Controllers {
             this.$http.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&order=relevance&q=${searchCriteria}&key=AIzaSyBYsHBvPPA98VZTGVlfU9RkQPqUdATE4l4`)
                 .then((response) => {
                     this.searchVideo = response.data;
-                    console.log(this.searchVideo);
+
                     for (let i in this.searchVideo.items) {
                         if (this.searchVideo.items[i].id.kind != "youtube#video") {
                             this.searchVideo.items.splice(i, 1);
@@ -254,7 +320,7 @@ namespace EnTag.Controllers {
                 });
         }
 
-        public tSearch(agSearch,hidestream=false) {
+        public tSearch(agSearch, hidestream = false) {
             this.hideStream = true;
             this.hideVideo = hidestream;
             this.twitchService.search(agSearch).then((results) => {
@@ -264,9 +330,8 @@ namespace EnTag.Controllers {
         }
 
         public SearchAll(agSearch) {
-            console.log(agSearch);
             this.Search(agSearch, true);
-            this.tSearch(agSearch,true);
+            this.tSearch(agSearch, true);
         }
 
 
@@ -280,7 +345,7 @@ namespace EnTag.Controllers {
         public getTweets() {
             this.populateHide = false;
             this.populate();
-            this.tweetsInterval = setInterval(() => { this.populate() }, 30000);
+            this.tweetsInterval = setInterval(() => { this.populate() }, 120000);
         }
 
         public populate() {
@@ -297,35 +362,26 @@ namespace EnTag.Controllers {
             });
         }
 
-        //SPOTIFY
-        //constructor(private $http: ng.IHttpService, private $sce: ng.ISCEService) {
-        //    this.$http.get("/api/test/spotify/playlist")
-        //        .then((spotify) => {
-        //            this.list = spotify.data;
-        //            this.list = this.list.playlists.items;
-        //            console.log(this.list);
-        //        });
+        public populateSpotify() {
+            this.$http.get("/api/test/spotify/playlist")
+                .then((spotify) => {
+                    this.list = spotify.data;
+                    this.list = this.list.playlists.items;
+                    console.log(this.list);
+                })
+                .catch(() => {
+                    this.$window.open("/oauth/spotify/", "_blank");
+                });
+        }
 
-        //}
-
-        //public list;
-        //public index;
-        //public musicURI = "spotify:user:erebore:playlist:788MOXyTfcUb1tdw4oC7KJ";
-        //public customSRC = `https://embed.spotify.com/?uri=${this.musicURI}&view=coverart`;
-        
-
-
-
-
-        //musicChoice(index) {
-        //    this.index = index;
-        //    console.log(this.index);
-        //    this.musicURI = this.list[this.index].uri;
-        //    this.customSRC = `https://embed.spotify.com/?uri=${this.musicURI}&view=coverart`;
-        //    console.log(this.musicURI);
-        //    console.log(this.customSRC);
-        //}
-        //END SPOTIFY
+        musicChoice(index) {
+            this.index = index;
+            console.log(this.index);
+            this.musicURI = this.list[this.index].uri;
+            this.customSRC = `https://embed.spotify.com/?uri=${this.musicURI}&view=coverart`;
+            console.log(this.musicURI);
+            console.log(this.customSRC);
+        }
 
     }
 
