@@ -284,12 +284,12 @@
 
             <div class="twitterpost flex-col panel" ng-hide="!account.isLoggedIn()">
                 <form class="flex-col" ng-submit="controller.Post(controller.tweet)">
-                    <label class="f-jc-c">
+                    <label>
                         Compose new Tweet
                     </label>
-                    <textarea ng-model="controller.tweet" type="text" name="tweetTextArea" 
-                              onkeydown="limitText(this.form.tweetTextArea, this.form.countdown, 3);" 
-                              onkeyup="limitText(this.form.tweetTextArea, this.form.countdown, 3);" />
+                    <textarea ng-model="controller.tweet" type="text" name="tweetTextArea"
+                              onkeydown="limitText(this.form.tweetTextArea, this.form.countdown, 140);"
+                              onkeyup="limitText(this.form.tweetTextArea, this.form.countdown, 140);"></textarea>
                     <font size="1">(Maximum characters: 140)</font>
                     <input class="buttonstyle" type="submit" value="Post" />
                 </form>
