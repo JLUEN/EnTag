@@ -24,7 +24,7 @@
 <div class="container home">
     <div class="flex-row">
 
-        <div class="flex-col">
+        <div class="videoPanel flex-col">
 
             <div id="videofeed" ng-show="controller.youtubeShow">
                 <div id="youtubeplayer">
@@ -35,8 +35,8 @@
             <div id="videofeed" ng-show="controller.twitchShow">
                 <div class="flex-col">
                     <iframe src="{{controller.customTwitch}}"
-                            height="390"
-                            width="640"
+                            height="426"
+                            width="837"
                             frameborder="0"
                             scrolling="no"
                             allowfullscreen="true"></iframe>
@@ -44,8 +44,8 @@
                             scrolling="no"
                             id="chat_embed"
                             src="{{controller.customChat}}"
-                            height="330"
-                            width="640"></iframe>
+                            height="426"
+                            width="837"></iframe>
                 </div>
             </div>
 
@@ -56,6 +56,7 @@
                 <md-tabs md-dynamic-height md-border-bottom>
                     <md-tab label="Search">
                         <md-content class="md-padding">
+                            <!--Search-->
 
                             <div id="searcharea" class="flex-row f-jc-c">
 
@@ -88,6 +89,7 @@
                                 </div>
 
                                 <div class="searchbar" ng-show="search=='Twitch'">
+                                    <!--08/18/2016 twitch drop down for search -->
                                     <form class="flex-row" ng-submit="controller.tSearch(searchTwitch)">
                                         <input class="searchinput" placeholder="Search" type="text" ng-model="searchTwitch" />
                                         <div class="searchChoices">
@@ -105,10 +107,10 @@
                             <div id="videosearch" class="overflow scroll">
                                 <div class="flex-col">
                                     <div ng-show="controller.hideVideo">
-                                        <div class="flex-row videolist" ng-repeat="vid in controller.searchVideo.items"><img class="videoimg selectvideo" ng-click="controller.ChangeVideo($index)" src="{{vid.snippet.thumbnails.default.url}}" /><div class="selectvideo" ng-click="controller.ChangeVideo($index)">{{vid.snippet.title}}</div></div>
+                                        <div class="flex-row videolist" ng-hide="search=='Aggregation'" ng-repeat="vid in controller.searchVideo.items"><img class="videoimg selectvideo" ng-click="controller.ChangeVideo($index)" src="{{vid.snippet.thumbnails.default.url}}" /><div class="selectvideo" ng-click="controller.ChangeVideo($index)">{{vid.snippet.title}}</div></div>
                                         <div class="flex-row f-jc-sb">
-                                            <button class="buttonstyle" ng-click="controller.previousPage(controller.searchVideo.prevPageToken)">Previous</button>
-                                            <button class="buttonstyle" ng-click="controller.nextPage(controller.searchVideo.nextPageToken)">Next</button>
+                                            <button class="buttonstyle" ng-hide="search=='Aggregation'" ng-click="controller.previousPage(controller.searchVideo.prevPageToken)">Previous</button>
+                                            <button class="buttonstyle" ng-hide="search=='Aggregation'" ng-click="controller.nextPage(controller.searchVideo.nextPageToken)">Next</button>
                                         </div>
                                     </div>
 
@@ -117,37 +119,47 @@
 
 
                             <div id="videosearch" class="overflow scroll">
+                                <!--08/18/2016 twitch videos for search -->
                                 <div class="flex-col">
                                     <div ng-show="controller.hideStream">
-                                        <div class="flex-row videolist" ng-repeat="vid in controller.searchStreams.streams"><img class="videoimg selectvideo" ng-click="controller.ChangeSteamSearch($index,controller.searchStreams)" src="{{vid.preview.medium}}" /> <div class="videoimg selectvideo" ng-click="controller.ChangeSteamSearch($index,controller.searchStreams)"> {{vid.channel.status}} <br /><br />  {{vid.channel.name}}</div></div>
+                                        <div class="flex-row videolist" ng-hide="search=='Aggregation'" ng-repeat="vid in controller.searchStreams.streams"><img class="videoimg selectvideo" ng-click="controller.ChangeSteamSearch($index,controller.searchStreams)" src="{{vid.preview.medium}}" /> <div class="videoimg selectvideo" ng-click="controller.ChangeSteamSearch($index,controller.searchStreams)"> {{vid.channel.status}} <br /><br />  {{vid.channel.name}}</div></div>
                                         <div class="flex-row f-jc-sb">
-                                            <button class="buttonstyle" ng-click="controller.previousPageTwitch(controller.searchStreams)">Previous</button>
-                                            <button class="buttonstyle" ng-click="controller.nextPageTwitch(controller.searchStreams)">Next</button>
+                                            <button class="buttonstyle" ng-hide="search=='Aggregation'" ng-click="controller.previousPageTwitch(controller.searchStreams)">Previous</button>
+                                            <button class="buttonstyle" ng-hide="search=='Aggregation'" ng-click="controller.nextPageTwitch(controller.searchStreams)">Next</button>
                                         </div>
                                     </div>
 
                                 </div>
+                            </div>
 
+                            <div id="videosearch" class="overflow scroll">
+                                <!--08/18/2016 twitch videos for search -->
+                                <div class="flex-col">
+                                    <div ng-show="controller.hideStream">
+                                        <div class="flex-row videolist" ng-show="search=='Aggregation'" ng-repeat="vid in controller.searchStreams.streams"><img class="videoimg selectvideo" ng-click="controller.ChangeSteamSearch($index,controller.searchStreams)" src="{{vid.preview.medium}}" /> <div class="videoimg selectvideo" ng-click="controller.ChangeSteamSearch($index,controller.searchStreams)"> {{vid.channel.status}} <br /><br />  {{vid.channel.name}}</div></div>
+                                        <div class="flex-row videolist" ng-show="search=='Aggregation'" ng-repeat="vid in controller.searchVideo.items"><img class="videoimg selectvideo" ng-click="controller.ChangeVideo($index)" src="{{vid.snippet.thumbnails.default.url}}" /><div class="selectvideo" ng-click="controller.ChangeVideo($index)">{{vid.snippet.title}}</div></div>
+                                        <div class="flex-row f-jc-sb">
+                                            <button class="buttonstyle" ng-show="search=='Aggregation'" ng-click="controller.previousPageTwitch(controller.searchStreams);controller.previousPage(controller.searchVideo.prevPageToken)">Previous</button>
+                                            <button class="buttonstyle" ng-show="search=='Aggregation'" ng-click="controller.nextPageTwitch(controller.searchStreams);controller.nextPage(controller.searchVideo.nextPageToken)">Next</button>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
 
                         </md-content>
                     </md-tab>
 
+
                     <!--YouTube-->
 
                     <md-tab label="YouTube">
                         <md-content class="youTubeMdContent">
-
-
-
                             <div ng-controller="AppCtrl" ng-cloak="" ng-app="EnTag">
-
-
-
                                 <md-sidenav class="md-sidenav-left overflow scroll" md-component-id="left" md-disable-backdrop="" md-whiteframe="4">
 
                                     <md-toolbar class="md-theme-indigo">
-                                        <h5 class="md-toolbar-tools">Subscriptions</h5>
+                                        <h5 class="md-toolbar-tools f-jc-c">Subscriptions</h5>
                                     </md-toolbar>
 
                                     <md-content layout-margin="">
@@ -173,7 +185,6 @@
                                             Close Subscription List
                                         </md-button>
                                     </md-content>
-
                                 </md-sidenav>
 
                                 <md-content class="flex-col youtubeMdContent overflow scroll">
@@ -185,41 +196,41 @@
 
                                     <div id="youtubelist" class="overflow scroll">
                                         <div class="videoSearchDisplay" id="subscriptionPlaylist" ng-show="controller.hidePlaylist">
-                                            <div class="flex-row videolist" ng-repeat="play in controller.playlist.items"><img class="videoimg selectvideo" ng-click="controller.ChangeSubVid($index)" src="{{play.snippet.thumbnails.default.url}}" /><div class="selectevideo" ng-click="controller.ChangeSubVid($index)">{{play.snippet.title}}</div></div>
+                                            <div class="flex-row wordwrap" ng-repeat="play in controller.playlist.items">
+                                                <img class="flex-col videoimg selectvideo" ng-click="controller.ChangeSubVid($index)" src="{{play.snippet.thumbnails.default.url}}" />
+                                                <div class="flex-col selectevideo" ng-click="controller.ChangeSubVid($index)">
+                                                    {{play.snippet.title}}
+                                                </div>
+                                            </div>
                                             <div class="flex-row f-jc-sb" ng-show="controller.hidePlaylist">
                                                 <button class="buttonstyle" ng-click="controller.previousPageSubVid(controller.playlist.prevPageToken)">Previous</button>
                                                 <button class="buttonstyle" ng-click="controller.nextPageSubVid(controller.playlist.nextPageToken)">Next</button>
                                             </div>
                                         </div>
                                     </div>
-
                                 </md-content>
-
-
-
                             </div>
-
-
-
-
-
                         </md-content>
                     </md-tab>
 
                     <!--Twitch-->
 
                     <md-tab label="Twitch">
-                        <md-content class="md-padding">
+                        <md-content class="flex-col twitchMdContent">
+                            <div class="youtubeSubButton">
+                                <md-button ng-click="controller.getLive()" class="md-raised youtubeSubButton">
+                                    Live Channels
+                                </md-button>
+                            </div>
 
-                            <button ng-click="controller.getLive()">Get Twitch</button>
-                            <div id="twitchstreamfeed" class="overflow scroll">
+                            <div id="twitchLiveList" class="overflow scroll">
 
                                 <div ng-click="controller.ChangeStream($index)" ng-repeat="v in controller.liveFollows">
                                     <div class="flex-row">
                                         <div class="flex-col">
                                             <img class="twitchPreviewImg" ng-src="{{v.preview.medium}}" />
                                         </div>
-                                        <div class="flex-col videolist">
+                                        <div class="flex-col wordwrap twitchText">
                                             <div class="flex-row">
                                                 <h3>{{v.channel.display_name}}</h3>
                                             </div>
@@ -264,7 +275,7 @@
                     <div class="tweet" ng-repeat="t in controller.tweets">
                         <div class="flex-row">
                             <img class="tweetprofileimage" ng-src="{{t.tweetDTO.user.profile_image_url}}" />
-                            <p class="tweetname">{{t.tweetDTO.user.name}}<br />{{t.tweetDTO.created_at | date}}</p>
+                            <p class="tweetname">{{t.tweetDTO.user.name}}<br />{{t.tweetDTO.created_at | date : 'medium'}}</p>
                         </div>
                         <p class="tweettext">{{t.tweetDTO.text}}</p>
                     </div>
@@ -272,8 +283,14 @@
             </div>
 
             <div class="twitterpost flex-col panel" ng-hide="!account.isLoggedIn()">
-                <form ng-submit="controller.Post(controller.tweet)">
-                    <label>Post Twitter: <input ng-model="controller.tweet" type="text" /></label>
+                <form class="flex-col" ng-submit="controller.Post(controller.tweet)">
+                    <label class="f-jc-c">
+                        Compose new Tweet
+                    </label>
+                    <textarea ng-model="controller.tweet" type="text" name="tweetTextArea" 
+                              onkeydown="limitText(this.form.tweetTextArea, this.form.countdown, 3);" 
+                              onkeyup="limitText(this.form.tweetTextArea, this.form.countdown, 3);" />
+                    <font size="1">(Maximum characters: 140)</font>
                     <input class="buttonstyle" type="submit" value="Post" />
                 </form>
             </div>

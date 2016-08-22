@@ -144,13 +144,19 @@ body {
     display: table;
     margin: 10px;
     padding: 5px;
-    height: 756px;
+    height:845px;
     width: 500px;
 }
 
+.videoPanel {
+    background-color: #202020;
+    box-shadow: 0 10px 44px 0 #000000;
+    height: 866px;
+    width: 860px;
+}
+
 #videofeed {
-    border: 1px solid orange;
-    margin: 0 5px 0 10px;
+    margin: 0 10px 0 10px;
     padding: 5px;
     min-width: 832px;
     min-height: 507px;
@@ -168,13 +174,13 @@ body {
 }
 
 #twitterfeed {
-    height: 600px;
-    max-height: 600px;
+    height: 690px;
+    max-height: 690px;
     width: 20%;
     min-width: 250px;
     max-width: 300px;
     float: right;
-    margin: 10px 15px 5px 10px;
+    margin: 10px 15px 5px 5px;
     position: relative;
     padding: 5px;
 }
@@ -182,7 +188,7 @@ body {
 .twitterpost {
     position: relative;
     padding: 5px;
-    margin: 0 15px 10px 10px;
+    margin: 0 15px 10px 5px;
     height: 150px;
     width: 20%;
     min-width: 250px;
@@ -219,7 +225,8 @@ body {
     max-width: 1000px;
 }
 
-#twitchstreamfeed {
+#twitchLiveList{ 
+    margin: 40px 5px 0 5px;
     height: auto;
     width: auto;
     padding: 5px;
@@ -375,6 +382,7 @@ nav {
     border-right: 0px;
     border-top-left-radius: 5px 5px;
     border-bottom-left-radius: 5px 5px;
+    width: 100%;
 }
 
 .searchbar {
@@ -506,7 +514,7 @@ nav {
     margin: 0;
     padding: 0;
     width: auto;
-    height: 700px;
+    height: 785px;
 }
 
 /*
@@ -517,7 +525,7 @@ nav {
     margin: 3px;
 }
 
-.videolist {
+.wordwrap {
     color: #FF8100;
     word-wrap: break-word;
     width: 450px;
@@ -537,7 +545,7 @@ nav {
     margin: 5px 0 5px 0;
     padding: 5px;
     height: auto;
-    max-height: 640px;
+    max-height: 735px;
 }
 
 .md-padding {
@@ -559,4 +567,17 @@ md-tabs-canvas {
 
 .twitchPreviewImg {
     padding: 5px;
+    width: 240px;
+    height: 135px;
+}
+
+.twitchMdContent {
+    margin: 0;
+    padding: 0;
+    width: auto;
+    height: 700px;
+}
+
+.twitchText {
+width: 220px;
 }
