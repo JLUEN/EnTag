@@ -39,7 +39,7 @@
         public spotifyIcon;
 
         constructor(private $window,private $state, private $http: ng.IHttpService, private $uibModal: angular.ui.bootstrap.IModalService, private twitchService: EnTag.Services.TwitchServices, private accountService: EnTag.Services.AccountService) {
-            this.$window.open("/oauth/spotify/", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=400");
+            this.$window.open("/oauth/spotify/", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,width=400,height=400");
             this.checkcheck().then((response) => {
                 if (response == true) {
                     this.check("twitch").then((response) => {
