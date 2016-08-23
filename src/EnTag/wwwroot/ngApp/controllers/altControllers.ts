@@ -41,8 +41,8 @@
         constructor(private $window, private $state, private $http: ng.IHttpService, private $uibModal: angular.ui.bootstrap.IModalService, private twitchService: EnTag.Services.TwitchServices, private accountService: EnTag.Services.AccountService, private tweetTrustService: EnTag.Services.TweetTrustService) {
 
             this.checkcheck().then((response) => {
-               // let win = this.$window.open("/oauth/spotify/", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,width=400,height=400");
-              //  setTimeout(function () { win.close(); }, 5000);
+               let win = this.$window.open("/oauth/spotify/", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,width=400,height=400");
+               setTimeout(function () { win.close(); }, 5000);
                 if (response == true) {
                     this.check("twitch").then((response) => {
                         this.twitchIcon = response;
