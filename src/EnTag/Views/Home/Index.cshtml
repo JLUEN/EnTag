@@ -42,8 +42,8 @@
         <div class="flex-row f-jc-sb">
             <h1 class="logo">EnTag</h1>
                 <div class="flex-row f-jc-fe margintop">
-                    <div class="username" ng-show="account.isLoggedIn()">
-                        [{{account.getUserName()}}]
+                    <div class="username fontcolor" ng-show="account.isLoggedIn()">
+                        {{account.getUserName()}}
                     </div>
                     <a href="#" ng-click="account.logout()" ng-show="account.isLoggedIn()">Logout</a>
                     <a href="/login" ng-show="!account.isLoggedIn()">Login</a>

@@ -153,10 +153,10 @@ body {
     color: #E5E5E5;
 }
 
-/*a {
+a {
     color: #FF8100;
-    padding: 0 5px;
-}*/
+    padding: 0 10px 0 10px;
+}
 
 /* Body Content */
 
@@ -247,11 +247,11 @@ body {
 }
 
 #twitchLiveList {
-    margin: 40px 5px 0 5px;
+    margin: 10px 5px 0 5px;
     height: auto;
     width: auto;
     padding: 5px;
-    max-height: 740px;
+    max-height: 780px;
 }
 
 #spotify {
