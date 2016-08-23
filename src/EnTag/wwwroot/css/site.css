@@ -481,6 +481,7 @@ nav {
 
 .twitterpopulate {
     margin: 5px 0 5px 0;
+    overflow-x: hidden;
 }
 
 .subscriptionPopulate {
