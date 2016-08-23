@@ -166,7 +166,9 @@
                                     <md-content id="youtubeSearchResults" layout-margin="">
 
                                         <div>
-                                            <button ng-hide="!account.isLoggedIn()" ng-show="controller.populateHideSubs" ng-click="controller.subs()">Subscriptions</button>
+                                            <div ng-click="controller.reload()" ng-hide="controller.youtubeIcon" ng-show="!account.isLoggedIn()" class="navbox youtube-icon fa-4x">
+                                                <i ng-click="controller.showModal()" class="fa fa-youtube-square" aria-hidden="true"></i>
+                                            </div>
                                             <div ng-click="controller.ChooseSubscription($index); toggleLeft()" ng-repeat="sub in controller.subscriptionCriteria.items">
                                                 <div class="flex-row youtube-sublist">
                                                     <img class="youtube-subimage" src="{{sub.snippet.thumbnails.default.url}}" />
@@ -216,9 +218,9 @@
                     <md-tab label="Twitch">
                         <md-content class="flex-col twitchMdContent">
                             <div class="youtubeSubButton">
-                                <md-button ng-click="controller.getLive()" class="md-raised youtubeSubButton">
-                                    Live Channels
-                                </md-button>
+                                <div ng-click="controller.reload()" ng-hide="controller.twitchIcon" ng-show="!account.isLoggedIn()" class="navbox twitch-icon">
+                                    <a onclick="OpenWindowT()"><i class="fa fa-twitch fa-4x" aria-hidden="true"></i></a>
+                                </div>
                             </div>
 
                             <div id="twitchLiveList" class="overflow scroll">
@@ -272,9 +274,9 @@
 
         <div id="twitter" class="flex-col">
             <div id="twitterfeed" class="flex-col panel">
-                <form class="center" ng-show="controller.populateHide" ng-submit="controller.getTweets()" ng-hide="!account.isLoggedIn()">
-                    <input class="buttonstyle" type="submit" value="Populate" />
-                </form>
+                <div ng-click="controller.reload()" ng-hide="controller.twitterIcon" ng-show="!account.isLoggedIn()" class="navbox twitter-icon">
+                    <a onclick="OpenWindow()"><i class="fa fa-twitter fa-4x" aria-hidden="true"></i></a>
+                </div>
                 <div class="twitterpopulate overflow scroll">
                     <div class="tweet" ng-repeat="t in controller.tweets">
                         <div class="flex-row">

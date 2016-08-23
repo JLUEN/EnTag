@@ -33,26 +33,48 @@
         public list;
         public musicURI = "spotify:user:erebore:playlist:788MOXyTfcUb1tdw4oC7KJ";
         public customSRC = `https://embed.spotify.com/?uri=${this.musicURI}&view=coverart`;
+        public twitchIcon;
+        public youtubeIcon;
+        public twitterIcon;
+        public spotifyIcon;
 
         constructor(private $state, private $http: ng.IHttpService, private $uibModal: angular.ui.bootstrap.IModalService, private twitchService: EnTag.Services.TwitchServices, private accountService: EnTag.Services.AccountService) {
             this.checkcheck().then((response) => {
                 if (response == true) {
                     this.check("twitch").then((response) => {
+                        this.twitchIcon = response;
                         if (response == true)
                             this.getLive();
                     });
 
                     this.check("youtube").then((response) => {
+                        this.youtubeIcon = response;
                         if (response == true)
                             this.subs();
                     });
 
+                    this.check("spotify").then((response) => {
+                        this.spotifyIcon = response;
+                        if (response == true)
+                            this.populateSpotify();
+                    });
+
                     this.check("twitter").then((response) => {
+                        this.twitterIcon = response;
                         if (response == true)
                             this.getTweets();
                     });
                 }
             });
+        }
+
+        public reload() {
+            setTimeout(() => { this.myReload() }, 5000);
+
+        }
+
+        public myReload() {
+            this.$state.reload();
         }
 
         public checkcheck() {
@@ -348,5 +370,16 @@
         }
 
     }
+
+    class YoutubeDialogController {
+
+        public SubmitUsername(username) {
+            this.$uibModalInstance.close(username);
+        }
+
+        constructor(private $uibModalInstance: angular.ui.bootstrap.IModalServiceInstance) { }
+    }
+
+    angular.module('MyApp').controller('YoutubeDialogController', YoutubeDialogController);
 
 }
