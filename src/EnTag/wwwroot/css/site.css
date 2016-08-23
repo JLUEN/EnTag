@@ -54,7 +54,7 @@ hr {
     overflow: hidden;
 }
 
-.overflow-hidden-sm{
+.overflow-hidden-sm {
     overflow: hidden;
 }
 
@@ -457,7 +457,7 @@ nav {
     width: 160px;
 }
 
-.aggSearchYouTubeImg{
+.aggSearchYouTubeImg {
     height: 99px;
     width: 132px;
 }
@@ -506,8 +506,13 @@ nav {
 
 .twitterTextArea {
     height: 85px;
-    background-color: #E5E5E5;
+    background-color: #535353;
+    border-color: #C0C0C0;
 }
+
+    .twitterTextArea:focus {
+        background-color: #E5E5E5;
+    }
 
 /*
     YouTube Feed
