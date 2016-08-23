@@ -108,9 +108,11 @@
         public Live() {
             this.twitchService.getLive()
                 .then((results) => {
-                    this.liveFollows = results;
-                    this.liveFollows = this.liveFollows.streams;
-                    console.log(this.liveFollows);
+                    if (results != null) {
+                        this.liveFollows = results;
+                        this.liveFollows = this.liveFollows.streams;
+                        console.log(this.liveFollows);
+                    }
                 });
         }
 

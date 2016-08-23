@@ -51,12 +51,18 @@ namespace EnTag.Controllers
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(new Uri("https://api.twitch.tv/kraken/streams/followed?stream_type=live"));
             request.Method = "GET";
             request.Headers.Add("Authorization", "OAuth " + creds.Token);
+            string result;
 
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            StreamReader stremRead = new StreamReader(response.GetResponseStream());
-            string result = stremRead.ReadToEnd();
-
-            return result;
+            try
+            {
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                StreamReader stremRead = new StreamReader(response.GetResponseStream());
+                return result = stremRead.ReadToEnd();
+            }
+            catch (WebException ex) {
+                return null;
+            }
+            
         }
 
         [HttpGet("username")]
