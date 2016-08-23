@@ -188,10 +188,10 @@
                                     </div>
 
                                     <div id="youtubelist" class="overflow scroll">
-                                        <div class="videoSearchDisplay" id="subscriptionPlaylist" ng-show="controller.hidePlaylist">
-                                            <div class="flex-row wordwrap" ng-repeat="play in controller.playlist.items">
+                                        <div ng-show="controller.hidePlaylist">
+                                            <div class="flex-row f-jc-sb youtubeWordWrap inset-shadow" ng-repeat="play in controller.playlist.items">
                                                 <img class="flex-col videoimg selectvideo" ng-click="controller.ChangeSubVid($index)" src="{{play.snippet.thumbnails.default.url}}" />
-                                                <div class="flex-col selectevideo" ng-click="controller.ChangeSubVid($index)">
+                                                <div class="flex-col youtubeTitleClick selectvideo wordwrap" ng-click="controller.ChangeSubVid($index)">
                                                     {{play.snippet.title}}
                                                 </div>
                                             </div>
@@ -212,14 +212,14 @@
                         <md-content class="flex-col twitchMdContent">
                             <div class="youtubeSubButton">
                                 <div ng-click="controller.reload()" ng-hide="controller.twitchIcon" ng-show="!account.isLoggedIn()" class="navbox twitch-icon">
-                                    <a onclick="OpenWindowT()"><i class="fa fa-twitch fa-4x" aria-hidden="true"></i></a>
+                                    git  <a onclick="OpenWindowT()"><i class="fa fa-twitch fa-4x" aria-hidden="true"></i></a>
                                 </div>
                             </div>
 
                             <div id="twitchLiveList" class="overflow scroll">
 
                                 <div ng-click="controller.ChangeStream($index)" ng-repeat="v in controller.liveFollows">
-                                    <div class="flex-row">
+                                    <div class="flex-row inset-shadow">
                                         <div class="flex-col">
                                             <img class="twitchPreviewImg" ng-src="{{v.preview.medium}}" />
                                         </div>
@@ -227,7 +227,7 @@
                                             <div class="flex-row">
                                                 <h3>{{v.channel.display_name}}</h3>
                                             </div>
-                                            <div class="flex-row selectvideo">
+                                            <div class="flex-row selectvideo overflow-hidden">
                                                 {{v.channel.status}}
                                             </div>
                                         </div>

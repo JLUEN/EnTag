@@ -54,6 +54,10 @@ hr {
     overflow: hidden;
 }
 
+.overflow-hidden-sm{
+    overflow: hidden;
+}
+
 .inset-shadow {
     box-shadow: inset 0 -1px 0 0 #000;
 }
@@ -284,7 +288,6 @@ body::-webkit-scrollbar-thumb {
 */
 
 .navbox {
-    border: 1px solid red;
     height: 60px;
     width: 60px;
     display: flex;
@@ -296,7 +299,6 @@ body::-webkit-scrollbar-thumb {
 }
 
 nav {
-    border: 1px solid red;
     position: absolute;
     height: 100%;
     min-height: 768px;
@@ -368,13 +370,13 @@ nav {
         color: #2ebd59;
     }
 
-.spotify-icon {
+/*.spotify-icon {
     background-color: #FF8100;
-}
+}*/
 
-    .spotify-icon:hover {
+/*.spotify-icon:hover {
         background-color: #000000;
-    }
+    }*/
 
 .fa-cog {
     color: #FFFFFF;
@@ -448,6 +450,17 @@ nav {
         background: -webkit-gradient(linear, left top, left bottom, from(#FF5026), to(#ff3100));
         background: -moz-linear-gradient(top, #0095cc, #00678e);
     }
+
+.aggSearchTwitchImg {
+    padding: 5px;
+    height: 90px;
+    width: 160px;
+}
+
+.aggSearchYouTubeImg{
+    height: 99px;
+    width: 132px;
+}
 
 /*
     Twitter Feed
@@ -558,7 +571,7 @@ nav {
     padding: 10px;
 }
 
-.displayTable{
+.displayTable {
     display: table;
 }
 
@@ -576,7 +589,13 @@ nav {
     width: 450px;
 }
 
-.youtubeWordWrap{
+.wordwrap-sm {
+    color: #FF8100;
+    word-wrap: break-word;
+    width: 290px;
+}
+
+.youtubeWordWrap {
     color: #FF8100;
     word-wrap: break-word;
     width: 470px;
@@ -596,7 +615,7 @@ nav {
     margin: 5px 0 5px 0;
     padding: 5px;
     height: auto;
-    max-height: 735px;
+    max-height: 730px;
 }
 
 .md-padding {
@@ -639,13 +658,13 @@ md-tabs-canvas {
 
 /*Spotify Feed*/
 
-.artistCoverArt{
+.artistCoverArt {
     height: 120px;
     width: 120px;
     padding: 5px;
 }
 
-.artistCoverWrap{
+.artistCoverWrap {
     display: flex;
     flex-flow: row wrap;
     flex-direction: row;

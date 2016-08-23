@@ -18,13 +18,14 @@ namespace EnTag.Controllers {
         public logout() {
             this.accountService.logout();
             this.$location.path('/');
+            this.$state.reload();
         }
 
         public getExternalLogins() {
             return this.accountService.getExternalLogins();
         }
 
-        constructor(private accountService: EnTag.Services.AccountService, private $location: ng.ILocationService) {
+        constructor(private $state, private accountService: EnTag.Services.AccountService, private $location: ng.ILocationService) {
             this.getExternalLogins().then((results) => {
                 this.externalLogins = results;
             });

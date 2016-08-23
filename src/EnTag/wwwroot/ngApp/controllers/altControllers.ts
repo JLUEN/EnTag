@@ -296,11 +296,8 @@
                                     .then((response) => {
                                         this.subscriptionCriteria = response.data;
 
-                                    })
-                                    .catch((response) => {
-                                        this.showModal("Testing");
                                     });
-
+                        
                             });
                     }
                 });
