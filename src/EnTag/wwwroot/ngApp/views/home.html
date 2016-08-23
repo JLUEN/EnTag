@@ -155,15 +155,15 @@
                     <!--YouTube-->
 
                     <md-tab label="YouTube">
-                        <md-content class="youTubeMdContent">
+                        <md-content style="overflow:hidden">
                             <div ng-controller="AppCtrl" ng-cloak="" ng-app="EnTag">
-                                <md-sidenav class="md-sidenav-left overflow scroll" md-component-id="left" md-disable-backdrop="" md-whiteframe="4">
+                                <md-sidenav class="md-sidenav-left displayTable" md-component-id="left" md-whiteframe="1">
 
                                     <md-toolbar class="md-theme-indigo">
                                         <h5 class="md-toolbar-tools f-jc-c">Subscriptions</h5>
                                     </md-toolbar>
 
-                                    <md-content id="youtubeSearchResults" layout-margin="">
+                                    <md-content style="height: 720px" id="youtubeSearchResults" class="overflow scroll">
 
                                         <div>
                                             <div ng-click="controller.reload()" ng-hide="controller.youtubeIcon" ng-show="!account.isLoggedIn()" class="navbox youtube-icon fa-4x">
@@ -173,7 +173,7 @@
                                                 <div class="flex-row youtube-sublist">
                                                     <img class="youtube-subimage" src="{{sub.snippet.thumbnails.default.url}}" />
                                                     <br />
-                                                    <div class="youtube-subtitle">
+                                                    <div class="youtube-subtitle fontcolor">
                                                         {{sub.snippet.title}}
                                                     </div>
                                                 </div>
@@ -187,7 +187,7 @@
                                     </md-content>
                                 </md-sidenav>
 
-                                <md-content class="flex-col youtubeMdContent overflow scroll">
+                                <md-content class="flex-col youtubeMdContent">
                                     <div class="youtubeSubButton">
                                         <md-button ng-click="toggleLeft(); controller.ChooseSubscription($index)" class="md-raised youtubeSubButton">
                                             Subscription List
@@ -195,8 +195,8 @@
                                     </div>
 
                                     <div id="youtubelist" class="overflow scroll">
-                                        <div class="videoSearchDisplay" id="subscriptionPlaylist" ng-show="controller.hidePlaylist">
-                                            <div class="flex-row wordwrap inset-shadow" ng-repeat="play in controller.playlist.items">
+                                        <div ng-show="controller.hidePlaylist">
+                                            <div class="flex-row f-jc-sb youtubeWordWrap inset-shadow" ng-repeat="play in controller.playlist.items">
                                                 <img class="flex-col videoimg selectvideo" ng-click="controller.ChangeSubVid($index)" src="{{play.snippet.thumbnails.default.url}}" />
                                                 <div class="flex-col youtubeTitleClick selectvideo wordwrap" ng-click="controller.ChangeSubVid($index)">
                                                     {{play.snippet.title}}
@@ -219,7 +219,7 @@
                         <md-content class="flex-col twitchMdContent">
                             <div class="youtubeSubButton">
                                 <div ng-click="controller.reload()" ng-hide="controller.twitchIcon" ng-show="!account.isLoggedIn()" class="navbox twitch-icon">
-                                    <a onclick="OpenWindowT()"><i class="fa fa-twitch fa-4x" aria-hidden="true"></i></a>
+                                  git  <a onclick="OpenWindowT()"><i class="fa fa-twitch fa-4x" aria-hidden="true"></i></a>
                                 </div>
                             </div>
 

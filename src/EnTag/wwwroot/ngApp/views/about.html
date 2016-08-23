@@ -249,7 +249,7 @@
                             <div class="flex-row f-jc-c">
                                 <iframe src="{{controller.customSRC}}" width="480" height="80" frameborder="0" allowtransparency="true"></iframe>
                             </div>
-                            <br/>
+                            <br />
                             <div class="artistCoverWrap artistCoverLists overflow scroll">
                                 <div ng-click="controller.musicChoice($index)" ng-repeat="playlist in controller.list">
                                     <div class="artistCoverArtClick">
@@ -289,8 +289,10 @@
                     <textarea ng-model="controller.tweet" type="text" name="tweetTextArea"
                               onkeydown="limitText(this.form.tweetTextArea, this.form.countdown, 140);"
                               onkeyup="limitText(this.form.tweetTextArea, this.form.countdown, 140);"></textarea>
-                    <font size="1">(Maximum characters: 140)</font>
-                    <input class="buttonstyle" type="submit" value="Post" />
+                    <div class="flex-row">
+                        <font size="1">(Maximum characters: 140)</font>
+                        <input class="buttonstyle" type="submit" value="Post" />
+                    </div>
                 </form>
             </div>
         </div>

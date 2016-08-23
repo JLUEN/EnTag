@@ -201,7 +201,7 @@ a {
     min-width: 250px;
     max-width: 300px;
     float: right;
-    margin: 10px 15px 5px 5px;
+    margin: 10px 15px 5px 0;
     position: relative;
     padding: 5px;
 }
@@ -209,7 +209,7 @@ a {
 .twitterpost {
     position: relative;
     padding: 5px;
-    margin: 0 15px 10px 5px;
+    margin: 0 15px 10px 0;
     height: 150px;
     width: 20%;
     min-width: 250px;
@@ -534,7 +534,6 @@ nav {
 
 .youtube-subtitle {
     padding: 0 5px 0 5px;
-    color: #000000;
     margin: auto;
     justify-content: center;
 }
@@ -550,13 +549,16 @@ nav {
 .youtubeMdContent {
     margin: 0;
     padding: 0;
-    width: auto;
-    height: 785px;
+    height: 780px;
 }
 
 .youtubeTitleClick {
     width: 100%;
     padding: 10px;
+}
+
+.displayTable{
+    display: table;
 }
 
 /*
@@ -571,6 +573,12 @@ nav {
     color: #FF8100;
     word-wrap: break-word;
     width: 450px;
+}
+
+.youtubeWordWrap{
+    color: #FF8100;
+    word-wrap: break-word;
+    width: 470px;
 }
 
 .selectvideo:hover {
