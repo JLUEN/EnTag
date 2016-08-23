@@ -38,36 +38,39 @@
         public twitterIcon;
         public spotifyIcon;
 
-        constructor(private $window,private $state, private $http: ng.IHttpService, private $uibModal: angular.ui.bootstrap.IModalService, private twitchService: EnTag.Services.TwitchServices, private accountService: EnTag.Services.AccountService) {
-           
+        constructor(private $window, private $state, private $http: ng.IHttpService, private $uibModal: angular.ui.bootstrap.IModalService, private twitchService: EnTag.Services.TwitchServices, private accountService: EnTag.Services.AccountService) {
+
             this.checkcheck().then((response) => {
-                let win=this.$window.open("/oauth/spotify/", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,width=400,height=400");
+                let win = this.$window.open("/oauth/spotify/", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,width=400,height=400");
                 setTimeout(function () { win.close(); }, 5000);
                 if (response == true) {
                     this.check("twitch").then((response) => {
                         this.twitchIcon = response;
                         if (response == true)
                             this.getLive();
+                        console.log(response);
                     });
 
                     this.check("youtube").then((response) => {
                         this.youtubeIcon = response;
                         if (response == true)
                             this.subs();
+                        console.log(response);
                     });
 
                     this.check("spotify").then((response) => {
                         this.spotifyIcon = response;
-                        
+
                         if (response == true)
-                           
                             this.populateSpotify();
+                        console.log(response);
                     });
 
                     this.check("twitter").then((response) => {
                         this.twitterIcon = response;
                         if (response == true)
                             this.getTweets();
+                        console.log(response);
                     });
                 }
             });
@@ -88,7 +91,7 @@
             });
         }
 
-        public check(service:string) {
+        public check(service: string) {
             //if (!this.accountService.isLoggedIn())
             //    return false;
 
