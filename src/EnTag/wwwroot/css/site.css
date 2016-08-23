@@ -107,6 +107,10 @@ form {
     padding: 0;
 }
 
+.nomargin {
+    margin: 0;
+}
+
 /* 
     html structure
 */
@@ -622,4 +626,23 @@ md-tabs-canvas {
 
 .chat-room {
     background-color: aqua !important;
+}
+
+/*Spotify Feed*/
+
+.artistCoverArt{
+    height: 120px;
+    width: 120px;
+    padding: 5px;
+}
+
+.artistCoverWrap{
+    display: flex;
+    flex-flow: row wrap;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.artistCoverList {
+    max-height: 500px;
 }

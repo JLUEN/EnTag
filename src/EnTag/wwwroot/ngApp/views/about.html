@@ -1,9 +1,9 @@
 <!--<nav class="flex-col f-jc-sb">
     <div>
-     
 
 
-        
+
+
     </div>
     <div>
         <div class="navbox cog-icon">
@@ -156,7 +156,7 @@
                                     <md-content layout-margin="">
 
                                         <div id="youtubeSearchResults">
-                                            <div ng-click="controller.reload()"  ng-hide="controller.youtubeIcon" ng-show="!account.isLoggedIn()" class="navbox youtube-icon fa-4x">
+                                            <div ng-click="controller.reload()" ng-hide="controller.youtubeIcon" ng-show="!account.isLoggedIn()" class="navbox youtube-icon fa-4x">
                                                 <i ng-click="controller.showModal()" class="fa fa-youtube-square" aria-hidden="true"></i>
                                             </div>
                                             <div ng-click="controller.ChooseSubscription($index); toggleLeft()" ng-repeat="sub in controller.subscriptionCriteria.items">
@@ -211,7 +211,7 @@
                     <md-tab label="Twitch">
                         <md-content class="flex-col twitchMdContent">
                             <div class="youtubeSubButton">
-                                <div ng-click="controller.reload()" ng-hide="controller.twitchIcon" ng-show="!account.isLoggedIn()"  class="navbox twitch-icon">
+                                <div ng-click="controller.reload()" ng-hide="controller.twitchIcon" ng-show="!account.isLoggedIn()" class="navbox twitch-icon">
                                     <a onclick="OpenWindowT()"><i class="fa fa-twitch fa-4x" aria-hidden="true"></i></a>
                                 </div>
                             </div>
@@ -246,9 +246,16 @@
                             <div ng-click="controller.reload()" ng-hide="controller.spotifyIcon" ng-show="!account.isLoggedIn()" class="navbox spotify-icon">
                                 <a onclick="OpenWindowS()"><i class="fa fa-spotify fa-4x" aria-hidden="true"></i></a>
                             </div>
-                            <iframe src="{{controller.customSRC}}" frameborder="0" allowtransparency="true"></iframe>
-                            <div>
-                                <div ng-click="controller.musicChoice($index)" ng-repeat="playlist in controller.list"><img src="{{playlist.images[0].url}}" /></div>
+                            <div class="flex-row f-jc-c">
+                                <iframe src="{{controller.customSRC}}" width="480" height="80" frameborder="0" allowtransparency="true"></iframe>
+                            </div>
+                            <br/>
+                            <div class="artistCoverWrap artistCoverLists overflow scroll">
+                                <div ng-click="controller.musicChoice($index)" ng-repeat="playlist in controller.list">
+                                    <div class="artistCoverArtClick">
+                                        <img class="artistCoverArt" src="{{playlist.images[0].url}}" />
+                                    </div>
+                                </div>
                             </div>
                         </md-content>
                     </md-tab>
@@ -261,7 +268,7 @@
         <div id="twitter" class="flex-col">
             <div id="twitterfeed" class="flex-col panel">
                 <div ng-click="controller.reload()" ng-hide="controller.twitterIcon" ng-show="!account.isLoggedIn()" class="navbox twitter-icon">
-                    <a  onclick="OpenWindow()"><i class="fa fa-twitter fa-4x" aria-hidden="true"></i></a>
+                    <a onclick="OpenWindow()"><i class="fa fa-twitter fa-4x" aria-hidden="true"></i></a>
                 </div>
                 <div class="twitterpopulate overflow scroll">
                     <div class="tweet" ng-repeat="t in controller.tweets">

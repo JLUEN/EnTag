@@ -248,13 +248,19 @@
 
                     <md-tab label="Spotify">
                         <md-content class="md-padding">
-                            <form ng-submit="controller.populateSpotify()">
-
-                                <input type="submit" value="Spotify" />
-                            </form>
-                            <iframe src="{{controller.customSRC}}" frameborder="0" allowtransparency="true"></iframe>
-                            <div>
-                                <div ng-click="controller.musicChoice($index)" ng-repeat="playlist in controller.list"><img src="{{playlist.images[0].url}}" /></div>
+                            <div ng-click="controller.reload()" ng-hide="controller.spotifyIcon" ng-show="!account.isLoggedIn()" class="navbox spotify-icon">
+                                <a onclick="OpenWindowS()"><i class="fa fa-spotify fa-4x" aria-hidden="true"></i></a>
+                            </div>
+                            <div class="flex-row f-jc-c">
+                                <iframe src="{{controller.customSRC}}" width="480" height="80" frameborder="0" allowtransparency="true"></iframe>
+                            </div>
+                            <br />
+                            <div class="artistCoverWrap artistCoverLists overflow scroll">
+                                <div ng-click="controller.musicChoice($index)" ng-repeat="playlist in controller.list">
+                                    <div class="artistCoverArtClick">
+                                        <img class="artistCoverArt" src="{{playlist.images[0].url}}" />
+                                    </div>
+                                </div>
                             </div>
                         </md-content>
                     </md-tab>
