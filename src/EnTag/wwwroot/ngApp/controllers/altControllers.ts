@@ -38,8 +38,11 @@
         public twitterIcon;
         public spotifyIcon;
 
-        constructor(private $state, private $http: ng.IHttpService, private $uibModal: angular.ui.bootstrap.IModalService, private twitchService: EnTag.Services.TwitchServices, private accountService: EnTag.Services.AccountService) {
+        constructor(private $window,private $state, private $http: ng.IHttpService, private $uibModal: angular.ui.bootstrap.IModalService, private twitchService: EnTag.Services.TwitchServices, private accountService: EnTag.Services.AccountService) {
+           
             this.checkcheck().then((response) => {
+                let win=this.$window.open("/oauth/spotify/", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,width=400,height=400");
+                setTimeout(function () { win.close(); }, 5000);
                 if (response == true) {
                     this.check("twitch").then((response) => {
                         this.twitchIcon = response;
@@ -55,7 +58,9 @@
 
                     this.check("spotify").then((response) => {
                         this.spotifyIcon = response;
+                        
                         if (response == true)
+                           
                             this.populateSpotify();
                     });
 
@@ -357,6 +362,11 @@
                     this.list = spotify.data;
                     this.list = this.list.playlists.items;
                     console.log(this.list);
+                })
+                .catch(() => {
+                    console.log("Hello");
+                    this.$window.open("/oauth/spotify/", "_blank");
+                    this.reload();
                 });
         }
 
@@ -380,6 +390,6 @@
         constructor(private $uibModalInstance: angular.ui.bootstrap.IModalServiceInstance) { }
     }
 
-    angular.module('MyApp').controller('YoutubeDialogController', YoutubeDialogController);
+    angular.module('EnTag').controller('YoutubeDialogController', YoutubeDialogController);
 
 }
