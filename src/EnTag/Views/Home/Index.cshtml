@@ -4,7 +4,7 @@
     <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/lib/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" />
     <link href="~/lib/angular-material/angular-material.min.css" rel="stylesheet" />
-    
+
     <!-- Library Files -->
     <script src="~/lib/angular/angular.js"></script>
     <script src="~/lib/angular-resource/angular-resource.js"></script>
@@ -41,13 +41,13 @@
     <div class="container header">
         <div class="flex-row f-jc-sb">
             <h1 class="logo">EnTag</h1>
-                <div class="flex-row f-jc-fe margintop">
-                    <div class="username fontcolor" ng-show="account.isLoggedIn()">
-                        {{account.getUserName()}}
-                    </div>
-                    <a href="#" ng-click="account.logout()" ng-show="account.isLoggedIn()">Logout</a>
-                    <a href="/login" ng-show="!account.isLoggedIn()">Login</a>
+            <div class="flex-row f-jc-fe margintop">
+                <div class="username fontcolor" ng-show="account.isLoggedIn()">
+                    {{account.getUserName()}}
                 </div>
+                <a href="#" ng-click="account.logout()" ng-show="account.isLoggedIn()">Logout</a>
+                <a href="/login" ng-show="!account.isLoggedIn()">Login</a>
+            </div>
         </div>
     </div>
     <hr />

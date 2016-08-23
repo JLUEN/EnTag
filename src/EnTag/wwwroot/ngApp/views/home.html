@@ -261,8 +261,8 @@
 
                     <md-tab label="Spotify">
                         <md-content class="md-padding">
-                            <div ng-click="controller.reload()" ng-hide="controller.spotifyIcon" ng-show="!account.isLoggedIn()" class="navbox spotify-icon">
-                                <a onclick="OpenWindowS()"><i class="fa fa-spotify fa-4x" aria-hidden="true"></i></a>
+                            <div class="flex-col f-jc-c f-ai-c" ng-click="controller.reload()" ng-hide="controller.spotifyIcon" ng-show="!account.isLoggedIn()" class="navbox spotify-icon">
+                                <a ng-click="controller.populateSpotify()"><i class="fa fa-spotify fa-4x" aria-hidden="true"></i></a>
                             </div>
                             <div class="flex-row f-jc-c">
                                 <iframe src="{{controller.customSRC}}" width="480" height="80" frameborder="0" allowtransparency="true"></iframe>
